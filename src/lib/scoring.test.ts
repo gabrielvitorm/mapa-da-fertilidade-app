@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import { computeAssessment, type ScoreRuleInput } from './scoring';
+import type { PillarKey } from '@/types/assessment';
 
 const RULES: ScoreRuleInput[] = [
   { pillar: 'fatores_infertilidade', peso: 3, maxDoPilar: 72 },
@@ -48,10 +49,9 @@ function zeroScores(overrides: Partial<Record<string, number>> = {}) {
 // Fronteira: resultadoFinal exatamente 80 -> MODERADA (regra é "> 80" para ALTA)
 {
   // scoreTotal necessário para resultadoFinal = 80: (scoreTotal/285)*100 = 80 -> scoreTotal = 228
-  const scores = zeroScores({ fatores_infertilidade: 228 });
   const rulesUmPilar: ScoreRuleInput[] = [{ pillar: 'fatores_infertilidade', peso: 3, maxDoPilar: 72 }];
-  const scoresUmPilar = { fatores_infertilidade: 228 } as Record<'fatores_infertilidade', number>;
-  const result = computeAssessment(scoresUmPilar as any, rulesUmPilar, SCORE_DENOMINATOR);
+  const scoresUmPilar = { fatores_infertilidade: 228 } as Record<PillarKey, number>;
+  const result = computeAssessment(scoresUmPilar, rulesUmPilar, SCORE_DENOMINATOR);
   assert.equal(result.resultadoFinal, 80);
   assert.equal(result.nivelGlobal, 'MODERADA');
 }
@@ -59,8 +59,8 @@ function zeroScores(overrides: Partial<Record<string, number>> = {}) {
 // Fronteira: resultadoFinal exatamente 60 -> MODERADA
 {
   const rulesUmPilar: ScoreRuleInput[] = [{ pillar: 'fatores_infertilidade', peso: 3, maxDoPilar: 72 }];
-  const scoresUmPilar = { fatores_infertilidade: 171 } as Record<'fatores_infertilidade', number>; // (171/285)*100 = 60
-  const result = computeAssessment(scoresUmPilar as any, rulesUmPilar, SCORE_DENOMINATOR);
+  const scoresUmPilar = { fatores_infertilidade: 171 } as Record<PillarKey, number>; // (171/285)*100 = 60
+  const result = computeAssessment(scoresUmPilar, rulesUmPilar, SCORE_DENOMINATOR);
   assert.equal(result.resultadoFinal, 60);
   assert.equal(result.nivelGlobal, 'MODERADA');
 }
@@ -68,11 +68,11 @@ function zeroScores(overrides: Partial<Record<string, number>> = {}) {
 // Nível por pilar: corte 0.8 (Alto) e 0.6 (Moderado) exatos
 {
   const rulesUmPilar: ScoreRuleInput[] = [{ pillar: 'sono', peso: 1, maxDoPilar: 100 }];
-  const alto = computeAssessment({ sono: 80 } as any, rulesUmPilar, SCORE_DENOMINATOR);
+  const alto = computeAssessment({ sono: 80 } as Record<PillarKey, number>, rulesUmPilar, SCORE_DENOMINATOR);
   assert.equal(alto.pontosAtencao[0].level, 'Alto');
-  const moderado = computeAssessment({ sono: 60 } as any, rulesUmPilar, SCORE_DENOMINATOR);
+  const moderado = computeAssessment({ sono: 60 } as Record<PillarKey, number>, rulesUmPilar, SCORE_DENOMINATOR);
   assert.equal(moderado.pontosAtencao[0].level, 'Moderado');
-  const baixo = computeAssessment({ sono: 59 } as any, rulesUmPilar, SCORE_DENOMINATOR);
+  const baixo = computeAssessment({ sono: 59 } as Record<PillarKey, number>, rulesUmPilar, SCORE_DENOMINATOR);
   assert.equal(baixo.pontosAtencao[0].level, 'Baixo');
 }
 
