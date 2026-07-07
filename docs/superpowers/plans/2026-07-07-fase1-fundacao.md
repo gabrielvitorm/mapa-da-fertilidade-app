@@ -16,6 +16,7 @@
 - Variáveis de ambiente lidas de `.env` (não `.env.local`) — Prisma CLI só lê `.env` automaticamente, e Next.js também lê `.env`, então usar um arquivo único evita divergência entre `next dev` e `npx prisma migrate`.
 - Commits: **nunca** incluir trailer `Co-Authored-By: Claude` ou qualquer menção de co-autoria de IA — preferência explícita do usuário.
 - Todas as entidades do schema devem corresponder exatamente ao bloco "Modelo de dados (Prisma)" do design spec — não adicionar campos além do que está lá.
+- **Prisma pinado em `^6.19.3`** (não instalar `7.x`). O Prisma 7 muda a arquitetura de config (`datasource.url` sai do `schema.prisma` e vai para `prisma.config.ts`, exige driver adapter `@prisma/adapter-pg` no construtor do `PrismaClient`) — fora do escopo desta fase. Use sempre `npm install prisma@^6.19.3 -D` e `npm install @prisma/client@^6.19.3`, nunca sem pin de major version.
 
 ---
 
@@ -31,11 +32,11 @@
 - Produces: `DATABASE_URL` disponível em `.env` para as próximas tasks (`postgresql://fertilidade:fertilidade@localhost:5433/fertilidade?schema=public` — porta host **5433**, não 5432, porque outro projeto local (`postgres_go_pro`) já ocupa 5432; a porta interna do container continua 5432).
 - Produces: scripts npm `prisma:migrate` (`prisma migrate dev`) e `prisma:studio` (`prisma studio`) para uso nas próximas fases.
 
-- [ ] **Step 1: Instalar as dependências do Prisma**
+- [ ] **Step 1: Instalar as dependências do Prisma (pinadas em 6.x)**
 
-Run: `npm install @prisma/client && npm install -D prisma`
+Run: `npm install @prisma/client@^6.19.3 && npm install -D prisma@^6.19.3`
 
-Expected: `package.json` ganha `@prisma/client` em `dependencies` e `prisma` em `devDependencies`; `package-lock.json` atualizado.
+Expected: `package.json` ganha `@prisma/client` (`^6.19.3`) em `dependencies` e `prisma` (`^6.19.3`) em `devDependencies`; `package-lock.json` atualizado. **Não instale sem o pin de versão** — a versão `7.x` (padrão do `npm install` sem pin) muda a arquitetura de config e quebra os passos seguintes deste plano.
 
 - [ ] **Step 2: Adicionar scripts e postinstall ao `package.json`**
 
