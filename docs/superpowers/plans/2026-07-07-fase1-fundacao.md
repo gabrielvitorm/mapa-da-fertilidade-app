@@ -28,7 +28,7 @@
 - Modify: `.env.example`
 
 **Interfaces:**
-- Produces: `DATABASE_URL` disponível em `.env` para as próximas tasks (`postgresql://fertilidade:fertilidade@localhost:5432/fertilidade?schema=public`).
+- Produces: `DATABASE_URL` disponível em `.env` para as próximas tasks (`postgresql://fertilidade:fertilidade@localhost:5433/fertilidade?schema=public` — porta host **5433**, não 5432, porque outro projeto local (`postgres_go_pro`) já ocupa 5432; a porta interna do container continua 5432).
 - Produces: scripts npm `prisma:migrate` (`prisma migrate dev`) e `prisma:studio` (`prisma studio`) para uso nas próximas fases.
 
 - [ ] **Step 1: Instalar as dependências do Prisma**
@@ -61,7 +61,7 @@ services:
       POSTGRES_PASSWORD: fertilidade
       POSTGRES_DB: fertilidade
     ports:
-      - "5432:5432"
+      - "5433:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
@@ -87,7 +87,7 @@ Expected: `/var/run/postgresql:5432 - accepting connections` (se ainda não esti
 Criar arquivo `.env` na raiz (este arquivo é ignorado pelo git — confirme que `.gitignore` já tem `.env*` com exceção de `.env.example`, o que já é o caso):
 
 ```
-DATABASE_URL="postgresql://fertilidade:fertilidade@localhost:5432/fertilidade?schema=public"
+DATABASE_URL="postgresql://fertilidade:fertilidade@localhost:5433/fertilidade?schema=public"
 ```
 
 - [ ] **Step 6: Atualizar `.env.example` com todas as variáveis do design**
