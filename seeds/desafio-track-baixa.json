@@ -1,0 +1,406 @@
+{
+  "track": {
+    "level": "BAIXA",
+    "codename": "SEMENTE",
+    "title": "Jornada de 7 Dias – Nível Semente",
+    "defaultCooldownHours": 20
+  },
+  "days": [
+    {
+      "dayNumber": 0,
+      "isOnboarding": true,
+      "messages": [
+        {
+          "ordem": 1,
+          "tipo": "VIDEO",
+          "delayMs": 2000,
+          "texto": "Boas-vindas à sua Jornada de 7 Dias",
+          "mediaSourceDriveId": "1LLQHns8ICZ_ChpdCI-RJi6Z4oEH54ldY",
+          "mediaKey": "videos/boas-vindas.mp4"
+        },
+        {
+          "ordem": 2,
+          "tipo": "AUDIO",
+          "delayMs": 23002,
+          "mediaSourceDriveId": "1H6iMyRgS8auHhZpt2-0E8fEVlm4LbCq6",
+          "mediaKey": "desafio/baixa/dia0/1.mp3"
+        },
+        {
+          "ordem": 3,
+          "tipo": "TEXTO",
+          "delayMs": 4746,
+          "texto": "🌱 Jornada de 7 Dias – Nível SEMENTE (FERTILIDADE BAIXA)"
+        },
+        {
+          "ordem": 4,
+          "tipo": "TEXTO",
+          "delayMs": 7553,
+          "texto": "✨ Você está se recolhendo. Agora é sobre cuidar de si, ouvir o corpo e confiar no tempo de pausa que prepara o novo."
+        },
+        {
+          "ordem": 5,
+          "tipo": "AUDIO",
+          "delayMs": 9068,
+          "mediaSourceDriveId": "1LpdPmIvplM4IzVKdcwi8uIBG9e6r0bNA",
+          "mediaKey": "desafio/baixa/dia0/4.mp3"
+        }
+      ]
+    },
+    {
+      "dayNumber": 1,
+      "isOnboarding": false,
+      "messages": [
+        {
+          "ordem": 1,
+          "tipo": "VIDEO",
+          "delayMs": 6882,
+          "texto": "ASSISTA A AULA 1: “Raízes do Bloqueio – O que seu corpo está tentando te contar?”",
+          "mediaSourceDriveId": "1PMdHgTOS7Vv5oqn23flwmxerkR92IMjs",
+          "mediaKey": "videos/aula1.mp4"
+        },
+        {
+          "ordem": 2,
+          "tipo": "TEXTO",
+          "delayMs": 8261,
+          "texto": "Esse desafio vai muito além de exames. É um convite para você se reconectar com seu corpo e entender os sinais que ele vem dando.\n\nNos próximos dias, você vai receber orientações simples e profundas que te ajudam a identificar bloqueios e dar passos conscientes rumo à sua fertilidade.\n\nVocê não está sozinha. Vamos juntas, um passo de cada vez!"
+        },
+        {
+          "ordem": 3,
+          "tipo": "TEXTO",
+          "delayMs": 3716,
+          "texto": "DESAFIO DAY 1 – Cuidado Cíclico Inteligente"
+        },
+        {
+          "ordem": 4,
+          "tipo": "IMAGEM",
+          "delayMs": 1200,
+          "mediaSourceDriveId": "1jP54FgSXKcmxXCIZs1Xcc2ZEW6z1xxAi",
+          "mediaKey": "desafio/baixa/dia1/4.jpg"
+        },
+        {
+          "ordem": 5,
+          "tipo": "IMAGEM",
+          "delayMs": 1200,
+          "mediaSourceDriveId": "1CynXh_pwXNV5B2-d_of4whgPRHYHiMnz",
+          "mediaKey": "desafio/baixa/dia1/5.jpg"
+        },
+        {
+          "ordem": 6,
+          "tipo": "TEXTO",
+          "delayMs": 5431,
+          "texto": "Por quê? Isso estabiliza cortisol, melhora sinalização hormonal e otimiza tireoide."
+        },
+        {
+          "ordem": 7,
+          "tipo": "AUDIO",
+          "delayMs": 104561,
+          "mediaSourceDriveId": "1L9XAig-rWkrzUyGZd4zmcf5HhF3wQwau",
+          "mediaKey": "desafio/baixa/dia1/7.mp3"
+        },
+        {
+          "ordem": 8,
+          "tipo": "TEXTO",
+          "delayMs": 4674,
+          "texto": "Comece a guardar os sinais do seu corpo também."
+        }
+      ]
+    },
+    {
+      "dayNumber": 2,
+      "isOnboarding": false,
+      "messages": [
+        {
+          "ordem": 1,
+          "tipo": "VIDEO",
+          "delayMs": 6577,
+          "texto": "ASSISTA A AULA 2: “O Checklist da Fertilidade – Seu mapa para começar a agir”",
+          "mediaSourceDriveId": "1XTmLp9zqRYbw_u-m9DsCcSJ9TEDqMm1I",
+          "mediaKey": "videos/aula2.mp4"
+        },
+        {
+          "ordem": 2,
+          "tipo": "TEXTO",
+          "delayMs": 3672,
+          "texto": "DESAFIO DAY 2: Ritual Manhã Restauradora"
+        },
+        {
+          "ordem": 3,
+          "tipo": "IMAGEM",
+          "delayMs": 1200,
+          "mediaSourceDriveId": "1C3EzuT6esaZ7IGsFZc5j4VTsjIUYfg9i",
+          "mediaKey": "desafio/baixa/dia2/3.jpg"
+        },
+        {
+          "ordem": 4,
+          "tipo": "TEXTO",
+          "delayMs": 6886,
+          "texto": "Por quê? Isso acorda os eixos hormonais e reduz o impacto do cortisol sobre sua ovulação."
+        },
+        {
+          "ordem": 5,
+          "tipo": "AUDIO",
+          "delayMs": 100000,
+          "mediaSourceDriveId": "1MlHhszy-lLbzyJ69TF9whGnv7IpZa_JK",
+          "mediaKey": "desafio/baixa/dia2/5.mp3"
+        },
+        {
+          "ordem": 6,
+          "tipo": "TEXTO",
+          "delayMs": 5691,
+          "texto": "Comece seu dia com alegria e leveza — isso também é fertilidade."
+        }
+      ]
+    },
+    {
+      "dayNumber": 3,
+      "isOnboarding": false,
+      "messages": [
+        {
+          "ordem": 1,
+          "tipo": "VIDEO",
+          "delayMs": 6294,
+          "texto": "ASSISTA A AULA 3: “Fertilidade não nasce do acaso – ela nasce do equilíbrio”",
+          "mediaSourceDriveId": "1KdVuzjIoyeCO7hjeNjqWJ7EruBJTBPWi",
+          "mediaKey": "videos/aula3.mp4"
+        },
+        {
+          "ordem": 2,
+          "tipo": "TEXTO",
+          "delayMs": 4462,
+          "texto": "DESAFIO DAY 3: Plano de Raiz Alimentar"
+        },
+        {
+          "ordem": 3,
+          "tipo": "IMAGEM",
+          "delayMs": 1200,
+          "mediaSourceDriveId": "1JzhIr7YYxQQiKVmVGFA4ExTynQxHIZq1",
+          "mediaKey": "desafio/baixa/dia3/3.jpg"
+        },
+        {
+          "ordem": 4,
+          "tipo": "TEXTO",
+          "delayMs": 6273,
+          "texto": "Por quê? A inflamação silenciosa é um dos maiores bloqueios hormonais na fertilidade moderada."
+        },
+        {
+          "ordem": 5,
+          "tipo": "AUDIO",
+          "delayMs": 61234,
+          "mediaSourceDriveId": "1YMXqz7Gf8-Av_P-_towydP_8LLijra9m",
+          "mediaKey": "desafio/baixa/dia3/5.mp3"
+        },
+        {
+          "ordem": 6,
+          "tipo": "TEXTO",
+          "delayMs": 5785,
+          "texto": "Voltar à comida que nutre de verdade também é voltar para si."
+        }
+      ]
+    },
+    {
+      "dayNumber": 4,
+      "isOnboarding": false,
+      "messages": [
+        {
+          "ordem": 1,
+          "tipo": "VIDEO",
+          "delayMs": 6151,
+          "texto": "ASSISTA A AULA 4: “Caminho da Consistência – A fertilidade se constrói com rotina”",
+          "mediaSourceDriveId": "1-OfyGyUIcXvDonqPMHOLYLHRvvxlfZTp",
+          "mediaKey": "videos/aula4.mp4"
+        },
+        {
+          "ordem": 2,
+          "tipo": "TEXTO",
+          "delayMs": 4013,
+          "texto": "DESAFIO DAY 4: “Higiene ambiental e energética”"
+        },
+        {
+          "ordem": 3,
+          "tipo": "IMAGEM",
+          "delayMs": 1200,
+          "mediaSourceDriveId": "1vdtzoTUMr_aG4j-yX2d3PEI2z3edJ-ob",
+          "mediaKey": "desafio/baixa/dia4/3.jpg"
+        },
+        {
+          "ordem": 4,
+          "tipo": "TEXTO",
+          "delayMs": 6018,
+          "texto": "Por quê? Toxinas ambientais afetam silenciosamente seu sistema hormonal e sua paz interior."
+        },
+        {
+          "ordem": 5,
+          "tipo": "AUDIO",
+          "delayMs": 40100,
+          "mediaSourceDriveId": "1yPMaXSggDF3eN0yVwma8txIvJfPO-1vp",
+          "mediaKey": "desafio/baixa/dia4/5.mp3"
+        },
+        {
+          "ordem": 6,
+          "tipo": "TEXTO",
+          "delayMs": 4739,
+          "texto": "Talvez a resposta que você busca venha na pausa."
+        }
+      ]
+    },
+    {
+      "dayNumber": 5,
+      "isOnboarding": false,
+      "messages": [
+        {
+          "ordem": 1,
+          "tipo": "VIDEO",
+          "delayMs": 6165,
+          "texto": "ASSISTA A AULA 5: “Corpo limpo, óvulo forte – Alimentação e detox na fertilidade”",
+          "mediaSourceDriveId": "11rclZ9j6GMiMqSmdSN-_zFkhyuBQ-TSV",
+          "mediaKey": "videos/aula5.mp4"
+        },
+        {
+          "ordem": 2,
+          "tipo": "TEXTO",
+          "delayMs": 3662,
+          "texto": "DESAFIO DAY 5: Detox hepático e digestivo"
+        },
+        {
+          "ordem": 3,
+          "tipo": "IMAGEM",
+          "delayMs": 1200,
+          "mediaSourceDriveId": "1zhGK3uArzO6NEupxZ6SihWvfNa2S7Jhw",
+          "mediaKey": "desafio/baixa/dia5/3.jpg"
+        },
+        {
+          "ordem": 4,
+          "tipo": "TEXTO",
+          "delayMs": 5554,
+          "texto": "Por quê? O fígado sobrecarregado é um dos principais bloqueadores da ovulação."
+        },
+        {
+          "ordem": 5,
+          "tipo": "AUDIO",
+          "delayMs": 51234,
+          "mediaSourceDriveId": "1Tb_JXAVTt0m15kpEaPM6kQMuX6xwYjCz",
+          "mediaKey": "desafio/baixa/dia5/5.mp3"
+        }
+      ]
+    },
+    {
+      "dayNumber": 6,
+      "isOnboarding": false,
+      "messages": [
+        {
+          "ordem": 1,
+          "tipo": "VIDEO",
+          "delayMs": 7637,
+          "texto": "ASSISTA A AULA 6: “Os Sabotadores Invisíveis – O que atrasa a sua gravidez sem você perceber”",
+          "mediaSourceDriveId": "1IivFEjbiUEyUJCQaH8KKXC25vjg9lZMv",
+          "mediaKey": "videos/aula6.mp4"
+        },
+        {
+          "ordem": 2,
+          "tipo": "TEXTO",
+          "delayMs": 4523,
+          "texto": "DESAFIO DAY 6: EMOÇÕES E FÉ CONECTADAS AO CORPO"
+        },
+        {
+          "ordem": 3,
+          "tipo": "TEXTO",
+          "delayMs": 8115,
+          "texto": "Hoje, você vai transformar o toque em conexão. A palavra em afirmação. A respiração em ponte entre o que você sente e o que você deseja viver."
+        },
+        {
+          "ordem": 4,
+          "tipo": "IMAGEM",
+          "delayMs": 1200,
+          "mediaSourceDriveId": "1wu0isp2ozMRo-r0RPL_U8XBQQDp6C3vg",
+          "mediaKey": "desafio/baixa/dia6/4.jpg"
+        },
+        {
+          "ordem": 5,
+          "tipo": "TEXTO",
+          "delayMs": 8798,
+          "texto": "Por quê? Emoções reprimidas aumentam o cortisol e bloqueiam o eixo hormonal. A presença reduz a carga inflamatória emocional."
+        },
+        {
+          "ordem": 6,
+          "tipo": "AUDIO",
+          "delayMs": 41234,
+          "mediaSourceDriveId": "175GVkvzT2lXrvLHG069Zd415lVYVesTd",
+          "mediaKey": "desafio/baixa/dia6/6.mp3"
+        },
+        {
+          "ordem": 7,
+          "tipo": "AUDIO",
+          "delayMs": 82200,
+          "mediaSourceDriveId": "1BdeZByfaizgiheTT550ZsHsVT3Aac-oq",
+          "mediaKey": "desafio/baixa/dia6/7.mp3"
+        },
+        {
+          "ordem": 8,
+          "tipo": "AUDIO",
+          "delayMs": 53000,
+          "mediaSourceDriveId": "1xKe7Ivs44Qz7qysN5urWAso6mI_LvKI-",
+          "mediaKey": "desafio/baixa/dia6/8.mp3"
+        },
+        {
+          "ordem": 9,
+          "tipo": "TEXTO",
+          "delayMs": 5480,
+          "texto": "Fé não ignora os fatos — ela se move apesar deles."
+        }
+      ]
+    },
+    {
+      "dayNumber": 7,
+      "isOnboarding": false,
+      "messages": [
+        {
+          "ordem": 1,
+          "tipo": "VIDEO",
+          "delayMs": 7788,
+          "texto": "ASSISTA A AULA 7: “Corpo fértil, mente em paz – Preparando seu corpo para receber o seu bebê”",
+          "mediaSourceDriveId": "1pZwEdKBAu_sz3dpqNhIVCIqkj7e8C5mz",
+          "mediaKey": "videos/aula7.mp4"
+        },
+        {
+          "ordem": 2,
+          "tipo": "TEXTO",
+          "delayMs": 3706,
+          "texto": "DESAFIO DAY 7: ENTREGA E CONFIANÇA"
+        },
+        {
+          "ordem": 3,
+          "tipo": "TEXTO",
+          "delayMs": 8458,
+          "texto": "Hoje, o convite é: parar para confiar de verdade. Não parar por desistência, mas por rendição. Não se afastar do propósito, mas entregar o controle."
+        },
+        {
+          "ordem": 4,
+          "tipo": "IMAGEM",
+          "delayMs": 1200,
+          "mediaSourceDriveId": "1-NoAhnr3qYjZNvxLZ3n-r8B2yJ5cP53u",
+          "mediaKey": "desafio/baixa/dia7/4.jpg"
+        },
+        {
+          "ordem": 5,
+          "tipo": "TEXTO",
+          "delayMs": 8523,
+          "texto": "Por quê? Não é o método. É a cura da relação com o corpo que abre caminho para o milagre."
+        },
+        {
+          "ordem": 6,
+          "tipo": "AUDIO",
+          "delayMs": 91536,
+          "mediaSourceDriveId": "1UpyThWh54k0i5mFnxay-TudwxYTT1RMk",
+          "mediaKey": "desafio/baixa/dia7/6.mp3"
+        },
+        {
+          "ordem": 7,
+          "tipo": "AUDIO",
+          "delayMs": 71547,
+          "mediaSourceDriveId": "1jSOVsmV4td8ykvICMNHZUGUcXVDoejZ3",
+          "mediaKey": "desafio/baixa/dia7/7.mp3"
+        }
+      ]
+    }
+  ]
+}

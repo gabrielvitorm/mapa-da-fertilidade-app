@@ -1,0 +1,439 @@
+{
+  "track": {
+    "level": "ALTA",
+    "codename": "FLORACAO",
+    "title": "Jornada de 7 Dias – Nível Floração",
+    "defaultCooldownHours": 20
+  },
+  "days": [
+    {
+      "dayNumber": 0,
+      "isOnboarding": true,
+      "messages": [
+        {
+          "ordem": 1,
+          "tipo": "VIDEO",
+          "delayMs": 2000,
+          "texto": "Boas-vindas à sua Jornada de 7 Dias",
+          "mediaSourceDriveId": "1LLQHns8ICZ_ChpdCI-RJi6Z4oEH54ldY",
+          "mediaKey": "videos/boas-vindas.mp4"
+        },
+        {
+          "ordem": 2,
+          "tipo": "AUDIO",
+          "delayMs": 1200,
+          "mediaSourceDriveId": "1EcjCCr2nKNPzZr8LgwL4EWZYIsBPu53X",
+          "mediaKey": "desafio/alta/dia0/1.mp3"
+        },
+        {
+          "ordem": 3,
+          "tipo": "TEXTO",
+          "delayMs": 7119,
+          "texto": "🌸 Jornada de 7 Dias – Nível FLORAÇÃO (FERTILIDADE ALTA)"
+        },
+        {
+          "ordem": 4,
+          "tipo": "TEXTO",
+          "delayMs": 8000,
+          "texto": "✨ Você está pronta. Agora é sobre aprofundar, sustentar e abrir espaço para o milagre chegar."
+        },
+        {
+          "ordem": 5,
+          "tipo": "AUDIO",
+          "delayMs": 9000,
+          "mediaSourceDriveId": "1LpdPmIvplM4IzVKdcwi8uIBG9e6r0bNA",
+          "mediaKey": "desafio/alta/dia0/4.mp3"
+        }
+      ]
+    },
+    {
+      "dayNumber": 1,
+      "isOnboarding": false,
+      "messages": [
+        {
+          "ordem": 1,
+          "tipo": "VIDEO",
+          "delayMs": 6880,
+          "texto": "ASSISTA A AULA 1: “Raízes do Bloqueio – O que seu corpo está tentando te contar?”",
+          "mediaSourceDriveId": "1PMdHgTOS7Vv5oqn23flwmxerkR92IMjs",
+          "mediaKey": "videos/aula1.mp4"
+        },
+        {
+          "ordem": 2,
+          "tipo": "TEXTO",
+          "delayMs": 8177,
+          "texto": "Esse desafio vai muito além de exames. É um convite para você se reconectar com seu corpo e entender os sinais que ele vem dando.\n\nNos próximos dias, você vai receber orientações simples e profundas que te ajudam a identificar bloqueios e dar passos conscientes rumo à sua fertilidade.\n\nVocê não está sozinha. Vamos juntas, um passo de cada vez!"
+        },
+        {
+          "ordem": 3,
+          "tipo": "TEXTO",
+          "delayMs": 3817,
+          "texto": "DESAFIO DAY 1 – Cuidado Cíclico Inteligente"
+        },
+        {
+          "ordem": 4,
+          "tipo": "IMAGEM",
+          "delayMs": 1200,
+          "mediaSourceDriveId": "1jP54FgSXKcmxXCIZs1Xcc2ZEW6z1xxAi",
+          "mediaKey": "desafio/alta/dia1/4.jpg"
+        },
+        {
+          "ordem": 5,
+          "tipo": "IMAGEM",
+          "delayMs": 1200,
+          "mediaSourceDriveId": "11L7Y0rUr3qA3JhonkKYHFsEYmHKjjWUx",
+          "mediaKey": "desafio/alta/dia1/5.jpg"
+        },
+        {
+          "ordem": 6,
+          "tipo": "TEXTO",
+          "delayMs": 6499,
+          "texto": "🧠 Por quê? Isso estabiliza o cortisol, melhora a sinalização hormonal e otimiza a tireoide."
+        },
+        {
+          "ordem": 7,
+          "tipo": "AUDIO",
+          "delayMs": 100000,
+          "mediaSourceDriveId": "1MlHhszy-lLbzyJ69TF9whGnv7IpZa_JK",
+          "mediaKey": "desafio/alta/dia1/7.mp3"
+        },
+        {
+          "ordem": 8,
+          "tipo": "TEXTO",
+          "delayMs": 4662,
+          "texto": "Comece a guardar os sinais do seu corpo também."
+        }
+      ]
+    },
+    {
+      "dayNumber": 2,
+      "isOnboarding": false,
+      "messages": [
+        {
+          "ordem": 1,
+          "tipo": "VIDEO",
+          "delayMs": 8150,
+          "texto": "ASSISTA A AULA 2: “O Checklist da Fertilidade – Seu mapa para começar a agir”",
+          "mediaSourceDriveId": "1XTmLp9zqRYbw_u-m9DsCcSJ9TEDqMm1I",
+          "mediaKey": "videos/aula2.mp4"
+        },
+        {
+          "ordem": 2,
+          "tipo": "TEXTO",
+          "delayMs": 5200,
+          "texto": "DESAFIO DAY 2: Ritual Hormonal Matinal"
+        },
+        {
+          "ordem": 3,
+          "tipo": "IMAGEM",
+          "delayMs": 1500,
+          "mediaSourceDriveId": "12obbUmybSUau7PW4SaQedOqz_RhjD2fx",
+          "mediaKey": "desafio/alta/dia2/3.jpg"
+        },
+        {
+          "ordem": 4,
+          "tipo": "TEXTO",
+          "delayMs": 9500,
+          "texto": "🧠 Por quê? Monitorar seu ciclo aumenta a consciência sobre sua ovulação, fase lútea e eventuais alterações sutis. A consciência cíclica é aliada direta da fertilidade."
+        },
+        {
+          "ordem": 5,
+          "tipo": "AUDIO",
+          "delayMs": 100000,
+          "mediaSourceDriveId": "1MlHhszy-lLbzyJ69TF9whGnv7IpZa_JK",
+          "mediaKey": "desafio/alta/dia2/5.mp3"
+        },
+        {
+          "ordem": 6,
+          "tipo": "TEXTO",
+          "delayMs": 6100,
+          "texto": "Comece seu dia com alegria e leveza — isso também é fertilidade."
+        }
+      ]
+    },
+    {
+      "dayNumber": 3,
+      "isOnboarding": false,
+      "messages": [
+        {
+          "ordem": 1,
+          "tipo": "VIDEO",
+          "delayMs": 7800,
+          "texto": "ASSISTA A AULA 3: “Fertilidade não nasce do acaso – ela nasce do equilíbrio”",
+          "mediaSourceDriveId": "1KdVuzjIoyeCO7hjeNjqWJ7EruBJTBPWi",
+          "mediaKey": "videos/aula3.mp4"
+        },
+        {
+          "ordem": 2,
+          "tipo": "TEXTO",
+          "delayMs": 4900,
+          "texto": "DESAFIO DAY 3: “Nutrição pré-concepção”"
+        },
+        {
+          "ordem": 3,
+          "tipo": "IMAGEM",
+          "delayMs": 1300,
+          "mediaSourceDriveId": "12BYsa-28JaX-fUzwF7HdM70QJr0frrts",
+          "mediaKey": "desafio/alta/dia3/3.jpg"
+        },
+        {
+          "ordem": 4,
+          "tipo": "TEXTO",
+          "delayMs": 9200,
+          "texto": "🧠 Por quê? Esses nutrientes sustentam a fase lútea, qualidade do óvulo, e desenvolvimento neural precoce do bebê (já antes da concepção!)."
+        },
+        {
+          "ordem": 5,
+          "tipo": "AUDIO",
+          "delayMs": 85000,
+          "mediaSourceDriveId": "1YMXqz7Gf8-Av_P-_towydP_8LLijra9m",
+          "mediaKey": "desafio/alta/dia3/5.mp3"
+        },
+        {
+          "ordem": 6,
+          "tipo": "TEXTO",
+          "delayMs": 5500,
+          "texto": "Voltar à comida que nutre de verdade também é voltar para si."
+        }
+      ]
+    },
+    {
+      "dayNumber": 4,
+      "isOnboarding": false,
+      "messages": [
+        {
+          "ordem": 1,
+          "tipo": "VIDEO",
+          "delayMs": 7930,
+          "texto": "ASSISTA A AULA 4: “Caminho da Consistência – A fertilidade se constrói com rotina”",
+          "mediaSourceDriveId": "1-OfyGyUIcXvDonqPMHOLYLHRvvxlfZTp",
+          "mediaKey": "videos/aula4.mp4"
+        },
+        {
+          "ordem": 2,
+          "tipo": "TEXTO",
+          "delayMs": 5120,
+          "texto": "DESAFIO DAY 4: “Higiene ambiental e energética”"
+        },
+        {
+          "ordem": 3,
+          "tipo": "IMAGEM",
+          "delayMs": 1450,
+          "mediaSourceDriveId": "1nkL98MGh8WWeYkJqOHXUmmf0oVWpwWGJ",
+          "mediaKey": "desafio/alta/dia4/3.jpg"
+        },
+        {
+          "ordem": 4,
+          "tipo": "TEXTO",
+          "delayMs": 9380,
+          "texto": "🧠 Por quê? Disruptores endócrinos afetam diretamente fertilidade. Menos toxinas = mais clareza hormonal. E silêncio é detox da mente."
+        },
+        {
+          "ordem": 5,
+          "tipo": "AUDIO",
+          "delayMs": 43500,
+          "mediaSourceDriveId": "1yPMaXSggDF3eN0yVwma8txIvJfPO-1vp",
+          "mediaKey": "desafio/alta/dia4/5.mp3"
+        },
+        {
+          "ordem": 6,
+          "tipo": "TEXTO",
+          "delayMs": 5860,
+          "texto": "Talvez a resposta que você busca venha na pausa."
+        }
+      ]
+    },
+    {
+      "dayNumber": 5,
+      "isOnboarding": false,
+      "messages": [
+        {
+          "ordem": 1,
+          "tipo": "VIDEO",
+          "delayMs": 8140,
+          "texto": "ASSISTA A AULA 5: “Corpo limpo, óvulo forte – Alimentação e detox na fertilidade”",
+          "mediaSourceDriveId": "11rclZ9j6GMiMqSmdSN-_zFkhyuBQ-TSV",
+          "mediaKey": "videos/aula5.mp4"
+        },
+        {
+          "ordem": 2,
+          "tipo": "TEXTO",
+          "delayMs": 5270,
+          "texto": "DESAFIO DAY 5: Detox hepático e digestivo"
+        },
+        {
+          "ordem": 3,
+          "tipo": "IMAGEM",
+          "delayMs": 1250,
+          "mediaSourceDriveId": "1-usJqXNJO39d-Q_-ZEAzP2jP4Ga-9Wra",
+          "mediaKey": "desafio/alta/dia5/3.jpg"
+        },
+        {
+          "ordem": 4,
+          "tipo": "AUDIO",
+          "delayMs": 9410,
+          "mediaSourceDriveId": "1Tb_JXAVTt0m15kpEaPM6kQMuX6xwYjCz",
+          "mediaKey": "desafio/alta/dia5/4.mp3"
+        },
+        {
+          "ordem": 5,
+          "tipo": "TEXTO",
+          "delayMs": 61300,
+          "texto": "🧠 Por quê? O intestino precisa funcionar bem para equilibrar os hormônios e eliminar o estrogênio. O útero, bem irrigado e relaxado, se prepara para acolher."
+        }
+      ]
+    },
+    {
+      "dayNumber": 6,
+      "isOnboarding": false,
+      "messages": [
+        {
+          "ordem": 1,
+          "tipo": "VIDEO",
+          "delayMs": 5000,
+          "texto": "ASSISTA A AULA 6: “Os Sabotadores Invisíveis – O que atrasa a sua gravidez sem você perceber”",
+          "mediaSourceDriveId": "1IivFEjbiUEyUJCQaH8KKXC25vjg9lZMv",
+          "mediaKey": "videos/aula6.mp4"
+        },
+        {
+          "ordem": 2,
+          "tipo": "TEXTO",
+          "delayMs": 5000,
+          "texto": "DESAFIO DAY 6: EMOÇÕES E FÉ CONECTADAS AO CORPO"
+        },
+        {
+          "ordem": 3,
+          "tipo": "TEXTO",
+          "delayMs": 7637,
+          "texto": "Hoje, você vai transformar o toque em conexão. A palavra em afirmação. A respiração em ponte entre o que você sente e o que você deseja viver."
+        },
+        {
+          "ordem": 4,
+          "tipo": "IMAGEM",
+          "delayMs": 4523,
+          "mediaSourceDriveId": "1iBm-_0i7UXs0AhyAGcMzB5ZYiNNIwCgF",
+          "mediaKey": "desafio/alta/dia6/4.jpg"
+        },
+        {
+          "ordem": 5,
+          "tipo": "TEXTO",
+          "delayMs": 8115,
+          "texto": "A cada respiração, leve atenção ao seu ventre. Sinta como ele se move, como está hoje. Não tente controlar — apenas observe.\n\nDurante a massagem, repita sua frase escolhida em voz baixa ou mentalmente. Deixe que ela entre no corpo com a mesma suavidade que suas mãos tocam a pele.\n\nFeche a prática com uma respiração profunda e coloque as mãos em repouso sobre o ventre."
+        },
+        {
+          "ordem": 6,
+          "tipo": "TEXTO",
+          "delayMs": 1200,
+          "texto": "🧠 Por quê? Estudos mostram que a mente e as emoções influenciam a liberação hormonal e a receptividade uterina."
+        },
+        {
+          "ordem": 7,
+          "tipo": "IMAGEM",
+          "delayMs": 8798,
+          "mediaSourceDriveId": "1lriwhg13jLWDgqqtHhwd1RSJ8RfD_U85",
+          "mediaKey": "desafio/alta/dia6/7.jpg"
+        },
+        {
+          "ordem": 8,
+          "tipo": "AUDIO",
+          "delayMs": 41234,
+          "mediaSourceDriveId": "175GVkvzT2lXrvLHG069Zd415lVYVesTd",
+          "mediaKey": "desafio/alta/dia6/8.mp3"
+        },
+        {
+          "ordem": 9,
+          "tipo": "AUDIO",
+          "delayMs": 28200,
+          "mediaSourceDriveId": "1xKe7Ivs44Qz7qysN5urWAso6mI_LvKI-",
+          "mediaKey": "desafio/alta/dia6/9.mp3"
+        },
+        {
+          "ordem": 10,
+          "tipo": "AUDIO",
+          "delayMs": 53000,
+          "mediaSourceDriveId": "1BdeZByfaizgiheTT550ZsHsVT3Aac-oq",
+          "mediaKey": "desafio/alta/dia6/10.mp3"
+        },
+        {
+          "ordem": 11,
+          "tipo": "TEXTO",
+          "delayMs": 5480,
+          "texto": "Fé não ignora os fatos — ela se move apesar deles."
+        }
+      ]
+    },
+    {
+      "dayNumber": 7,
+      "isOnboarding": false,
+      "messages": [
+        {
+          "ordem": 1,
+          "tipo": "VIDEO",
+          "delayMs": 8210,
+          "texto": "ASSISTA A AULA 7: “Corpo fértil, mente em paz – Preparando seu corpo para receber o seu bebê”",
+          "mediaSourceDriveId": "1pZwEdKBAu_sz3dpqNhIVCIqkj7e8C5mz",
+          "mediaKey": "videos/aula7.mp4"
+        },
+        {
+          "ordem": 2,
+          "tipo": "TEXTO",
+          "delayMs": 4850,
+          "texto": "DESAFIO DAY 7: ENTREGA E CONFIANÇA"
+        },
+        {
+          "ordem": 3,
+          "tipo": "TEXTO",
+          "delayMs": 8340,
+          "texto": "Hoje, o convite é: parar para confiar de verdade. Não parar por desistência, mas por rendição. Não se afastar do propósito, mas entregar o controle."
+        },
+        {
+          "ordem": 4,
+          "tipo": "IMAGEM",
+          "delayMs": 1300,
+          "mediaSourceDriveId": "1t2ta6hU4X3BFFdEu2u4QUAwR5ycdraTT",
+          "mediaKey": "desafio/alta/dia7/4.jpg"
+        },
+        {
+          "ordem": 5,
+          "tipo": "TEXTO",
+          "delayMs": 9120,
+          "texto": "🧠 Por quê? O corpo segue a mente. E a mente precisa de espaço simbólico para acreditar, descansar e se abrir à concepção."
+        },
+        {
+          "ordem": 6,
+          "tipo": "AUDIO",
+          "delayMs": 58500,
+          "mediaSourceDriveId": "1UpyThWh54k0i5mFnxay-TudwxYTT1RMk",
+          "mediaKey": "desafio/alta/dia7/6.mp3"
+        },
+        {
+          "ordem": 7,
+          "tipo": "IMAGEM",
+          "delayMs": 1300,
+          "mediaSourceDriveId": "14DFYy1KiimyEqaHBXrl0NZmAszE2sOP9",
+          "mediaKey": "desafio/alta/dia7/7.jpg"
+        },
+        {
+          "ordem": 8,
+          "tipo": "AUDIO",
+          "delayMs": 25400,
+          "mediaSourceDriveId": "1jSOVsmV4td8ykvICMNHZUGUcXVDoejZ3",
+          "mediaKey": "desafio/alta/dia7/8.mp3"
+        },
+        {
+          "ordem": 9,
+          "tipo": "TEXTO",
+          "delayMs": 7980,
+          "texto": "✨ Você chegou até aqui. E isso já é um marco.\nForam 7 dias de entrega, atenção ao seu corpo, reconexão com sua fé, sua história e seu desejo mais íntimo: gerar vida.\n\n💡 Essa jornada não foi sobre acelerar resultados, mas sobre preparar o terreno — físico, emocional e espiritual — para que o milagre aconteça no tempo certo.\nVocê cultivou hábitos, escutou os sinais do seu corpo, abriu espaço para o descanso, para a oração, para a confiança. Agora, você carrega mais do que um ciclo fértil:\n\nVocê carrega consciência. Você carrega direção."
+        },
+        {
+          "ordem": 10,
+          "tipo": "AUDIO",
+          "delayMs": 47700,
+          "mediaSourceDriveId": "1I-moVqK0WZ_keID3Btwnjx53QhxxhzU3",
+          "mediaKey": "desafio/alta/dia7/10.mp3"
+        }
+      ]
+    }
+  ]
+}

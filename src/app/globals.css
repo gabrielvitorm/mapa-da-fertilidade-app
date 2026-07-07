@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Literata:ital,opsz,wght@0,7..72,200..900;1,7..72,200..900&display=swap');
+@import "tailwindcss";
+
+/*
+ * Design tokens do Mapa da Fertilidade.
+ * Origem: protótipo do AI Studio (src/index.css), portado 1:1.
+ * Não redefina cores ad-hoc em componentes — sempre use estas variáveis
+ * (via classes Tailwind arbitrárias `bg-[var(--color-...)]` ou tokens @theme).
+ */
+@theme {
+  --font-sans: "DM Sans", system-ui, sans-serif;
+  --font-serif: "Literata", Georgia, serif;
+
+  --color-surface-cream: #FAF6F1;
+  --color-border-soft: #E5E0DA;
+  --color-brand-terracota: #C2795F;
+  --color-brand-sage: #8DA290;
+  --color-brand-gold: #C9A24B;
+  --color-brand-brown: #2E2620;
+
+  /* Selos de nível por pilar (Alto/Moderado/Baixo) */
+  --color-level-alto-bg: #d1fae5;
+  --color-level-alto-fg: #065f46;
+  --color-level-moderado-bg: #fef3c7;
+  --color-level-moderado-fg: #92400e;
+  --color-level-baixo-bg: #ffe4e6;
+  --color-level-baixo-fg: #9f1239;
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.25s ease-out;
+  }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+body {
+  background: var(--color-surface-cream);
+  color: var(--color-brand-brown);
+  font-family: var(--font-sans);
+}
