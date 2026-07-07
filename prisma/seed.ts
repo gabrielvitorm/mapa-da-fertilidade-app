@@ -1,4 +1,5 @@
 import { db } from '../src/lib/db';
+import { createAssessment } from '../src/lib/assessment-service';
 import quizSource from './seed-data/quiz-source.json';
 
 interface QuizSourceOption {
@@ -113,11 +114,72 @@ async function seedProducts() {
   console.log('Product: acesso-relatorio');
 }
 
+async function seedDemoUserAndCatalog() {
+  await db.product.upsert({
+    where: { slug: 'desafio-7-dias' },
+    update: {},
+    create: {
+      slug: 'desafio-7-dias',
+      nome: 'Desafio de 7 Dias',
+      priceCents: 19790,
+      kind: 'CHALLENGE',
+      platform: 'KIWIFY',
+      platformProductId: 'PLACEHOLDER-desafio-7-dias',
+      checkoutUrl: 'https://pay.kiwify.com.br/PLACEHOLDER-desafio-7-dias',
+      grants: { entitlement: 'CHALLENGE', trackByLevel: true },
+    },
+  });
+  console.log('Product: desafio-7-dias');
+
+  const DEMO_EMAIL = 'carolinapalitot20@gmail.com';
+  const DEMO_NOME = 'Carolina Palitot';
+
+  const user = await db.user.upsert({
+    where: { email: DEMO_EMAIL },
+    update: { nome: DEMO_NOME },
+    create: { email: DEMO_EMAIL, nome: DEMO_NOME },
+  });
+
+  // Idempotente: limpa assessments/entitlements anteriores da demo antes de recriar.
+  await db.entitlement.deleteMany({ where: { userId: user.id } });
+  await db.assessment.deleteMany({ where: { userId: user.id } });
+
+  const questions = await db.question.findMany({ include: { options: true } });
+  const answers = questions.map((q) => {
+    const sorted = [...q.options].sort((a, b) => b.rawScore - a.rawScore);
+    const middle = sorted[Math.floor(sorted.length / 2)];
+    return { questionId: q.id, optionId: middle.id };
+  });
+
+  const result = await createAssessment({
+    source: 'APP_NATIVE',
+    lead: { nome: DEMO_NOME, email: DEMO_EMAIL },
+    answers,
+  });
+
+  // Adoção do assessment órfão pela usuária — o mesmo movimento que o
+  // webhook de pagamento vai fazer de verdade na Fase 4.
+  await db.assessment.update({
+    where: { id: result.assessmentId },
+    data: { userId: user.id },
+  });
+
+  const reportProduct = await db.product.findUniqueOrThrow({ where: { slug: 'acesso-relatorio' } });
+  await db.entitlement.create({
+    data: { userId: user.id, productId: reportProduct.id, type: 'REPORT', status: 'ACTIVE' },
+  });
+
+  console.log(
+    `Demo user: ${user.email} (assessment ${result.assessmentId}, nivel ${result.nivelGlobal}, resultadoFinal ${result.resultadoFinal})`
+  );
+}
+
 async function main() {
   await seedScoreRules();
   await seedQuestions();
   await seedPillarMessages();
   await seedProducts();
+  await seedDemoUserAndCatalog();
 }
 
 main()
