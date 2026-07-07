@@ -12,6 +12,12 @@ export default function Home() {
       </p>
       <div className="flex flex-col gap-2 mt-2">
         <Link
+          href="/welcome"
+          className="px-4 py-2 rounded-lg bg-[var(--color-brand-sage)] text-white text-sm font-bold"
+        >
+          Funil real: Boas-vindas
+        </Link>
+        <Link
           href="/preview/welcome"
           className="px-4 py-2 rounded-lg bg-[var(--color-brand-terracota)] text-white text-sm font-bold"
         >
