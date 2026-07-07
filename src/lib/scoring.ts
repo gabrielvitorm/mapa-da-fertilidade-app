@@ -37,8 +37,9 @@ export function computeAssessment(
   scoreDenominator: number
 ): AssessmentComputation {
   const scoreTotal = rules.reduce((sum, r) => sum + (pillarScores[r.pillar] ?? 0), 0);
-  const resultadoFinal = Number(((scoreTotal / scoreDenominator) * 100).toFixed(2));
-  const nivelGlobal = globalLevel(resultadoFinal);
+  const resultadoFinalBruto = (scoreTotal / scoreDenominator) * 100;
+  const nivelGlobal = globalLevel(resultadoFinalBruto);
+  const resultadoFinal = Number(resultadoFinalBruto.toFixed(2));
   const pontosAtencao: PontoAtencao[] = rules.map((r) => ({
     pillar: r.pillar,
     level: pillarLevel(pillarScores[r.pillar] ?? 0, r.maxDoPilar),
