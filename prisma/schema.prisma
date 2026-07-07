@@ -1,0 +1,241 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  nome      String?
+  cpf       String?
+  celular   String?
+  createdAt DateTime @default(now())
+
+  sessions          Session[]
+  assessments       Assessment[]
+  orders            Order[]
+  entitlements      Entitlement[]
+  challengeProgress ChallengeProgress[]
+  devolutivas       Devolutiva[]
+}
+
+model Session {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  tokenHash String   @unique
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+}
+
+enum AssessmentSource {
+  TYPEBOT
+  APP_NATIVE
+}
+
+enum NivelGlobal {
+  BAIXA
+  MODERADA
+  ALTA
+}
+
+model Assessment {
+  id             String           @id @default(cuid())
+  userId         String?
+  user           User?            @relation(fields: [userId], references: [id])
+  source         AssessmentSource
+  leadEmail      String?
+  leadCpf        String?
+  leadNome       String?
+  leadCelular    String?
+  answers        Json
+  pillarScores   Json
+  scoreTotal     Float
+  resultadoFinal Float
+  nivelGlobal    NivelGlobal
+  createdAt      DateTime         @default(now())
+}
+
+model Question {
+  id      String           @id @default(cuid())
+  pillar  String
+  ordem   Int
+  texto   String
+  options QuestionOption[]
+}
+
+model QuestionOption {
+  id         String   @id @default(cuid())
+  questionId String
+  question   Question @relation(fields: [questionId], references: [id])
+  label      String
+  ordem      Int
+  rawScore   Float
+}
+
+model ScoreRule {
+  pillar           String @id
+  peso             Int
+  maxDoPilar       Float
+  scoreDenominator Float
+}
+
+enum PillarLevel {
+  Alto
+  Moderado
+  Baixo
+}
+
+model PillarMessage {
+  id           String      @id @default(cuid())
+  pillar       String
+  level        PillarLevel
+  diagnostico  String
+  recomendacao String
+
+  @@unique([pillar, level])
+}
+
+enum ProductKind {
+  APP_ACCESS
+  CHALLENGE
+  ORDER_BUMP
+}
+
+enum Platform {
+  KIWIFY
+  HOTMART
+}
+
+model Product {
+  id                String      @id @default(cuid())
+  slug              String      @unique
+  nome              String
+  priceCents        Int
+  kind              ProductKind
+  platform          Platform
+  platformProductId String
+  checkoutUrl       String
+  grants            Json
+
+  orders       Order[]
+  entitlements Entitlement[]
+}
+
+enum OrderStatus {
+  PAID
+  REFUNDED
+  CHARGEBACK
+}
+
+model Order {
+  id                    String      @id @default(cuid())
+  userId                String
+  user                  User        @relation(fields: [userId], references: [id])
+  productId             String
+  product               Product     @relation(fields: [productId], references: [id])
+  platform              Platform
+  platformTransactionId String      @unique
+  status                OrderStatus
+  amountCents           Int
+  rawPayload            Json
+  createdAt             DateTime    @default(now())
+}
+
+enum EntitlementType {
+  REPORT
+  CHALLENGE
+  BUMP
+}
+
+enum EntitlementStatus {
+  ACTIVE
+  REVOKED
+}
+
+model Entitlement {
+  id        String            @id @default(cuid())
+  userId    String
+  user      User              @relation(fields: [userId], references: [id])
+  productId String
+  product   Product           @relation(fields: [productId], references: [id])
+  type      EntitlementType
+  status    EntitlementStatus
+  metadata  Json?
+  grantedAt DateTime          @default(now())
+  revokedAt DateTime?
+}
+
+model ChallengeTrack {
+  id                   String              @id @default(cuid())
+  level                NivelGlobal         @unique
+  codename             String
+  title                String
+  defaultCooldownHours Int
+  days                 ChallengeDay[]
+  progress             ChallengeProgress[]
+}
+
+model ChallengeDay {
+  id            String             @id @default(cuid())
+  trackId       String
+  track         ChallengeTrack     @relation(fields: [trackId], references: [id])
+  dayNumber     Int
+  isOnboarding  Boolean            @default(false)
+  cooldownHours Int?
+  messages      ChallengeMessage[]
+
+  @@unique([trackId, dayNumber])
+}
+
+enum MessageType {
+  TEXTO
+  AUDIO
+  IMAGEM
+  VIDEO
+}
+
+model ChallengeMessage {
+  id       String       @id @default(cuid())
+  dayId    String
+  day      ChallengeDay @relation(fields: [dayId], references: [id])
+  ordem    Int
+  tipo     MessageType
+  texto    String?
+  mediaKey String?
+  delayMs  Int
+}
+
+model ChallengeProgress {
+  id             String         @id @default(cuid())
+  userId         String
+  user           User           @relation(fields: [userId], references: [id])
+  trackId        String
+  track          ChallengeTrack @relation(fields: [trackId], references: [id])
+  currentDay     Int            @default(0)
+  dayCompletions Json           @default("{}")
+  lastSeenOrdem  Json           @default("{}")
+
+  @@unique([userId, trackId])
+}
+
+enum DevolutivaTipo {
+  TEXTO
+  AUDIO
+  FOTO
+}
+
+model Devolutiva {
+  id        String         @id @default(cuid())
+  userId    String
+  user      User           @relation(fields: [userId], references: [id])
+  dayNumber Int
+  tipo      DevolutivaTipo
+  conteudo  String?
+  mediaUrl  String?
+  createdAt DateTime       @default(now())
+}
