@@ -61,11 +61,12 @@ model Assessment {
 }
 
 model Question {
-  id      String           @id @default(cuid())
-  pillar  String
-  ordem   Int
-  texto   String
-  options QuestionOption[]
+  id           String           @id @default(cuid())
+  pillar       String
+  pillarOrdem  Int
+  ordem        Int
+  texto        String
+  options      QuestionOption[]
 }
 
 model QuestionOption {
