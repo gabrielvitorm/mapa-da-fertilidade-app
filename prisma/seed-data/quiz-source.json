@@ -1,0 +1,1341 @@
+{
+  "scoreDenominator": 285,
+  "pillars": [
+    {
+      "pillar": "fatores_infertilidade",
+      "weight": 3,
+      "max": 72,
+      "questions": [
+        {
+          "ordem": 1,
+          "texto": "Qual sua idade?",
+          "options": [
+            {
+              "ordem": 1,
+              "label": "Até 35 anos",
+              "rawScore": 3.0
+            },
+            {
+              "ordem": 2,
+              "label": "36 a 38 anos",
+              "rawScore": 2.0
+            },
+            {
+              "ordem": 3,
+              "label": "39 a 41 anos",
+              "rawScore": 1.0
+            },
+            {
+              "ordem": 4,
+              "label": "Acima de 41 anos",
+              "rawScore": 0.0
+            }
+          ]
+        },
+        {
+          "ordem": 2,
+          "texto": "Você foi diagnosticada com endometriose?",
+          "options": [
+            {
+              "ordem": 1,
+              "label": "Não",
+              "rawScore": 3.0
+            },
+            {
+              "ordem": 2,
+              "label": "Suspeita",
+              "rawScore": 1.0
+            },
+            {
+              "ordem": 3,
+              "label": "Sim",
+              "rawScore": 0.0
+            }
+          ]
+        },
+        {
+          "ordem": 3,
+          "texto": "Você foi diagnosticada com SOP (Síndrome dos Ovários Policísticos)?",
+          "options": [
+            {
+              "ordem": 1,
+              "label": "Não",
+              "rawScore": 3.0
+            },
+            {
+              "ordem": 2,
+              "label": "Suspeita",
+              "rawScore": 1.0
+            },
+            {
+              "ordem": 3,
+              "label": "Sim",
+              "rawScore": 0.0
+            }
+          ]
+        },
+        {
+          "ordem": 4,
+          "texto": "Tem doença celíaca ou sensibilidade ao glúten?",
+          "options": [
+            {
+              "ordem": 1,
+              "label": "Não",
+              "rawScore": 3.0
+            },
+            {
+              "ordem": 2,
+              "label": "Sim",
+              "rawScore": 0.0
+            }
+          ]
+        },
+        {
+          "ordem": 5,
+          "texto": "Possui alguma doença autoimune (Hashimoto, Lúpus)?",
+          "options": [
+            {
+              "ordem": 1,
+              "label": "Não",
+              "rawScore": 3.0
+            },
+            {
+              "ordem": 2,
+              "label": "Sim",
+              "rawScore": 0.0
+            }
+          ]
+        },
+        {
+          "ordem": 6,
+          "texto": "Já foi detectada obstrução tubária (nas trompas)?",
+          "options": [
+            {
+              "ordem": 1,
+              "label": "Não",
+              "rawScore": 3.0
+            },
+            {
+              "ordem": 2,
+              "label": "Sim",
+              "rawScore": 0.0
+            }
+          ]
+        },
+        {
+          "ordem": 7,
+          "texto": "Você tem obesidade (IMC ≥ 30) ou percentual de gordura elevado?",
+          "options": [
+            {
+              "ordem": 1,
+              "label": "Não",
+              "rawScore": 3.0
+            },
+            {
+              "ordem": 2,
+              "label": "Sim",
+              "rawScore": 0.0
+            }
+          ]
+        },
+        {
+          "ordem": 8,
+          "texto": "Você tem magreza severa (IMC < 18,5)?",
+          "options": [
+            {
+              "ordem": 1,
+              "label": "Não",
+              "rawScore": 3.0
+            },
+            {
+              "ordem": 2,
+              "label": "Sim",
+              "rawScore": 0.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "pillar": "saude_hormonal",
+      "weight": 3,
+      "max": 36,
+      "questions": [
+        {
+          "ordem": 1,
+          "texto": "Qual seu FSH?",
+          "options": [
+            {
+              "ordem": 1,
+              "label": "<8",
+              "rawScore": 3.0
+            },
+            {
+              "ordem": 2,
+              "label": "8 - 10",
+              "rawScore": 2.0
+            },
+            {
+              "ordem": 3,
+              "label": "10",
+              "rawScore": 1.0
+            },
+            {
+              "ordem": 4,
+              "label": "Não sei",
+              "rawScore": 0.0
+            }
+          ]
+        },
+        {
+          "ordem": 2,
+          "texto": "Qual seu AMH?",
+          "options": [
+            {
+              "ordem": 1,
+              "label": "1,5 ng/mL",
+              "rawScore": 3.0
+            },
+            {
+              "ordem": 2,
+              "label": "1–1,5 ng/mL",
+              "rawScore": 2.0
+            },
+            {
+              "ordem": 3,
+              "label": "<1 ng/mL",
+              "rawScore": 1.0
+            },
+            {
+              "ordem": 4,
+              "label": "Não sei!",
+              "rawScore": 0.0
+            }
+          ]
+        },
+        {
+          "ordem": 3,
+          "texto": "Contagem de folículos antrais (caso não saiba responda  <6):",
+          "options": [
+            {
+              "ordem": 1,
+              "label": "10",
+              "rawScore": 3.0
+            },
+            {
+              "ordem": 2,
+              "label": "6-10",
+              "rawScore": 2.0
+            },
+            {
+              "ordem": 3,
+              "label": "<6",
+              "rawScore": 1.0
+            }
+          ]
+        },
+        {
+          "ordem": 4,
+          "texto": "Progesterona na fase lútea:",
+          "options": [
+            {
+              "ordem": 1,
+              "label": "10 ng/mL",
+              "rawScore": 3.0
+            },
+            {
+              "ordem": 2,
+              "label": "7-10 ng/mL",
+              "rawScore": 2.0
+            },
+            {
+              "ordem": 3,
+              "label": "5-7 ng/mL",
+              "rawScore": 1.0
+            },
+            {
+              "ordem": 4,
+              "label": "<5 ng/mL",
+              "rawScore": 0.0
+            },
+            {
+              "ordem": 5,
+              "label": "não sei",
+              "rawScore": 0.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "pillar": "sono",
+      "weight": 2,
+      "max": 24,
+      "questions": [
+        {
+          "ordem": 1,
+          "texto": "Você dorme quantas horas por noite?",
+          "options": [
+            {
+              "ordem": 1,
+              "label": "7–9h",
+              "rawScore": 3.0
+            },
+            {
+              "ordem": 2,
+              "label": "6–7h",
+              "rawScore": 2.0
+            },
+            {
+              "ordem": 3,
+              "label": "5–6h",
+              "rawScore": 1.0
+            },
+            {
+              "ordem": 4,
+              "label": "<5h",
+              "rawScore": 0.0
+            }
+          ]
+        },
+        {
+          "ordem": 2,
+          "texto": "Seu sono é leve ou pesado?",
+          "options": [
+            {
+              "ordem": 1,
+              "label": "Profundo",
+              "rawScore": 3.0
+            },
+            {
+              "ordem": 2,
+              "label": "Moderado",
+              "rawScore": 2.0
+            },
+            {
+              "ordem": 3,
+              "label": "Leve",
+              "rawScore": 1.0
+            },
+            {
+              "ordem": 4,
+              "label": "Muito Leve",
+              "rawScore": 0.0
+            }
+          ]
+        },
+        {
+          "ordem": 3,
+          "texto": "Você sonha muito à noite?",
+          "options": [
+            {
+              "ordem": 1,
+              "label": "Não",
+              "rawScore": 3.0
+            },
+            {
+              "ordem": 2,
+              "label": "Moderadamente",
+              "rawScore": 2.0
+            },
+            {
+              "ordem": 3,
+              "label": "Excessivamente",
+              "rawScore": 1.0
+            },
+            {
+              "ordem": 4,
+              "label": "Pesadelos/Sono agitado",
+              "rawScore": 0.0
+            }
+          ]
+        },
+        {
+          "ordem": 4,
+          "texto": "Dificuldade para iniciar ou manter o sono?",
+          "options": [
+            {
+              "ordem": 1,
+              "label": "Nunca",
+              "rawScore": 3.0
+            },
+            {
+              "ordem": 2,
+              "label": "Às vezes",
+              "rawScore": 2.0
+            },
+            {
+              "ordem": 3,
+              "label": "Frequente",
+              "rawScore": 1.0
+            },
+            {
+              "ordem": 4,
+              "label": "Sempre",
+              "rawScore": 0.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "pillar": "atividade_fisica",
+      "weight": 2,
+      "max": 18,
+      "questions": [
+        {
+          "ordem": 1,
+          "texto": "Pratica atividade física regularmente?",
+          "options": [
+            {
+              "ordem": 1,
+              "label": "3 vezes ou mais na semana",
+              "rawScore": 3.0
+            },
+            {
+              "ordem": 2,
+              "label": "2 vezes na semana",
+              "rawScore": 2.0
+            },
+            {
+              "ordem": 3,
+              "label": "1 vez na semana",
+              "rawScore": 1.0
+            },
+            {
+              "ordem": 4,
+              "label": "Não pratico",
+              "rawScore": 0.0
+            }
+          ]
+        },
+        {
+          "ordem": 2,
+          "texto": "Seu treino é equilibrado (força + aeróbico)?",
+          "options": [
+            {
+              "ordem": 1,
+              "label": "Sim",
+              "rawScore": 3.0
+            },
+            {
+              "ordem": 2,
+              "label": "Parcialmente",
+              "rawScore": 2.0
+            },
+            {
+              "ordem": 3,
+              "label": "Só um tipo",
+              "rawScore": 1.0
+            },
+            {
+              "ordem": 4,
+              "label": "Nenhum",
+              "rawScore": 0.0
+            }
+          ]
+        },
+        {
+          "ordem": 3,
+          "texto": "Seu estilo de vida é sedentário?",
+          "options": [
+            {
+              "ordem": 1,
+              "label": "Não",
+              "rawScore": 3.0
+            },
+            {
+              "ordem": 2,
+              "label": "Um pouco",
+              "rawScore": 2.0
+            },
+            {
+              "ordem": 3,
+              "label": "Bastante",
+              "rawScore": 1.0
+            },
+            {
+              "ordem": 4,
+              "label": "Extremamente",
+              "rawScore": 0.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "pillar": "alimentacao",
+      "weight": 2,
+      "max": 18,
+      "questions": [
+        {
+          "ordem": 1,
+          "texto": "Consumo de ultraprocessados por semana:",
+          "options": [
+            {
+              "ordem": 1,
+              "label": "1 vez na semana",
+              "rawScore": 3.0
+            },
+            {
+              "ordem": 2,
+              "label": "2 a 3 vezes na semana",
+              "rawScore": 2.0
+            },
+            {
+              "ordem": 3,
+              "label": "4 a 5 vezes na semana",
+              "rawScore": 1.0
+            },
+            {
+              "ordem": 4,
+              "label": "Diariamente",
+              "rawScore": 0.0
+            }
+          ]
+        },
+        {
+          "ordem": 2,
+          "texto": "Consumo diário de fibras, frutas e vegetais:",
+          "options": [
+            {
+              "ordem": 1,
+              "label": "5 Porções",
+              "rawScore": 3.0
+            },
+            {
+              "ordem": 2,
+              "label": "3 a 4 Porções",
+              "rawScore": 2.0
+            },
+            {
+              "ordem": 3,
+              "label": "1 a 2 Porções",
+              "rawScore": 1.0
+            },
+            {
+              "ordem": 4,
+              "label": "Nenhuma",
+              "rawScore": 0.0
+            }
+          ]
+        },
+        {
+          "ordem": 3,
+          "texto": "Consumo de proteínas de qualidade:",
+          "options": [
+            {
+              "ordem": 1,
+              "label": "Diariamente",
+              "rawScore": 3.0
+            },
+            {
+              "ordem": 2,
+              "label": "4 a 5 vezes na semana",
+              "rawScore": 2.0
+            },
+            {
+              "ordem": 3,
+              "label": "2 a 3 vezes na semana",
+              "rawScore": 1.0
+            },
+            {
+              "ordem": 4,
+              "label": "1 ou menos vezes na semana",
+              "rawScore": 0.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "pillar": "saude_intestinal",
+      "weight": 2,
+      "max": 18,
+      "questions": [
+        {
+          "ordem": 1,
+          "texto": "Frequência de evacuação:",
+          "options": [
+            {
+              "ordem": 1,
+              "label": "1 vez ao dia",
+              "rawScore": 3.0
+            },
+            {
+              "ordem": 2,
+              "label": "5 a 6 vezes na semana",
+              "rawScore": 2.0
+            },
+            {
+              "ordem": 3,
+              "label": "3 a 4 vezes na semana",
+              "rawScore": 1.0
+            },
+            {
+              "ordem": 4,
+              "label": "menos que 3 vezes",
+              "rawScore": 0.0
+            }
+          ]
+        },
+        {
+          "ordem": 2,
+          "texto": "Presença de gases, inchaço, desconforto?",
+          "options": [
+            {
+              "ordem": 1,
+              "label": "Nunca",
+              "rawScore": 3.0
+            },
+            {
+              "ordem": 2,
+              "label": "Raramente",
+              "rawScore": 2.0
+            },
+            {
+              "ordem": 3,
+              "label": "Frequentemente",
+              "rawScore": 1.0
+            },
+            {
+              "ordem": 4,
+              "label": "Sempre",
+              "rawScore": 0.0
+            }
+          ]
+        },
+        {
+          "ordem": 3,
+          "texto": "Histórico de disbiose ou uso crônico de antibióticos:",
+          "options": [
+            {
+              "ordem": 1,
+              "label": "Não",
+              "rawScore": 3.0
+            },
+            {
+              "ordem": 2,
+              "label": "Uso pontual",
+              "rawScore": 2.0
+            },
+            {
+              "ordem": 3,
+              "label": "Recorrente",
+              "rawScore": 1.0
+            },
+            {
+              "ordem": 4,
+              "label": "Contínuo",
+              "rawScore": 0.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "pillar": "figado",
+      "weight": 2,
+      "max": 18,
+      "questions": [
+        {
+          "ordem": 1,
+          "texto": "Diagnóstico de esteatose hepática?",
+          "options": [
+            {
+              "ordem": 1,
+              "label": "Não",
+              "rawScore": 3.0
+            },
+            {
+              "ordem": 2,
+              "label": "Leve",
+              "rawScore": 2.0
+            },
+            {
+              "ordem": 3,
+              "label": "Moderado",
+              "rawScore": 1.0
+            },
+            {
+              "ordem": 4,
+              "label": "Grave",
+              "rawScore": 0.0
+            }
+          ]
+        },
+        {
+          "ordem": 2,
+          "texto": "Uso de medicamentos ou anticoncepcionais:",
+          "options": [
+            {
+              "ordem": 1,
+              "label": "Não",
+              "rawScore": 3.0
+            },
+            {
+              "ordem": 2,
+              "label": "Ocasionalmente",
+              "rawScore": 2.0
+            },
+            {
+              "ordem": 3,
+              "label": "Frequentemente",
+              "rawScore": 1.0
+            },
+            {
+              "ordem": 4,
+              "label": "Sempre",
+              "rawScore": 0.0
+            }
+          ]
+        },
+        {
+          "ordem": 3,
+          "texto": "Cor da língua (autoavaliação):",
+          "options": [
+            {
+              "ordem": 1,
+              "label": "Normal",
+              "rawScore": 3.0
+            },
+            {
+              "ordem": 2,
+              "label": "Branca leve",
+              "rawScore": 2.0
+            },
+            {
+              "ordem": 3,
+              "label": "Amarela/branca intensa",
+              "rawScore": 1.0
+            },
+            {
+              "ordem": 4,
+              "label": "Pastosa e espessa",
+              "rawScore": 0.0
+            }
+          ]
+        },
+        {
+          "ordem": 4,
+          "texto": "Acne, TPM, enxaqueca, candidíase?",
+          "options": [
+            {
+              "ordem": 1,
+              "label": "Nenhum sintoma",
+              "rawScore": 3.0
+            },
+            {
+              "ordem": 2,
+              "label": "1–2 leves",
+              "rawScore": 2.0
+            },
+            {
+              "ordem": 3,
+              "label": "3 moderados",
+              "rawScore": 1.0
+            },
+            {
+              "ordem": 4,
+              "label": "4 ou mais intensos",
+              "rawScore": 0.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "pillar": "imunidade",
+      "weight": 2,
+      "max": 24,
+      "questions": [
+        {
+          "ordem": 1,
+          "texto": "Frequência de infecções:",
+          "options": [
+            {
+              "ordem": 1,
+              "label": "Raro",
+              "rawScore": 3.0
+            },
+            {
+              "ordem": 2,
+              "label": "1 ou 2 vezes ao ano",
+              "rawScore": 2.0
+            },
+            {
+              "ordem": 3,
+              "label": "3 a 4 vezes ao ano",
+              "rawScore": 1.0
+            },
+            {
+              "ordem": 4,
+              "label": "mais de 5 vezes ao ano",
+              "rawScore": 0.0
+            }
+          ]
+        },
+        {
+          "ordem": 2,
+          "texto": "Doenças autoimunes:",
+          "options": [
+            {
+              "ordem": 1,
+              "label": "Não",
+              "rawScore": 3.0
+            },
+            {
+              "ordem": 2,
+              "label": "Suspeita",
+              "rawScore": 2.0
+            },
+            {
+              "ordem": 3,
+              "label": "Confirmada leve",
+              "rawScore": 1.0
+            },
+            {
+              "ordem": 4,
+              "label": "Confirmada grave",
+              "rawScore": 0.0
+            }
+          ]
+        },
+        {
+          "ordem": 3,
+          "texto": "Marcadores inflamatórios (PCR, homocisteína, ferritina):",
+          "options": [
+            {
+              "ordem": 1,
+              "label": "Todos normais",
+              "rawScore": 3.0
+            },
+            {
+              "ordem": 2,
+              "label": "1 alterado",
+              "rawScore": 2.0
+            },
+            {
+              "ordem": 3,
+              "label": "2 alterados",
+              "rawScore": 1.0
+            },
+            {
+              "ordem": 4,
+              "label": "3 ou mais",
+              "rawScore": 0.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "pillar": "estresse",
+      "weight": 2,
+      "max": 18,
+      "questions": [
+        {
+          "ordem": 1,
+          "texto": "Você se sente estressada diariamente?",
+          "options": [
+            {
+              "ordem": 1,
+              "label": "Nunca",
+              "rawScore": 3.0
+            },
+            {
+              "ordem": 2,
+              "label": "Às vezes",
+              "rawScore": 2.0
+            },
+            {
+              "ordem": 3,
+              "label": "Frequentemente",
+              "rawScore": 1.0
+            },
+            {
+              "ordem": 4,
+              "label": "Sempre",
+              "rawScore": 0.0
+            }
+          ]
+        },
+        {
+          "ordem": 2,
+          "texto": "Exaustão física ou mental?",
+          "options": [
+            {
+              "ordem": 1,
+              "label": "Não",
+              "rawScore": 3.0
+            },
+            {
+              "ordem": 2,
+              "label": "Leve",
+              "rawScore": 2.0
+            },
+            {
+              "ordem": 3,
+              "label": "Moderada",
+              "rawScore": 1.0
+            },
+            {
+              "ordem": 4,
+              "label": "Grave",
+              "rawScore": 0.0
+            }
+          ]
+        },
+        {
+          "ordem": 3,
+          "texto": "Ansiedade, insônia, preocupação constante?",
+          "options": [
+            {
+              "ordem": 1,
+              "label": "Nunca",
+              "rawScore": 3.0
+            },
+            {
+              "ordem": 2,
+              "label": "Leve",
+              "rawScore": 2.0
+            },
+            {
+              "ordem": 3,
+              "label": "Moderado",
+              "rawScore": 1.0
+            },
+            {
+              "ordem": 4,
+              "label": "Grave",
+              "rawScore": 0.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "pillar": "ciclo",
+      "weight": 3,
+      "max": 27,
+      "questions": [
+        {
+          "ordem": 1,
+          "texto": "Seu ciclo é regular?",
+          "options": [
+            {
+              "ordem": 1,
+              "label": "Sim",
+              "rawScore": 3.0
+            },
+            {
+              "ordem": 2,
+              "label": "Varia um pouco",
+              "rawScore": 2.0
+            },
+            {
+              "ordem": 3,
+              "label": "Muito irregular",
+              "rawScore": 1.0
+            },
+            {
+              "ordem": 4,
+              "label": "Ausente",
+              "rawScore": 0.0
+            }
+          ]
+        },
+        {
+          "ordem": 2,
+          "texto": "Você ovula (confirma por muco, temperatura, testes)?",
+          "options": [
+            {
+              "ordem": 1,
+              "label": "Sim",
+              "rawScore": 3.0
+            },
+            {
+              "ordem": 2,
+              "label": "Suspeita",
+              "rawScore": 2.0
+            },
+            {
+              "ordem": 3,
+              "label": "Não sabe",
+              "rawScore": 1.0
+            },
+            {
+              "ordem": 4,
+              "label": "Não ovula",
+              "rawScore": 0.0
+            }
+          ]
+        },
+        {
+          "ordem": 3,
+          "texto": "Fluxo menstrual normal?",
+          "options": [
+            {
+              "ordem": 1,
+              "label": "Sim",
+              "rawScore": 3.0
+            },
+            {
+              "ordem": 2,
+              "label": "Um pouco intenso",
+              "rawScore": 2.0
+            },
+            {
+              "ordem": 3,
+              "label": "Intenso com coágulos",
+              "rawScore": 1.0
+            },
+            {
+              "ordem": 4,
+              "label": "Ausente/Hemorragia",
+              "rawScore": 0.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "pillar": "tireoide",
+      "weight": 2,
+      "max": 9,
+      "questions": [
+        {
+          "ordem": 1,
+          "texto": "Qual seu TSH?",
+          "options": [
+            {
+              "ordem": 1,
+              "label": "menor ou igual a 2,5",
+              "rawScore": 3.0
+            },
+            {
+              "ordem": 2,
+              "label": "entre 2,5 e 3,0",
+              "rawScore": 1.0
+            },
+            {
+              "ordem": 3,
+              "label": "entre 3,5 e 4,5",
+              "rawScore": 0.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "pillar": "toxinas",
+      "weight": 1,
+      "max": 6,
+      "questions": [
+        {
+          "ordem": 1,
+          "texto": "Uso de plásticos, parabenos, água contaminada:",
+          "options": [
+            {
+              "ordem": 1,
+              "label": "Nunca",
+              "rawScore": 3.0
+            },
+            {
+              "ordem": 2,
+              "label": "Raramente",
+              "rawScore": 2.0
+            },
+            {
+              "ordem": 3,
+              "label": "Frequentemente",
+              "rawScore": 1.0
+            },
+            {
+              "ordem": 4,
+              "label": "Diariamente",
+              "rawScore": 0.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "pillar": "historico",
+      "weight": 1,
+      "max": 3,
+      "questions": [
+        {
+          "ordem": 1,
+          "texto": "Mãe ou irmãs com dificuldade para engravidar?",
+          "options": [
+            {
+              "ordem": 1,
+              "label": "Não",
+              "rawScore": 3.0
+            },
+            {
+              "ordem": 2,
+              "label": "Um caso",
+              "rawScore": 2.0
+            },
+            {
+              "ordem": 3,
+              "label": "Mais de um",
+              "rawScore": 1.0
+            },
+            {
+              "ordem": 4,
+              "label": "Vários casos",
+              "rawScore": 0.0
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "pillarMessages": [
+    {
+      "pillar": "fatores_infertilidade",
+      "level": "Alto",
+      "diagnostico": "Você não apresenta condições clínicas relevantes como endometriose, SOP, doenças autoimunes ou obstruções tubárias. Seu peso corporal também está dentro da faixa ideal, o que favorece a função hormonal e a ovulação.",
+      "recomendacao": "Continue mantendo seus hábitos atuais de alimentação e atividade física."
+    },
+    {
+      "pillar": "fatores_infertilidade",
+      "level": "Moderado",
+      "diagnostico": "Você não apresenta obstruções graves ou doenças autoimunes, mas há pequenos pontos de atenção (como idade, SOP leve ou sensibilidade alimentar) que podem afetar sua fertilidade sem sintomas claros.",
+      "recomendacao": "Acompanhamento clínico regular + dieta anti-inflamatória para blindar esse pilar."
+    },
+    {
+      "pillar": "fatores_infertilidade",
+      "level": "Baixo",
+      "diagnostico": "Vários marcadores alterados – como idade elevada, diagnósticos confirmados (SOP, endometriose) ou IMC fora da faixa ideal.",
+      "recomendacao": "Reavaliação com especialista em reprodução + abordagem integrativa com endocrinologista e nutricionista funcional."
+    },
+    {
+      "pillar": "saude_hormonal",
+      "level": "Alto",
+      "diagnostico": "Seus hormônios-chave (FSH, AMH, progesterona) estão bem regulados ou dentro de parâmetros esperados para sua idade.",
+      "recomendacao": "Mantenha seu acompanhamento hormonal periódico."
+    },
+    {
+      "pillar": "saude_hormonal",
+      "level": "Moderado",
+      "diagnostico": "FSH e AMH em níveis médios, possível progesterona baixa na fase lútea.",
+      "recomendacao": "Ajustes alimentares + fitoterapia + rastreio com endocrino/GO."
+    },
+    {
+      "pillar": "saude_hormonal",
+      "level": "Baixo",
+      "diagnostico": "FSH, AMH ou progesterona estão abaixo do ideal.",
+      "recomendacao": "Suplementação direcionada e estratégia alimentar rica em colina, gorduras boas, vitamina D3, selênio e zinco."
+    },
+    {
+      "pillar": "sono",
+      "level": "Alto",
+      "diagnostico": "Seu sono é consistente, profundo e restaurador. Poucas interrupções, boa duração (7–9h) e baixa incidência de insônia ou sonhos agitados.",
+      "recomendacao": "Mantenha sua rotina de higiene do sono: horários regulares e ambiente sem luz azul."
+    },
+    {
+      "pillar": "sono",
+      "level": "Moderado",
+      "diagnostico": "Você dorme pouco ou acorda muitas vezes à noite, afetando o equilíbrio hormonal (cortisol, melatonina, progesterona).",
+      "recomendacao": "Rotina de higiene do sono + suplemento natural sob orientação."
+    },
+    {
+      "pillar": "sono",
+      "level": "Baixo",
+      "diagnostico": "Sono fragmentado, curto ou agitado.",
+      "recomendacao": "Estabeleça rotina noturna com luz baixa, evite telas 1h antes de dormir e use infusões calmantes."
+    },
+    {
+      "pillar": "atividade_fisica",
+      "level": "Alto",
+      "diagnostico": "Você se movimenta regularmente com treinos equilibrados (força + aeróbico), sem excessos.",
+      "recomendacao": "Continue com seu equilíbrio de exercícios e frequência semanal."
+    },
+    {
+      "pillar": "atividade_fisica",
+      "level": "Moderado",
+      "diagnostico": "Você se movimenta, mas o treino pode não estar bem distribuído ou a frequência é baixa.",
+      "recomendacao": "3x/semana com equilíbrio entre força e leve cardio (caminhada, dança, funcional leve)."
+    },
+    {
+      "pillar": "atividade_fisica",
+      "level": "Baixo",
+      "diagnostico": "Sedentarismo ou exercício isolado e não adaptado.",
+      "recomendacao": "Comece com caminhadas diárias + alongamento e yoga hormonal."
+    },
+    {
+      "pillar": "alimentacao",
+      "level": "Alto",
+      "diagnostico": "Dieta rica em fibras, vegetais e proteínas de boa qualidade, com baixo consumo de ultraprocessados.",
+      "recomendacao": "Mantenha esse padrão e foque em alimentos anti-inflamatórios."
+    },
+    {
+      "pillar": "alimentacao",
+      "level": "Moderado",
+      "diagnostico": "Você já tem boas escolhas, mas ainda consome ultraprocessados ou falta fibra e proteína.",
+      "recomendacao": "Planejamento de refeições férteis (colina, ômega-3, sementes) + regularidade."
+    },
+    {
+      "pillar": "alimentacao",
+      "level": "Baixo",
+      "diagnostico": "Alta presença de industrializados e baixo consumo de fibras, vegetais e proteínas.",
+      "recomendacao": "Dieta anti-inflamatória com vegetais frescos, sementes, ovos caipiras e carnes magras."
+    },
+    {
+      "pillar": "saude_intestinal",
+      "level": "Alto",
+      "diagnostico": "Evacuações regulares, ausência de inchaço e gases. Sem histórico relevante de disbiose.",
+      "recomendacao": "Mantenha ingestão adequada de fibras e hidratação."
+    },
+    {
+      "pillar": "saude_intestinal",
+      "level": "Moderado",
+      "diagnostico": "Evacuação irregular ou sintomas leves indicam necessidade de reequilíbrio da microbiota.",
+      "recomendacao": "Pré e probióticos, água e fibras; evite medicamentos que afetem o intestino."
+    },
+    {
+      "pillar": "saude_intestinal",
+      "level": "Baixo",
+      "diagnostico": "Evacuação irregular, gases e histórico de disbiose.",
+      "recomendacao": "Uso de probióticos, fibras solúveis e redução de FODMAPs; introduza fermentados."
+    },
+    {
+      "pillar": "figado",
+      "level": "Alto",
+      "diagnostico": "Sem sinais de sobrecarga hepática ou uso crônico de medicamentos.",
+      "recomendacao": "Continue apoio hepático leve: chás amargos e hidratação."
+    },
+    {
+      "pillar": "figado",
+      "level": "Moderado",
+      "diagnostico": "Histórico de TPM intensa ou acne indica sobrecarga leve no fígado.",
+      "recomendacao": "Chás de dente-de-leão, boldo e pausa em estimulantes."
+    },
+    {
+      "pillar": "figado",
+      "level": "Baixo",
+      "diagnostico": "Sinais de sobrecarga (TPM intensa, acne, cansaço).",
+      "recomendacao": "Detox suave, vegetais amargos e suplementos hepáticos."
+    },
+    {
+      "pillar": "imunidade",
+      "level": "Alto",
+      "diagnostico": "Baixa frequência de infecções e bons marcadores inflamatórios.",
+      "recomendacao": "Mantenha dieta anti-inflamatória e sono restaurador."
+    },
+    {
+      "pillar": "imunidade",
+      "level": "Moderado",
+      "diagnostico": "Infecções recorrentes ou leves alterações em exames.",
+      "recomendacao": "Atividade física regular, dieta anti-inflamatória e jejum leve."
+    },
+    {
+      "pillar": "imunidade",
+      "level": "Baixo",
+      "diagnostico": "Inflamação moderada a alta (sintomas ou exames).",
+      "recomendacao": "Reduza açúcares e ultraprocessados; inclua antioxidantes."
+    },
+    {
+      "pillar": "estresse",
+      "level": "Alto",
+      "diagnostico": "Baixa ansiedade e bom manejo emocional no dia a dia.",
+      "recomendacao": "Continue práticas de relaxamento e pausas regulares."
+    },
+    {
+      "pillar": "estresse",
+      "level": "Moderado",
+      "diagnostico": "Estresse frequente, ansiedade ou cansaço mental/físico.",
+      "recomendacao": "Respiração consciente diária, meditação guiada e pausa digital."
+    },
+    {
+      "pillar": "estresse",
+      "level": "Baixo",
+      "diagnostico": "Alta exaustão mental, insônia ou ansiedade.",
+      "recomendacao": "Pausas diárias, terapia e atividades prazerosas."
+    },
+    {
+      "pillar": "ciclo",
+      "level": "Alto",
+      "diagnostico": "Ciclos regulares com ovulação confirmada.",
+      "recomendacao": "Continue monitorando sinais de ovulação regularmente."
+    },
+    {
+      "pillar": "ciclo",
+      "level": "Moderado",
+      "diagnostico": "Ciclo irregular ou fluxo alterado; ovulação incerta.",
+      "recomendacao": "Diário de ciclo, testes de LH e ajustes alimentares."
+    },
+    {
+      "pillar": "ciclo",
+      "level": "Baixo",
+      "diagnostico": "Ciclo ausente ou sem ovulação confirmada.",
+      "recomendacao": "Rastreamento com testes de temperatura e mucos; suplementos."
+    },
+    {
+      "pillar": "tireoide",
+      "level": "Alto",
+      "diagnostico": "TSH em faixa ideal (<2,5) sem sinais de disfunção.",
+      "recomendacao": "Mantenha acompanhamento endócrino e dieta rica em selênio."
+    },
+    {
+      "pillar": "tireoide",
+      "level": "Moderado",
+      "diagnostico": "TSH acima de 2,5 pode interferir na fertilidade.",
+      "recomendacao": "Reavaliação com endocrino e ajuste de iodo e selênio."
+    },
+    {
+      "pillar": "tireoide",
+      "level": "Baixo",
+      "diagnostico": "TSH alterado (>2,5) indicando disfunção.",
+      "recomendacao": "Exames completos e suporte nutricional com selênio natural."
+    },
+    {
+      "pillar": "toxinas",
+      "level": "Alto",
+      "diagnostico": "Baixa exposição a disruptores endócrinos.",
+      "recomendacao": "Continue evitando plásticos e usando filtros de água."
+    },
+    {
+      "pillar": "toxinas",
+      "level": "Moderado",
+      "diagnostico": "Exposição moderada a cosméticos e plásticos.",
+      "recomendacao": "Troque cosméticos e evite plástico em alimentos quentes."
+    },
+    {
+      "pillar": "toxinas",
+      "level": "Baixo",
+      "diagnostico": "Alta exposição a toxinas domésticas.",
+      "recomendacao": "Detox do lar, cosméticos limpos e utensílios de vidro/inox."
+    },
+    {
+      "pillar": "historico",
+      "level": "Alto",
+      "diagnostico": "Sem histórico familiar de infertilidade.",
+      "recomendacao": "Continue exames preventivos periódicos."
+    },
+    {
+      "pillar": "historico",
+      "level": "Moderado",
+      "diagnostico": "Casos familiares indicam predisposição genética.",
+      "recomendacao": "Atenção preventiva e acompanhamento regular."
+    },
+    {
+      "pillar": "historico",
+      "level": "Baixo",
+      "diagnostico": "Histórico familiar de infertilidade presente.",
+      "recomendacao": "Proatividade em exames e compartilhamento de histórico."
+    }
+  ],
+  "source": {
+    "file": "typebot-export-mapa-da-fertilidade.json",
+    "extractedAt": "2026-07-07",
+    "notes": [
+      "peso4_atividade_score (weight for atividade_fisica) was never assigned in the live Typebot flow (bug) — using weight=2 per docs/02 and explicit product decision on 2026-07-07.",
+      "saude_hormonal question 4 option \"não sei\" has no value in the source (would evaluate to 0 in the live flow) — defaulted to rawScore=0."
+    ]
+  }
+}
