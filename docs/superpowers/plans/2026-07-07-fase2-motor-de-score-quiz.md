@@ -788,6 +788,8 @@ git add src/app/api/assessments
 git commit -m "feat: add POST /api/assessments and GET /api/assessments/:id routes"
 ```
 
+> **Nota pós-review final:** `GET /api/assessments/[id]` foi removida depois — o review final de branch inteira da Fase 2 encontrou que ela expunha `leadNome`/`leadEmail` sem autenticação e não era consumida por nenhuma página (Task 8 optou por ler o `Assessment` direto via Server Component em vez de chamar essa rota). Decisão do usuário: remover agora, recriar já com auth quando a Fase 3 existir, se necessário.
+
 ---
 
 ### Task 7: Rota `POST /api/ingest/typebot`
