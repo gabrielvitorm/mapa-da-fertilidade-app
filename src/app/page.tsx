@@ -18,6 +18,12 @@ export default function Home() {
           Funil real: Boas-vindas
         </Link>
         <Link
+          href="/login"
+          className="px-4 py-2 rounded-lg bg-[var(--color-brand-sage)] text-white text-sm font-bold"
+        >
+          Funil real: Login
+        </Link>
+        <Link
           href="/preview/welcome"
           className="px-4 py-2 rounded-lg bg-[var(--color-brand-terracota)] text-white text-sm font-bold"
         >
