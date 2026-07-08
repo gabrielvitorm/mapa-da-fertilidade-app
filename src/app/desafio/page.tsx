@@ -13,7 +13,7 @@ export default async function DesafioPage() {
 
   const hasChallenge = await hasActiveEntitlement(user.id, 'CHALLENGE');
   if (!hasChallenge) {
-    redirect('/dashboard');
+    redirect('/desafio/oferta');
   }
 
   const entitlement = await db.entitlement.findFirst({

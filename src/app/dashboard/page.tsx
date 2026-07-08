@@ -28,7 +28,22 @@ export default async function DashboardPage() {
     where: { userId: user.id, status: 'ACTIVE' },
   });
   const challengeEntitlement = entitlements.find((e) => e.type === 'CHALLENGE');
-  const challengeProduct = await db.product.findUnique({ where: { slug: 'desafio-7-dias' } });
+
+  let progressoDesafio: { diaAtual: number } | undefined;
+  if (challengeEntitlement) {
+    const trackLevel = (challengeEntitlement.metadata as { track?: NivelGlobal } | null)?.track;
+    if (trackLevel) {
+      const track = await db.challengeTrack.findUnique({ where: { level: trackLevel } });
+      if (track) {
+        const progress = await db.challengeProgress.findUnique({
+          where: { userId_trackId: { userId: user.id, trackId: track.id } },
+        });
+        if (progress) {
+          progressoDesafio = { diaAtual: progress.currentDay };
+        }
+      }
+    }
+  }
 
   return (
     <div>
@@ -37,8 +52,9 @@ export default async function DashboardPage() {
         nivelGlobal={assessment.nivelGlobal as NivelGlobal}
         resultadoFinal={assessment.resultadoFinal}
         relatorioHref="/relatorio"
-        desafioHref={challengeEntitlement ? '/desafio' : (challengeProduct?.checkoutUrl ?? '#')}
+        desafioHref={challengeEntitlement ? '/desafio' : '/desafio/oferta'}
         temDesafio={Boolean(challengeEntitlement)}
+        progressoDesafio={progressoDesafio}
       />
       <LogoutButton />
     </div>
