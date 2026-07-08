@@ -1,0 +1,154 @@
+[
+  {
+    "headers": {
+      "host": "n8n.carolinapalitot.com",
+      "user-agent": "axios/0.23.0",
+      "content-length": "2667",
+      "accept": "application/json, text/plain, */*",
+      "content-type": "application/json",
+      "traceparent": "00-276c8a1c60f00faf27d88afa241d169e-b3d38cf3e5814d6b-01",
+      "x-forwarded-for": "34.95.203.125",
+      "x-forwarded-host": "n8n.carolinapalitot.com",
+      "x-forwarded-port": "443",
+      "x-forwarded-proto": "https",
+      "x-forwarded-server": "3f42bbb48da9",
+      "x-real-ip": "34.95.203.125",
+      "accept-encoding": "gzip"
+    },
+    "params": {},
+    "query": {
+      "signature": "e3436fbba33c362f5f5a9e0d729c3413c7be29f8"
+    },
+    "body": {
+      "order_id": "edd73ffa-567e-464e-a5a1-4bbfbd396faa",
+      "order_ref": "EnkWRvF",
+      "order_status": "paid",
+      "product_type": "membership",
+      "payment_method": "credit_card",
+      "store_id": "HdmmtunaRrY6ZmK",
+      "payment_merchant_id": 50248519,
+      "installments": 1,
+      "card_type": "mastercard",
+      "card_last4digits": "1336",
+      "card_rejection_reason": null,
+      "boleto_URL": null,
+      "boleto_barcode": null,
+      "boleto_expiry_date": null,
+      "pix_code": null,
+      "pix_expiration": null,
+      "sale_type": "producer",
+      "created_at": "2026-06-30 02:55",
+      "updated_at": "2026-06-30 02:55",
+      "approved_date": "2026-07-01 02:55",
+      "refunded_at": null,
+      "webhook_event_type": "order_approved",
+      "Product": {
+        "product_id": "982dcf8d-a1c8-4487-bcc8-059f2b69a517",
+        "product_name": "Example product"
+      },
+      "Customer": {
+        "full_name": "John Doe",
+        "first_name": "John",
+        "email": "johndoe@example.com",
+        "mobile": "+33905685924",
+        "cnpj": "25596273091653",
+        "ip": "154.192.156.26",
+        "instagram": "@kiwify",
+        "street": "Rua 1001",
+        "number": "315",
+        "complement": "SL 05",
+        "neighborhood": "Centro",
+        "city": "Balneário Camboriú",
+        "state": "SC",
+        "zipcode": "88330-756"
+      },
+      "Commissions": {
+        "charge_amount": 5224,
+        "product_base_price": 5224,
+        "product_base_price_currency": "BRL",
+        "kiwify_fee": 575,
+        "kiwify_fee_currency": "BRL",
+        "settlement_amount": 5224,
+        "settlement_amount_currency": "BRL",
+        "sale_tax_rate": 0,
+        "sale_tax_amount": 0,
+        "commissioned_stores": [
+          {
+            "id": "505c93c7-5bf3-42f6-a6f8-91fb82f7b975",
+            "type": "producer",
+            "custom_name": "Example store",
+            "email": "example@store.domain",
+            "value": "4649"
+          },
+          {
+            "id": "30782cb1-ad7b-4eab-a294-4fc8cb94f56e",
+            "type": "coproducer",
+            "custom_name": "Example coproducer",
+            "email": "example@coproducer.domain",
+            "value": "4649"
+          },
+          {
+            "id": "eedbfe54-2c2c-4235-82fa-0798beff5ad0",
+            "type": "affiliate",
+            "affiliate_id": "iwAjcAA",
+            "custom_name": "Example affiliate",
+            "email": "example@affiliate.domain",
+            "value": "4649"
+          }
+        ],
+        "currency": "BRL",
+        "my_commission": 4649,
+        "funds_status": null,
+        "estimated_deposit_date": null,
+        "deposit_date": null
+      },
+      "TrackingParameters": {
+        "src": null,
+        "sck": null,
+        "utm_source": null,
+        "utm_medium": null,
+        "utm_campaign": null,
+        "utm_content": null,
+        "utm_term": null,
+        "s1": null,
+        "s2": null,
+        "s3": null
+      },
+      "Subscription": {
+        "id": "f7f1c77f-7ec2-4774-bc1f-6f3fb14ee065",
+        "start_date": "2026-06-27T02:55:44.330Z",
+        "next_payment": "2026-07-04T02:55:44.330Z",
+        "status": "active",
+        "plan": {
+          "id": "5550ec91-2081-46ee-8885-4f880bf124cb",
+          "name": "Example plan",
+          "frequency": "weekly",
+          "qty_charges": 0
+        },
+        "charges": {
+          "completed": [
+            {
+              "order_id": "edd73ffa-567e-464e-a5a1-4bbfbd396faa",
+              "amount": 4649,
+              "status": "paid",
+              "installments": 1,
+              "card_type": "mastercard",
+              "card_last_digits": "7132",
+              "card_first_digits": "747704",
+              "created_at": "2026-06-27T02:55:44.330Z"
+            }
+          ],
+          "future": [
+            {
+              "charge_date": "2026-07-04T02:55:44.330Z"
+            }
+          ]
+        }
+      },
+      "subscription_id": "f7f1c77f-7ec2-4774-bc1f-6f3fb14ee065",
+      "access_url": null
+    },
+    "webhookUrl": "https://n8n.carolinapalitot.com/webhook-test/fertilidade_alta",
+    "executionMode": "test"
+  }
+]
