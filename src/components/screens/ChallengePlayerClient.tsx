@@ -25,7 +25,7 @@ export function ChallengePlayerClient({
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ trackId, dayNumber: day.dayNumber }),
     });
-    router.push('/desafio');
+    router.push(`/desafio/${day.dayNumber}/concluido`);
   }
 
   async function handleSubmitDevolutiva(input: DevolutivaInput) {
