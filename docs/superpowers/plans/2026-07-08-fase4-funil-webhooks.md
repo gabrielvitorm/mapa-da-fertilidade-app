@@ -173,7 +173,7 @@ export async function handlePayment(event: PaymentEvent): Promise<void> {
         productId: product.id,
         type: grants.entitlement,
         status: 'ACTIVE',
-        metadata,
+        metadata: metadata as unknown as object,
       },
     });
 
@@ -279,6 +279,8 @@ Run: `git status --short` — confirme working tree limpo (o script de verifica�
 git add src/lib/payment-handler.ts
 git commit -m "feat: add handlePayment (idempotent order + entitlement + assessment adoption)"
 ```
+
+> **Nota pós-Task 3:** o `npx tsx verify-payment.tmp.ts` do Step 2 NÃO pega erros de tipo (tsx transpila sem type-check completo) — um erro real (`metadata: Record<string, unknown>` não bate com o tipo `Json` do Prisma) só apareceu quando a Task 3 rodou `npx tsc --noEmit` no projeto inteiro. Corrigido com `metadata as unknown as object` (mesmo padrão já usado em `assessment-service.ts` da Fase 2). **Lição:** sempre que uma task só verifica com `tsx`, rodar `npx tsc --noEmit` no repo inteiro antes de considerar a task fechada — não só o arquivo novo.
 
 ---
 

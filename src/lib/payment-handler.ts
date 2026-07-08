@@ -89,7 +89,7 @@ export async function handlePayment(event: PaymentEvent): Promise<void> {
         productId: product.id,
         type: grants.entitlement,
         status: 'ACTIVE',
-        metadata,
+        metadata: metadata as unknown as object,
       },
     });
 
