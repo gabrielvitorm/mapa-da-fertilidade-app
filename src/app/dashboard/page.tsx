@@ -33,7 +33,7 @@ export default async function DashboardPage() {
   return (
     <div>
       <DashboardView
-        primeiroNome={user.nome ?? 'Você'}
+        primeiroNome={user.nome?.split(' ')[0] ?? 'Você'}
         nivelGlobal={assessment.nivelGlobal as NivelGlobal}
         resultadoFinal={assessment.resultadoFinal}
         relatorioHref="/relatorio"
