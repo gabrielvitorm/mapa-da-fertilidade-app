@@ -505,6 +505,7 @@ import type { OrderStatus } from '@prisma/client';
 export interface KiwifyWebhookBody {
   order_id: string;
   order_status: string;
+  webhook_event_type: string;
   Product: {
     product_id: string;
     product_name: string;
@@ -551,7 +552,13 @@ function mapKiwifyStatus(orderStatus: string): OrderStatus {
 export function normalizeKiwifyPayload(body: KiwifyWebhookBody): PaymentEvent {
   return {
     platform: 'KIWIFY',
-    transactionId: body.order_id,
+    // order_id sozinho não é suficiente: Kiwify reenvia o MESMO order_id quando
+    // o status muda (ex.: paid -> refunded). Se usássemos só order_id como chave
+    // de idempotência, o evento de reembolso seria descartado como "já
+    // processado" e o Entitlement nunca seria revogado. Combinar com
+    // webhook_event_type garante que cada TRANSIÇÃO de status vira uma Order
+    // distinta, mantendo a idempotência real (reenvio do mesmo evento) intacta.
+    transactionId: `${body.order_id}:${body.webhook_event_type}`,
     status: mapKiwifyStatus(body.order_status),
     platformProductId: body.Product.product_id,
     amountCents: body.Commissions.charge_amount,
