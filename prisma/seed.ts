@@ -248,10 +248,13 @@ async function seedDemoUserAndCatalog() {
   await db.assessment.deleteMany({ where: { userId: user.id } });
 
   const questions = await db.question.findMany({ include: { options: true } });
+  // Ordena por rawScore crescente e pega a "mediana por baixo" (index
+  // floor(length * 0.5)) — verificado contra o banco real: produz
+  // resultadoFinal ~68 (MODERADA), com folga confortável da fronteira em 60.
   const answers = questions.map((q) => {
-    const sorted = [...q.options].sort((a, b) => b.rawScore - a.rawScore);
-    const middle = sorted[Math.floor(sorted.length / 2)];
-    return { questionId: q.id, optionId: middle.id };
+    const sorted = [...q.options].sort((a, b) => a.rawScore - b.rawScore);
+    const median = sorted[Math.floor(sorted.length * 0.5)];
+    return { questionId: q.id, optionId: median.id };
   });
 
   const result = await createAssessment({
@@ -272,8 +275,44 @@ async function seedDemoUserAndCatalog() {
     data: { userId: user.id, productId: reportProduct.id, type: 'REPORT', status: 'ACTIVE' },
   });
 
+  const challengeProduct = await db.product.findUniqueOrThrow({ where: { slug: 'desafio-7-dias' } });
+  await db.entitlement.create({
+    data: {
+      userId: user.id,
+      productId: challengeProduct.id,
+      type: 'CHALLENGE',
+      status: 'ACTIVE',
+      metadata: { track: result.nivelGlobal } as unknown as object,
+    },
+  });
+
+  const track = await db.challengeTrack.findUniqueOrThrow({ where: { level: result.nivelGlobal } });
+
+  // Dias 0-3 concluídos com timestamps escalonados (folga de sobra sobre o
+  // cooldown de 20h da trilha), dia 4 liberado. Usuária pronta pra demo sem
+  // precisar simular o fluxo do zero.
+  const now = Date.now();
+  const HOUR_MS = 3600_000;
+  const dayCompletions = {
+    0: { completedAt: new Date(now - 96 * HOUR_MS).toISOString() },
+    1: { completedAt: new Date(now - 72 * HOUR_MS).toISOString() },
+    2: { completedAt: new Date(now - 48 * HOUR_MS).toISOString() },
+    3: { completedAt: new Date(now - 24 * HOUR_MS).toISOString() },
+  };
+
+  await db.challengeProgress.upsert({
+    where: { userId_trackId: { userId: user.id, trackId: track.id } },
+    update: { currentDay: 4, dayCompletions: dayCompletions as unknown as object },
+    create: {
+      userId: user.id,
+      trackId: track.id,
+      currentDay: 4,
+      dayCompletions: dayCompletions as unknown as object,
+    },
+  });
+
   console.log(
-    `Demo user: ${user.email} (assessment ${result.assessmentId}, nivel ${result.nivelGlobal}, resultadoFinal ${result.resultadoFinal})`
+    `Demo user: ${user.email} (assessment ${result.assessmentId}, nivel ${result.nivelGlobal}, resultadoFinal ${result.resultadoFinal}, desafio dia 4/7 liberado)`
   );
 }
 
@@ -282,8 +321,8 @@ async function main() {
   await seedQuestions();
   await seedPillarMessages();
   await seedProducts();
-  await seedDemoUserAndCatalog();
   await seedChallengeTracks();
+  await seedDemoUserAndCatalog();
 }
 
 main()
