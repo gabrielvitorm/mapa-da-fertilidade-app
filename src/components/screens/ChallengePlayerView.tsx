@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import type { ReactNode } from 'react';
 import {
   ArrowLeft, CheckCircle, CheckSquare, Sparkles, Volume2,
@@ -28,6 +28,7 @@ interface ChallengePlayerViewProps {
   onBack?: () => void;
   onCompleteDay: () => void;
   onSubmitDevolutiva: (input: DevolutivaInput) => void;
+  onProgressChange?: (visibleCount: number) => void;
 }
 
 export function ChallengePlayerView({
@@ -37,11 +38,17 @@ export function ChallengePlayerView({
   onBack,
   onCompleteDay,
   onSubmitDevolutiva,
+  onProgressChange,
 }: ChallengePlayerViewProps) {
-  const { visibleMessages, isTyping, isComplete } = useMessageSequence(
+  const { visibleMessages, isTyping, isComplete, visibleCount } = useMessageSequence(
     day.messages,
     initialVisibleCount
   );
+
+  useEffect(() => {
+    onProgressChange?.(visibleCount);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [visibleCount]);
 
   const [journalType, setJournalType] = useState<DevolutivaTipo | 'none'>('none');
   const [journalText, setJournalText] = useState('');
