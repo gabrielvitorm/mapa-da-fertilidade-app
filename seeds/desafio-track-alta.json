@@ -75,14 +75,14 @@
           "tipo": "IMAGEM",
           "delayMs": 1200,
           "mediaSourceDriveId": "1jP54FgSXKcmxXCIZs1Xcc2ZEW6z1xxAi",
-          "mediaKey": "desafio/alta/dia1/4.jpg"
+          "mediaKey": "desafio/alta/dia1/4.png"
         },
         {
           "ordem": 5,
           "tipo": "IMAGEM",
           "delayMs": 1200,
           "mediaSourceDriveId": "11L7Y0rUr3qA3JhonkKYHFsEYmHKjjWUx",
-          "mediaKey": "desafio/alta/dia1/5.jpg"
+          "mediaKey": "desafio/alta/dia1/5.png"
         },
         {
           "ordem": 6,
@@ -128,7 +128,7 @@
           "tipo": "IMAGEM",
           "delayMs": 1500,
           "mediaSourceDriveId": "12obbUmybSUau7PW4SaQedOqz_RhjD2fx",
-          "mediaKey": "desafio/alta/dia2/3.jpg"
+          "mediaKey": "desafio/alta/dia2/3.png"
         },
         {
           "ordem": 4,
@@ -174,7 +174,7 @@
           "tipo": "IMAGEM",
           "delayMs": 1300,
           "mediaSourceDriveId": "12BYsa-28JaX-fUzwF7HdM70QJr0frrts",
-          "mediaKey": "desafio/alta/dia3/3.jpg"
+          "mediaKey": "desafio/alta/dia3/3.png"
         },
         {
           "ordem": 4,
@@ -220,7 +220,7 @@
           "tipo": "IMAGEM",
           "delayMs": 1450,
           "mediaSourceDriveId": "1nkL98MGh8WWeYkJqOHXUmmf0oVWpwWGJ",
-          "mediaKey": "desafio/alta/dia4/3.jpg"
+          "mediaKey": "desafio/alta/dia4/3.png"
         },
         {
           "ordem": 4,
@@ -266,7 +266,7 @@
           "tipo": "IMAGEM",
           "delayMs": 1250,
           "mediaSourceDriveId": "1-usJqXNJO39d-Q_-ZEAzP2jP4Ga-9Wra",
-          "mediaKey": "desafio/alta/dia5/3.jpg"
+          "mediaKey": "desafio/alta/dia5/3.png"
         },
         {
           "ordem": 4,
@@ -312,7 +312,7 @@
           "tipo": "IMAGEM",
           "delayMs": 4523,
           "mediaSourceDriveId": "1iBm-_0i7UXs0AhyAGcMzB5ZYiNNIwCgF",
-          "mediaKey": "desafio/alta/dia6/4.jpg"
+          "mediaKey": "desafio/alta/dia6/4.png"
         },
         {
           "ordem": 5,
@@ -331,7 +331,7 @@
           "tipo": "IMAGEM",
           "delayMs": 8798,
           "mediaSourceDriveId": "1lriwhg13jLWDgqqtHhwd1RSJ8RfD_U85",
-          "mediaKey": "desafio/alta/dia6/7.jpg"
+          "mediaKey": "desafio/alta/dia6/7.png"
         },
         {
           "ordem": 8,
@@ -391,7 +391,7 @@
           "tipo": "IMAGEM",
           "delayMs": 1300,
           "mediaSourceDriveId": "1t2ta6hU4X3BFFdEu2u4QUAwR5ycdraTT",
-          "mediaKey": "desafio/alta/dia7/4.jpg"
+          "mediaKey": "desafio/alta/dia7/4.png"
         },
         {
           "ordem": 5,
@@ -411,7 +411,7 @@
           "tipo": "IMAGEM",
           "delayMs": 1300,
           "mediaSourceDriveId": "14DFYy1KiimyEqaHBXrl0NZmAszE2sOP9",
-          "mediaKey": "desafio/alta/dia7/7.jpg"
+          "mediaKey": "desafio/alta/dia7/7.png"
         },
         {
           "ordem": 8,

@@ -75,14 +75,14 @@
           "tipo": "IMAGEM",
           "delayMs": 1200,
           "mediaSourceDriveId": "1jP54FgSXKcmxXCIZs1Xcc2ZEW6z1xxAi",
-          "mediaKey": "desafio/baixa/dia1/4.jpg"
+          "mediaKey": "desafio/baixa/dia1/4.png"
         },
         {
           "ordem": 5,
           "tipo": "IMAGEM",
           "delayMs": 1200,
           "mediaSourceDriveId": "1CynXh_pwXNV5B2-d_of4whgPRHYHiMnz",
-          "mediaKey": "desafio/baixa/dia1/5.jpg"
+          "mediaKey": "desafio/baixa/dia1/5.png"
         },
         {
           "ordem": 6,
@@ -128,7 +128,7 @@
           "tipo": "IMAGEM",
           "delayMs": 1200,
           "mediaSourceDriveId": "1C3EzuT6esaZ7IGsFZc5j4VTsjIUYfg9i",
-          "mediaKey": "desafio/baixa/dia2/3.jpg"
+          "mediaKey": "desafio/baixa/dia2/3.png"
         },
         {
           "ordem": 4,
@@ -174,7 +174,7 @@
           "tipo": "IMAGEM",
           "delayMs": 1200,
           "mediaSourceDriveId": "1JzhIr7YYxQQiKVmVGFA4ExTynQxHIZq1",
-          "mediaKey": "desafio/baixa/dia3/3.jpg"
+          "mediaKey": "desafio/baixa/dia3/3.png"
         },
         {
           "ordem": 4,
@@ -220,7 +220,7 @@
           "tipo": "IMAGEM",
           "delayMs": 1200,
           "mediaSourceDriveId": "1vdtzoTUMr_aG4j-yX2d3PEI2z3edJ-ob",
-          "mediaKey": "desafio/baixa/dia4/3.jpg"
+          "mediaKey": "desafio/baixa/dia4/3.png"
         },
         {
           "ordem": 4,
@@ -266,7 +266,7 @@
           "tipo": "IMAGEM",
           "delayMs": 1200,
           "mediaSourceDriveId": "1zhGK3uArzO6NEupxZ6SihWvfNa2S7Jhw",
-          "mediaKey": "desafio/baixa/dia5/3.jpg"
+          "mediaKey": "desafio/baixa/dia5/3.png"
         },
         {
           "ordem": 4,
@@ -312,7 +312,7 @@
           "tipo": "IMAGEM",
           "delayMs": 1200,
           "mediaSourceDriveId": "1wu0isp2ozMRo-r0RPL_U8XBQQDp6C3vg",
-          "mediaKey": "desafio/baixa/dia6/4.jpg"
+          "mediaKey": "desafio/baixa/dia6/4.png"
         },
         {
           "ordem": 5,
@@ -378,7 +378,7 @@
           "tipo": "IMAGEM",
           "delayMs": 1200,
           "mediaSourceDriveId": "1-NoAhnr3qYjZNvxLZ3n-r8B2yJ5cP53u",
-          "mediaKey": "desafio/baixa/dia7/4.jpg"
+          "mediaKey": "desafio/baixa/dia7/4.png"
         },
         {
           "ordem": 5,
