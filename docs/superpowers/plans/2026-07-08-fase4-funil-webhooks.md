@@ -8,11 +8,14 @@
 
 **Tech Stack:** Next.js 16 App Router (Route Handlers + Server/Client Components), Prisma 6.19.3.
 
-## Escopo desta rodada (importante)
+## Escopo desta rodada (atualizado)
 
-Esta fase **não inclui** as rotas reais `POST /api/webhooks/kiwify` e `POST /api/webhooks/hotmart` — elas dependem de um exemplo real de payload de webhook dessas plataformas, que você (usuário) vai buscar e enviar depois. `handlePayment()` já fica pronto pra receber o evento normalizado de qualquer uma delas assim que essa peça existir; só falta escrever a função que traduz o JSON bruto da plataforma pro formato interno `PaymentEvent`. Quando o exemplo chegar, isso vira um plano curto e separado (2 tasks: normalização + rota, uma por plataforma).
+O exemplo real de payload do webhook do **Kiwify** chegou (`kiwify-webhook-exemplo.json`, o exemplo oficial de teste deles) — a Task 5 já implementa a rota real `POST /api/webhooks/kiwify` com base nele. O **Hotmart** continua fora do escopo: nenhum exemplo de payload chegou ainda; quando chegar, vira uma task curta separada seguindo o mesmo padrão da Task 5.
 
-O que **está** nesta rodada: o motor de pagamento completo, testável e demonstrável via um caminho que não depende de nenhuma plataforma externa — o botão de simulação.
+**Suposições assumidas na normalização do Kiwify (a validar contra um evento real de reembolso quando possível):**
+- `order_status` mapeia `"paid"` → `PAID`. Os valores de reembolso/chargeback (`"refunded"`, `"chargedback"`) são um palpite razoável baseado em convenção comum — não confirmados contra a documentação oficial nem um evento real. `normalizeKiwifyPayload` lança erro explícito pra qualquer valor não mapeado, em vez de silenciosamente tratar errado.
+- A assinatura vem no query param `?signature=...`, um hex de 40 caracteres — deduzido do próprio exemplo real que **HMAC-SHA1** (não SHA-256, que teria 64 caracteres) é o algoritmo usado.
+- `Commissions.charge_amount` é usado como `amountCents` (o valor que a cliente pagou, antes das taxas — `my_commission` é o valor líquido do produtor, não o preço de venda).
 
 ## Global Constraints
 
@@ -471,7 +474,263 @@ git commit -m "feat: add demo payment simulation button to checkout page"
 
 ---
 
-### Task 5 (controller — não delegar a subagente): Verificação manual do funil completo
+### Task 5: `src/lib/kiwify-webhook.ts` — verificação de assinatura + normalização
+
+**Files:**
+- Create: `docs/reference/kiwify-webhook-exemplo.json` (mover o arquivo `kiwify-webhook-exemplo.json` da raiz pra cá, mesmo padrão de arquivamento do export do Typebot na Fase 2)
+- Create: `src/lib/kiwify-webhook.ts`
+
+**Interfaces:**
+- Consumes: `PaymentEvent` (`@/lib/payment-handler`, Task 2), `process.env.KIWIFY_WEBHOOK_SECRET`.
+- Produces: `verifyKiwifySignature(rawBody, signature): boolean`, `normalizeKiwifyPayload(body): PaymentEvent` — usados pela Task 6 (a rota).
+
+- [ ] **Step 1: Mover o arquivo de exemplo pra `docs/reference/`**
+
+```bash
+mkdir -p docs/reference
+git mv kiwify-webhook-exemplo.json docs/reference/kiwify-webhook-exemplo.json
+```
+
+Se `git mv` falhar porque o arquivo ainda não está rastreado pelo git, use `mv` normal e depois `git add`.
+
+- [ ] **Step 2: Criar `src/lib/kiwify-webhook.ts`**
+
+```typescript
+import { createHmac, timingSafeEqual } from 'crypto';
+import type { PaymentEvent } from '@/lib/payment-handler';
+import type { OrderStatus } from '@prisma/client';
+
+export interface KiwifyWebhookBody {
+  order_id: string;
+  order_status: string;
+  Product: {
+    product_id: string;
+    product_name: string;
+  };
+  Customer: {
+    full_name: string;
+    email: string;
+    mobile?: string;
+    cnpj?: string;
+  };
+  Commissions: {
+    charge_amount: number;
+  };
+}
+
+export function verifyKiwifySignature(rawBody: string, signature: string): boolean {
+  const secret = process.env.KIWIFY_WEBHOOK_SECRET;
+  if (!secret) throw new Error('KIWIFY_WEBHOOK_SECRET is not set');
+
+  const expected = createHmac('sha1', secret).update(rawBody).digest('hex');
+  const expectedBuf = Buffer.from(expected, 'hex');
+  const providedBuf = Buffer.from(signature, 'hex');
+
+  if (expectedBuf.length !== providedBuf.length) return false;
+  return timingSafeEqual(expectedBuf, providedBuf);
+}
+
+function mapKiwifyStatus(orderStatus: string): OrderStatus {
+  switch (orderStatus) {
+    case 'paid':
+      return 'PAID';
+    case 'refunded':
+      return 'REFUNDED';
+    case 'chargedback':
+    case 'chargeback':
+      return 'CHARGEBACK';
+    default:
+      throw new Error(
+        `Unmapped Kiwify order_status: "${orderStatus}" — valores conhecidos: paid, refunded, chargedback. Confirme o valor real antes de tratar como definitivo.`
+      );
+  }
+}
+
+export function normalizeKiwifyPayload(body: KiwifyWebhookBody): PaymentEvent {
+  return {
+    platform: 'KIWIFY',
+    transactionId: body.order_id,
+    status: mapKiwifyStatus(body.order_status),
+    platformProductId: body.Product.product_id,
+    amountCents: body.Commissions.charge_amount,
+    buyer: {
+      email: body.Customer.email,
+      nome: body.Customer.full_name,
+      cpf: body.Customer.cnpj,
+      celular: body.Customer.mobile,
+    },
+    raw: body,
+  };
+}
+```
+
+- [ ] **Step 3: Verificar que compila**
+
+Run: `npx tsc --noEmit`
+
+Expected: nenhum erro relacionado a este arquivo.
+
+- [ ] **Step 4: Commit**
+
+```bash
+git add docs/reference/kiwify-webhook-exemplo.json src/lib/kiwify-webhook.ts
+git commit -m "feat: add Kiwify webhook signature verification and payload normalization"
+```
+
+---
+
+### Task 6: `POST /api/webhooks/kiwify`
+
+**Files:**
+- Create: `src/app/api/webhooks/kiwify/route.ts`
+
+**Interfaces:**
+- Consumes: `verifyKiwifySignature`, `normalizeKiwifyPayload` (Task 5), `handlePayment` (Task 2).
+- Produces: `POST /api/webhooks/kiwify` — a rota real que o Kiwify vai chamar quando produtos de verdade estiverem cadastrados na plataforma (fora do caminho gravado no vídeo, mas funcional e testável agora).
+
+- [ ] **Step 1: Criar `src/app/api/webhooks/kiwify/route.ts`**
+
+```typescript
+import { NextRequest, NextResponse } from 'next/server';
+import { handlePayment } from '@/lib/payment-handler';
+import {
+  verifyKiwifySignature,
+  normalizeKiwifyPayload,
+  type KiwifyWebhookBody,
+} from '@/lib/kiwify-webhook';
+
+export async function POST(request: NextRequest) {
+  const signature = request.nextUrl.searchParams.get('signature');
+  const rawBody = await request.text();
+
+  if (!signature || !verifyKiwifySignature(rawBody, signature)) {
+    return NextResponse.json({ error: 'Invalid signature' }, { status: 401 });
+  }
+
+  const body = JSON.parse(rawBody) as KiwifyWebhookBody;
+
+  try {
+    const event = normalizeKiwifyPayload(body);
+    await handlePayment(event);
+    return NextResponse.json({ ok: true });
+  } catch (error) {
+    console.error('Kiwify webhook processing failed:', error);
+    return NextResponse.json(
+      { error: error instanceof Error ? error.message : 'Unknown error' },
+      { status: 500 }
+    );
+  }
+}
+```
+
+- [ ] **Step 2: Confirmar `KIWIFY_WEBHOOK_SECRET` no `.env` local**
+
+Este arquivo é protegido por permissão — confirme com o usuário que `.env` tem uma linha `KIWIFY_WEBHOOK_SECRET=<algum valor>` (pode ser um valor de desenvolvimento qualquer, ex.: `dev-kiwify-secret-local` — só precisa bater entre o que a assinatura de teste usa e o que a rota lê. Não precisa ser o segredo real do Kiwify ainda, já que nenhum produto real está cadastrado lá).
+
+- [ ] **Step 3: Escrever e rodar um script de verificação (assinatura calculada localmente)**
+
+Crie um arquivo temporário `verify-kiwify-webhook.tmp.ts` na raiz:
+
+```typescript
+import { createHmac } from 'crypto';
+import { db } from './src/lib/db';
+import kiwifyExample from './docs/reference/kiwify-webhook-exemplo.json';
+
+const SECRET = process.env.KIWIFY_WEBHOOK_SECRET;
+if (!SECRET) {
+  console.error('KIWIFY_WEBHOOK_SECRET não está definido no .env — necessário pra este teste.');
+  process.exit(1);
+}
+
+function sign(rawBody: string): string {
+  return createHmac('sha1', SECRET as string).update(rawBody).digest('hex');
+}
+
+interface KiwifyExampleWrapper {
+  body: {
+    order_id: string;
+    order_status: string;
+    Product: { product_id: string; product_name: string };
+    Customer: { full_name: string; email: string; mobile?: string; cnpj?: string };
+    Commissions: { charge_amount: number };
+  };
+}
+
+async function main() {
+  // 1. Body real do exemplo, mas com o product_id trocado pro nosso produto seedado
+  //    e um order_id novo (pra não colidir com testes anteriores).
+  const exampleBody = (kiwifyExample as unknown as KiwifyExampleWrapper[])[0].body;
+  const reportProduct = await db.product.findUniqueOrThrow({ where: { slug: 'acesso-relatorio' } });
+
+  const testBody = {
+    ...exampleBody,
+    order_id: `TEST-KIWIFY-${Date.now()}`,
+    order_status: 'paid',
+    Product: { ...exampleBody.Product, product_id: reportProduct.platformProductId },
+    Customer: { ...exampleBody.Customer, email: 'teste-kiwify-webhook@example.com' },
+  };
+  const rawBody = JSON.stringify(testBody);
+  const validSignature = sign(rawBody);
+
+  // Teste 1: assinatura inválida -> 401
+  const res1 = await fetch(`http://localhost:3000/api/webhooks/kiwify?signature=INVALID`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: rawBody,
+  });
+  console.log('Teste 1 (assinatura inválida):', res1.status, '(esperado 401)');
+
+  // Teste 2: assinatura válida, produto conhecido -> 200 + Order/Entitlement criados
+  const res2 = await fetch(`http://localhost:3000/api/webhooks/kiwify?signature=${validSignature}`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: rawBody,
+  });
+  console.log('Teste 2 (assinatura válida, produto real):', res2.status, '(esperado 200)');
+
+  const user = await db.user.findUnique({ where: { email: 'teste-kiwify-webhook@example.com' } });
+  if (user) {
+    const entitlement = await db.entitlement.findFirst({ where: { userId: user.id } });
+    console.log('Entitlement criado:', entitlement?.type, entitlement?.status, '(esperado REPORT ACTIVE)');
+
+    // limpeza
+    await db.order.deleteMany({ where: { userId: user.id } });
+    await db.entitlement.deleteMany({ where: { userId: user.id } });
+    await db.user.delete({ where: { id: user.id } });
+    console.log('OK - dados de teste limpos');
+  } else {
+    console.log('AVISO: usuária de teste não foi criada — Teste 2 pode ter falhado.');
+  }
+
+  await db.$disconnect();
+}
+
+main().catch((e) => {
+  console.error(e);
+  process.exit(1);
+});
+```
+
+**IMPORTANTE:** este script precisa do servidor de dev rodando (`npm run dev`) E precisa rodar num processo separado que consiga ler `process.env.KIWIFY_WEBHOOK_SECRET` — subagentes em background não conseguem iniciar o servidor de dev (sem aprovação interativa disponível). Escreva o código e pare aqui — o controller roda esta verificação manualmente na Task 7.
+
+- [ ] **Step 4: Verificar que compila (sem rodar o servidor)**
+
+Run: `npx tsc --noEmit`
+
+Expected: nenhum erro relacionado aos arquivos desta task.
+
+- [ ] **Step 5: Commit**
+
+```bash
+git add src/app/api/webhooks/kiwify
+git commit -m "feat: add POST /api/webhooks/kiwify route"
+```
+
+(O script `verify-kiwify-webhook.tmp.ts` **não** é commitado — fica pro controller rodar e apagar na Task 7.)
+
+---
+
+### Task 7 (controller — não delegar a subagente): Verificação manual do funil completo
 
 Esta task não é implementação — é a verificação de ponta a ponta que fecha a fase, feita pelo controller com o usuário presente (mesmo padrão estabelecido na Fase 3, já que envolve servidor de dev real).
 
@@ -481,10 +740,12 @@ Esta task não é implementação — é a verificação de ponta a ponta que fe
 - [ ] Clicar no botão → confirmar redirect pra `/dashboard`
 - [ ] Confirmar que o dashboard mostra os dados reais do quiz que acabou de ser feito (nome, nível, score) — prova que `handlePayment` adotou o `Assessment` órfão corretamente
 - [ ] Verificar no banco que `Order` e `Entitlement` foram criados: `docker compose exec postgres psql -U fertilidade -d fertilidade -c "SELECT o.status, e.type, e.status FROM \"Order\" o JOIN \"Entitlement\" e ON e.\"userId\" = o.\"userId\" JOIN \"User\" u ON u.id = o.\"userId\" WHERE u.email = 'demo-fase4@example.com';"`
+- [ ] Rodar o script temporário `verify-kiwify-webhook.tmp.ts` da Task 6 (com `npx tsx verify-kiwify-webhook.tmp.ts`) — confirmar Teste 1 = 401, Teste 2 = 200, entitlement = REPORT ACTIVE, limpeza confirmada
+- [ ] Apagar `verify-kiwify-webhook.tmp.ts` e confirmar `git status --short` limpo
 - [ ] Parar o servidor de dev
 
 ---
 
 ## Ao final desta fase
 
-O motor de pagamento está pronto, testado e demonstrável — o vídeo já pode mostrar o funil completo: quiz → checkout → "compra" → dashboard liberado, tudo com dados reais persistidos. As rotas reais de webhook (Kiwify/Hotmart) ficam para um plano curto separado assim que houver um payload de exemplo real pra validar a normalização.
+O motor de pagamento está pronto, testado e demonstrável — o vídeo já pode mostrar o funil completo: quiz → checkout → "compra" → dashboard liberado, tudo com dados reais persistidos. A rota real do Kiwify (`/api/webhooks/kiwify`) também está pronta e testada com o payload de exemplo oficial deles — falta só cadastrar produtos reais na plataforma e apontar a URL do webhook lá. O Hotmart fica para um plano curto separado assim que houver um payload de exemplo real.
