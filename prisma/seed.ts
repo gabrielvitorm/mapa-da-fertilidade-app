@@ -1,6 +1,11 @@
 import { db } from '../src/lib/db';
 import { createAssessment } from '../src/lib/assessment-service';
 import quizSource from './seed-data/quiz-source.json';
+import { readFileSync } from 'fs';
+import path from 'path';
+import desafioBaixa from '../seeds/desafio-track-baixa.json';
+import desafioModerada from '../seeds/desafio-track-moderada.json';
+import desafioAlta from '../seeds/desafio-track-alta.json';
 
 interface QuizSourceOption {
   ordem: number;
@@ -114,6 +119,137 @@ async function seedProducts() {
   console.log('Product: acesso-relatorio');
 }
 
+interface DesafioSourceMessage {
+  ordem: number;
+  tipo: 'TEXTO' | 'AUDIO' | 'IMAGEM' | 'VIDEO';
+  delayMs: number;
+  texto?: string;
+  mediaKey?: string;
+}
+interface DesafioSourceDay {
+  dayNumber: number;
+  isOnboarding: boolean;
+  messages: DesafioSourceMessage[];
+}
+interface DesafioSourceTrack {
+  track: {
+    level: 'BAIXA' | 'MODERADA' | 'ALTA';
+    codename: string;
+    title: string;
+    defaultCooldownHours: number;
+  };
+  days: DesafioSourceDay[];
+}
+
+const DESAFIO_TRACKS = [desafioBaixa, desafioModerada, desafioAlta] as unknown as DesafioSourceTrack[];
+
+function parseCsvLine(line: string): string[] {
+  const fields: string[] = [];
+  let current = '';
+  let inQuotes = false;
+  for (let i = 0; i < line.length; i++) {
+    const char = line[i];
+    if (inQuotes) {
+      if (char === '"') {
+        if (line[i + 1] === '"') {
+          current += '"';
+          i++;
+        } else {
+          inQuotes = false;
+        }
+      } else {
+        current += char;
+      }
+    } else if (char === '"') {
+      inQuotes = true;
+    } else if (char === ',') {
+      fields.push(current);
+      current = '';
+    } else {
+      current += char;
+    }
+  }
+  fields.push(current);
+  return fields;
+}
+
+function loadDayTitles(): Map<number, string> {
+  const csvPath = path.join(process.cwd(), 'seeds', 'aulas-manifesto.csv');
+  const content = readFileSync(csvPath, 'utf-8');
+  const rows = content
+    .split('\n')
+    .map((l) => l.trimEnd())
+    .filter((l) => l.length > 0)
+    .map(parseCsvLine);
+
+  const [header, ...dataRows] = rows;
+  const dayIdx = header.indexOf('dia');
+  const titleIdx = header.indexOf('titulo');
+
+  const titles = new Map<number, string>();
+  for (const row of dataRows) {
+    const dayNumber = Number(row[dayIdx]);
+    if (!titles.has(dayNumber)) {
+      titles.set(dayNumber, row[titleIdx]);
+    }
+  }
+  return titles;
+}
+
+async function seedChallengeTracks() {
+  const dayTitles = loadDayTitles();
+
+  for (const source of DESAFIO_TRACKS) {
+    const track = await db.challengeTrack.upsert({
+      where: { level: source.track.level },
+      update: {
+        codename: source.track.codename,
+        title: source.track.title,
+        defaultCooldownHours: source.track.defaultCooldownHours,
+      },
+      create: {
+        level: source.track.level,
+        codename: source.track.codename,
+        title: source.track.title,
+        defaultCooldownHours: source.track.defaultCooldownHours,
+      },
+    });
+
+    const existingDays = await db.challengeDay.findMany({
+      where: { trackId: track.id },
+      select: { id: true },
+    });
+    if (existingDays.length > 0) {
+      await db.challengeMessage.deleteMany({
+        where: { dayId: { in: existingDays.map((d) => d.id) } },
+      });
+      await db.challengeDay.deleteMany({ where: { trackId: track.id } });
+    }
+
+    for (const day of source.days) {
+      await db.challengeDay.create({
+        data: {
+          trackId: track.id,
+          dayNumber: day.dayNumber,
+          isOnboarding: day.isOnboarding,
+          title: dayTitles.get(day.dayNumber) ?? `Dia ${day.dayNumber}`,
+          messages: {
+            create: day.messages.map((m) => ({
+              ordem: m.ordem,
+              tipo: m.tipo,
+              texto: m.texto,
+              mediaKey: m.mediaKey,
+              delayMs: m.delayMs,
+            })),
+          },
+        },
+      });
+    }
+
+    console.log(`ChallengeTrack ${source.track.level}: ${source.days.length} dias`);
+  }
+}
+
 async function seedDemoUserAndCatalog() {
   await db.product.upsert({
     where: { slug: 'desafio-7-dias' },
@@ -180,6 +316,7 @@ async function main() {
   await seedPillarMessages();
   await seedProducts();
   await seedDemoUserAndCatalog();
+  await seedChallengeTracks();
 }
 
 main()

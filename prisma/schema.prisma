@@ -187,6 +187,7 @@ model ChallengeDay {
   track         ChallengeTrack     @relation(fields: [trackId], references: [id])
   dayNumber     Int
   isOnboarding  Boolean            @default(false)
+  title         String
   cooldownHours Int?
   messages      ChallengeMessage[]
 
