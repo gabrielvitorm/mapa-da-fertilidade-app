@@ -79,12 +79,11 @@ export async function handlePayment(event: PaymentEvent): Promise<void> {
         orderBy: { createdAt: 'desc' },
       });
       if (latestAssessment) {
-        metadata.track = latestAssessment.nivelGlobal;
-
         const track = await db.challengeTrack.findUnique({
           where: { level: latestAssessment.nivelGlobal },
         });
         if (track) {
+          metadata.track = latestAssessment.nivelGlobal;
           await db.challengeProgress.upsert({
             where: { userId_trackId: { userId: user.id, trackId: track.id } },
             update: {},

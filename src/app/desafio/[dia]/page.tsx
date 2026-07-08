@@ -16,6 +16,7 @@ interface DesafioDiaPageProps {
 export default async function DesafioDiaPage({ params }: DesafioDiaPageProps) {
   const { dia } = await params;
   const dayNumber = Number(dia);
+  if (!Number.isInteger(dayNumber)) notFound();
 
   const user = await requireSessionUser();
 
