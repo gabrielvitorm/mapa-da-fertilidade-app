@@ -23,7 +23,7 @@
           "tipo": "AUDIO",
           "delayMs": 37128,
           "mediaSourceDriveId": "1QPQ-6d3wl3UWZdt-K_ye3Bjl1eDFifDF",
-          "mediaKey": "desafio/moderada/dia0/1.mp3"
+          "mediaKey": "desafio/moderada/dia0/1.opus"
         },
         {
           "ordem": 3,
@@ -42,7 +42,7 @@
           "tipo": "AUDIO",
           "delayMs": 10458,
           "mediaSourceDriveId": "1LpdPmIvplM4IzVKdcwi8uIBG9e6r0bNA",
-          "mediaKey": "desafio/moderada/dia0/4.mp3"
+          "mediaKey": "desafio/moderada/dia0/4.opus"
         }
       ]
     },
@@ -95,7 +95,7 @@
           "tipo": "AUDIO",
           "delayMs": 104087,
           "mediaSourceDriveId": "1L9XAig-rWkrzUyGZd4zmcf5HhF3wQwau",
-          "mediaKey": "desafio/moderada/dia1/7.mp3"
+          "mediaKey": "desafio/moderada/dia1/7.opus"
         },
         {
           "ordem": 8,
@@ -141,7 +141,7 @@
           "tipo": "AUDIO",
           "delayMs": 100000,
           "mediaSourceDriveId": "1MlHhszy-lLbzyJ69TF9whGnv7IpZa_JK",
-          "mediaKey": "desafio/moderada/dia2/5.mp3"
+          "mediaKey": "desafio/moderada/dia2/5.opus"
         },
         {
           "ordem": 6,
@@ -187,7 +187,7 @@
           "tipo": "AUDIO",
           "delayMs": 85000,
           "mediaSourceDriveId": "1YMXqz7Gf8-Av_P-_towydP_8LLijra9m",
-          "mediaKey": "desafio/moderada/dia3/5.mp3"
+          "mediaKey": "desafio/moderada/dia3/5.opus"
         },
         {
           "ordem": 6,
@@ -233,7 +233,7 @@
           "tipo": "AUDIO",
           "delayMs": 43500,
           "mediaSourceDriveId": "1yPMaXSggDF3eN0yVwma8txIvJfPO-1vp",
-          "mediaKey": "desafio/moderada/dia4/5.mp3"
+          "mediaKey": "desafio/moderada/dia4/5.opus"
         },
         {
           "ordem": 6,
@@ -279,7 +279,7 @@
           "tipo": "AUDIO",
           "delayMs": 61300,
           "mediaSourceDriveId": "1Tb_JXAVTt0m15kpEaPM6kQMuX6xwYjCz",
-          "mediaKey": "desafio/moderada/dia5/5.mp3"
+          "mediaKey": "desafio/moderada/dia5/5.opus"
         }
       ]
     },
@@ -325,21 +325,21 @@
           "tipo": "AUDIO",
           "delayMs": 41234,
           "mediaSourceDriveId": "175GVkvzT2lXrvLHG069Zd415lVYVesTd",
-          "mediaKey": "desafio/moderada/dia6/6.mp3"
+          "mediaKey": "desafio/moderada/dia6/6.opus"
         },
         {
           "ordem": 7,
           "tipo": "AUDIO",
           "delayMs": 28200,
           "mediaSourceDriveId": "1BdeZByfaizgiheTT550ZsHsVT3Aac-oq",
-          "mediaKey": "desafio/moderada/dia6/7.mp3"
+          "mediaKey": "desafio/moderada/dia6/7.opus"
         },
         {
           "ordem": 8,
           "tipo": "AUDIO",
           "delayMs": 53000,
           "mediaSourceDriveId": "1xKe7Ivs44Qz7qysN5urWAso6mI_LvKI-",
-          "mediaKey": "desafio/moderada/dia6/8.mp3"
+          "mediaKey": "desafio/moderada/dia6/8.opus"
         },
         {
           "ordem": 9,
@@ -391,14 +391,14 @@
           "tipo": "AUDIO",
           "delayMs": 58500,
           "mediaSourceDriveId": "1UpyThWh54k0i5mFnxay-TudwxYTT1RMk",
-          "mediaKey": "desafio/moderada/dia7/6.mp3"
+          "mediaKey": "desafio/moderada/dia7/6.opus"
         },
         {
           "ordem": 7,
           "tipo": "AUDIO",
           "delayMs": 25400,
           "mediaSourceDriveId": "1jSOVsmV4td8ykvICMNHZUGUcXVDoejZ3",
-          "mediaKey": "desafio/moderada/dia7/7.mp3"
+          "mediaKey": "desafio/moderada/dia7/7.opus"
         },
         {
           "ordem": 8,
@@ -411,7 +411,7 @@
           "tipo": "AUDIO",
           "delayMs": 47700,
           "mediaSourceDriveId": "1I-moVqK0WZ_keID3Btwnjx53QhxxhzU3",
-          "mediaKey": "desafio/moderada/dia7/9.mp3"
+          "mediaKey": "desafio/moderada/dia7/9.opus"
         }
       ]
     }

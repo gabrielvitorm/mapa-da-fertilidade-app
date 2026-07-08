@@ -44,18 +44,56 @@ async function keyExists(key: string): Promise<boolean> {
   }
 }
 
-async function downloadFromDrive(driveId: string): Promise<{ buffer: Buffer; contentType: string | null }> {
+// A extensão real de um arquivo só é conhecida depois de baixá-lo (ver
+// adjustKeyExtension). Pra idempotência funcionar sem precisar baixar de novo
+// só pra descobrir isso, checamos todas as variantes plausíveis de extensão
+// da mesma categoria (imagem ou áudio) antes de decidir baixar.
+function possibleKeyVariants(key: string): string[] {
+  const ext = path.extname(key).toLowerCase();
+  const base = key.slice(0, -ext.length || undefined);
+  const imageExts = ['.jpg', '.jpeg', '.png'];
+  const audioExts = ['.mp3', '.opus', '.ogg'];
+
+  if (imageExts.includes(ext)) return imageExts.map((e) => base + e);
+  if (audioExts.includes(ext)) return audioExts.map((e) => base + e);
+  return [key];
+}
+
+async function findExistingKey(key: string): Promise<string | null> {
+  for (const variant of possibleKeyVariants(key)) {
+    if (await keyExists(variant)) return variant;
+  }
+  return null;
+}
+
+interface DownloadResult {
+  buffer: Buffer;
+  contentType: string | null;
+  /** Extensão real do arquivo (com ponto, ex. ".opus"), extraída do nome de
+   *  arquivo original no header Content-Disposition — o Drive frequentemente
+   *  devolve um Content-Type genérico (application/octet-stream), então essa
+   *  é a fonte mais confiável do formato real. */
+  realExt: string | null;
+}
+
+async function downloadFromDrive(driveId: string): Promise<DownloadResult> {
   const baseUrl = `https://drive.google.com/uc?export=download&id=${driveId}`;
   let res = await fetch(baseUrl);
   let contentType = res.headers.get('content-type');
 
   if (contentType?.includes('text/html')) {
+    // Google mudou o fluxo de confirmação pra arquivos grandes: a página de aviso
+    // agora é um <form> que envia pra um domínio diferente (drive.usercontent.google.com)
+    // com um "confirm" fixo ("t") e um "uuid" dinâmico por requisição — não é mais um
+    // token embutido como "confirm=XXXX" na própria URL.
     const html = await res.text();
-    const match = html.match(/confirm=([0-9A-Za-z_-]+)/);
-    if (!match) {
-      throw new Error(`Não foi possível extrair o token de confirmação pro arquivo Drive ${driveId}`);
+    const confirmMatch = html.match(/name="confirm" value="([^"]+)"/);
+    const uuidMatch = html.match(/name="uuid" value="([^"]+)"/);
+    if (!confirmMatch || !uuidMatch) {
+      throw new Error(`Não foi possível extrair os parâmetros de confirmação pro arquivo Drive ${driveId}`);
     }
-    res = await fetch(`${baseUrl}&confirm=${match[1]}`);
+    const confirmUrl = `https://drive.usercontent.google.com/download?id=${driveId}&export=download&confirm=${confirmMatch[1]}&uuid=${uuidMatch[1]}`;
+    res = await fetch(confirmUrl);
     contentType = res.headers.get('content-type');
   }
 
@@ -63,8 +101,12 @@ async function downloadFromDrive(driveId: string): Promise<{ buffer: Buffer; con
     throw new Error(`Falha ao baixar arquivo Drive ${driveId}: HTTP ${res.status}`);
   }
 
+  const disposition = res.headers.get('content-disposition');
+  const filenameMatch = disposition?.match(/filename="([^"]+)"/);
+  const realExt = filenameMatch ? path.extname(filenameMatch[1]).toLowerCase() || null : null;
+
   const arrayBuffer = await res.arrayBuffer();
-  return { buffer: Buffer.from(arrayBuffer), contentType };
+  return { buffer: Buffer.from(arrayBuffer), contentType, realExt };
 }
 
 function guessExtensionFromContentType(contentType: string | null): string | null {
@@ -72,6 +114,8 @@ function guessExtensionFromContentType(contentType: string | null): string | nul
   const map: Record<string, string> = {
     'audio/mpeg': '.mp3',
     'audio/mp3': '.mp3',
+    'audio/opus': '.opus',
+    'audio/ogg': '.opus',
     'image/jpeg': '.jpg',
     'image/png': '.png',
     'video/mp4': '.mp4',
@@ -79,35 +123,56 @@ function guessExtensionFromContentType(contentType: string | null): string | nul
   return map[contentType.split(';')[0].trim()] ?? null;
 }
 
-function adjustKeyExtension(key: string, contentType: string | null): string {
-  const guessedExt = guessExtensionFromContentType(contentType);
-  if (!guessedExt) return key;
-  const currentExt = path.extname(key);
-  if (currentExt.toLowerCase() === guessedExt) return key;
-  return key.slice(0, -currentExt.length || undefined) + guessedExt;
+function mimeTypeForExtension(ext: string): string | undefined {
+  const map: Record<string, string> = {
+    '.mp3': 'audio/mpeg',
+    '.opus': 'audio/ogg',
+    '.ogg': 'audio/ogg',
+    '.jpg': 'image/jpeg',
+    '.jpeg': 'image/jpeg',
+    '.png': 'image/png',
+    '.mp4': 'video/mp4',
+  };
+  return map[ext.toLowerCase()];
 }
 
-async function uploadToR2(key: string, buffer: Buffer, contentType: string | null): Promise<void> {
+function adjustKeyExtension(key: string, download: DownloadResult): { key: string; contentType: string | undefined } {
+  // Prioriza a extensão real (do nome de arquivo original no Drive) sobre o
+  // Content-Type — o Drive costuma devolver "application/octet-stream" genérico
+  // pra formatos que ele não reconhece de cara (foi o caso do .opus).
+  const detectedExt = download.realExt ?? guessExtensionFromContentType(download.contentType);
+  const currentExt = path.extname(key);
+
+  if (!detectedExt || currentExt.toLowerCase() === detectedExt) {
+    return { key, contentType: mimeTypeForExtension(currentExt) ?? download.contentType ?? undefined };
+  }
+
+  const finalKey = key.slice(0, -currentExt.length || undefined) + detectedExt;
+  return { key: finalKey, contentType: mimeTypeForExtension(detectedExt) ?? download.contentType ?? undefined };
+}
+
+async function uploadToR2(key: string, buffer: Buffer, contentType: string | undefined): Promise<void> {
   await s3.send(
     new PutObjectCommand({
       Bucket: BUCKET,
       Key: key,
       Body: buffer,
-      ContentType: contentType ?? undefined,
+      ContentType: contentType,
     })
   );
 }
 
 async function migrateManifest(fileName: string, skipKeys: Set<string> = new Set()): Promise<void> {
   const rows = loadManifest(fileName).filter((r) => !skipKeys.has(r.r2Key));
-  const downloadedByDriveId = new Map<string, { buffer: Buffer; contentType: string | null }>();
+  const downloadedByDriveId = new Map<string, DownloadResult>();
 
   let uploaded = 0;
   let skipped = 0;
 
   for (const row of rows) {
-    if (await keyExists(row.r2Key)) {
-      console.log(`SKIP (já existe no R2): ${row.r2Key}`);
+    const existingKey = await findExistingKey(row.r2Key);
+    if (existingKey) {
+      console.log(`SKIP (já existe no R2): ${existingKey}`);
       skipped += 1;
       continue;
     }
@@ -119,13 +184,13 @@ async function migrateManifest(fileName: string, skipKeys: Set<string> = new Set
       downloadedByDriveId.set(row.driveId, downloaded);
     }
 
-    const finalKey = adjustKeyExtension(row.r2Key, downloaded.contentType);
+    const { key: finalKey, contentType } = adjustKeyExtension(row.r2Key, downloaded);
     if (finalKey !== row.r2Key) {
       console.log(`  Extensão ajustada: ${row.r2Key} -> ${finalKey}`);
     }
 
-    await uploadToR2(finalKey, downloaded.buffer, downloaded.contentType);
-    console.log(`  OK - subiu ${finalKey} (${downloaded.buffer.length} bytes)`);
+    await uploadToR2(finalKey, downloaded.buffer, contentType);
+    console.log(`  OK - subiu ${finalKey} (${downloaded.buffer.length} bytes, ${contentType ?? 'sem content-type'})`);
     uploaded += 1;
   }
 
