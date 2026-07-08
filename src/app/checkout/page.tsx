@@ -1,5 +1,6 @@
 import { db } from '@/lib/db';
 import { CheckoutReportView } from '@/components/screens/CheckoutReportView';
+import { SimulatePaymentButton } from '@/components/screens/SimulatePaymentButton';
 import type { NivelGlobal } from '@/types/assessment';
 
 interface CheckoutPageProps {
@@ -19,10 +20,21 @@ export default async function CheckoutPage({ searchParams }: CheckoutPageProps) 
   }
 
   return (
-    <CheckoutReportView
-      checkoutUrl={product.checkoutUrl}
-      primeiroNome={assessment?.leadNome ?? undefined}
-      nivelGlobal={(assessment?.nivelGlobal as NivelGlobal | undefined) ?? undefined}
-    />
+    <div>
+      <CheckoutReportView
+        checkoutUrl={product.checkoutUrl}
+        primeiroNome={assessment?.leadNome ?? undefined}
+        nivelGlobal={(assessment?.nivelGlobal as NivelGlobal | undefined) ?? undefined}
+      />
+      {process.env.DEMO_MODE === 'true' && assessment?.leadEmail && (
+        <div className="px-6 pb-10">
+          <SimulatePaymentButton
+            email={assessment.leadEmail}
+            nome={assessment.leadNome ?? undefined}
+            productSlug="acesso-relatorio"
+          />
+        </div>
+      )}
+    </div>
   );
 }
