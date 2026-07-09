@@ -3,6 +3,7 @@ import { requireSessionUser } from '@/lib/auth';
 import { hasActiveEntitlement } from '@/lib/entitlements';
 import { db } from '@/lib/db';
 import { ChallengeOfferView } from '@/components/screens/ChallengeOfferView';
+import { SimulatePaymentButton } from '@/components/screens/SimulatePaymentButton';
 import type { NivelGlobal } from '@/types/assessment';
 
 export const dynamic = 'force-dynamic';
@@ -25,10 +26,21 @@ export default async function DesafioOfertaPage() {
   }
 
   return (
-    <ChallengeOfferView
-      checkoutUrl={product.checkoutUrl}
-      nivelGlobal={(assessment?.nivelGlobal as NivelGlobal | undefined) ?? undefined}
-      primeiroNome={user.nome?.split(' ')[0] ?? undefined}
-    />
+    <div>
+      <ChallengeOfferView
+        checkoutUrl={product.checkoutUrl}
+        nivelGlobal={(assessment?.nivelGlobal as NivelGlobal | undefined) ?? undefined}
+        primeiroNome={user.nome?.split(' ')[0] ?? undefined}
+      />
+      {process.env.DEMO_MODE === 'true' && (
+        <div className="px-6 pb-10">
+          <SimulatePaymentButton
+            email={user.email}
+            nome={user.nome ?? undefined}
+            productSlug="desafio-7-dias"
+          />
+        </div>
+      )}
+    </div>
   );
 }

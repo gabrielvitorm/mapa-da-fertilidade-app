@@ -13,6 +13,13 @@ FROM base AS builder
 RUN apk add --no-cache libc6-compat
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
+
+# NEXT_PUBLIC_* só existe no bundle do browser se estiver presente no
+# ambiente durante `next build` — precisa ser um build-arg, diferente
+# das outras env vars (DATABASE_URL etc.), que são lidas em runtime.
+ARG NEXT_PUBLIC_R2_PUBLIC_BASE_URL
+ENV NEXT_PUBLIC_R2_PUBLIC_BASE_URL=$NEXT_PUBLIC_R2_PUBLIC_BASE_URL
+
 RUN npx prisma generate
 RUN npm run build
 
