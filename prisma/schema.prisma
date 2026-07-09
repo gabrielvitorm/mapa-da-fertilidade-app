@@ -225,19 +225,11 @@ model ChallengeProgress {
   @@unique([userId, trackId])
 }
 
-enum DevolutivaTipo {
-  TEXTO
-  AUDIO
-  FOTO
-}
-
 model Devolutiva {
-  id        String         @id @default(cuid())
+  id        String   @id @default(cuid())
   userId    String
-  user      User           @relation(fields: [userId], references: [id])
+  user      User     @relation(fields: [userId], references: [id])
   dayNumber Int
-  tipo      DevolutivaTipo
-  conteudo  String?
-  mediaUrl  String?
-  createdAt DateTime       @default(now())
+  texto     String
+  createdAt DateTime @default(now())
 }

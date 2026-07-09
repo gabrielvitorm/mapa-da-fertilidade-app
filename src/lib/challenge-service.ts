@@ -1,5 +1,4 @@
 import { db } from '@/lib/db';
-import type { DevolutivaTipo } from '@prisma/client';
 
 export async function completeDay(userId: string, trackId: string, dayNumber: number): Promise<void> {
   const progress = await db.challengeProgress.findUniqueOrThrow({
@@ -40,9 +39,7 @@ export async function updateLastSeenOrdem(
 export interface SubmitDevolutivaInput {
   userId: string;
   dayNumber: number;
-  tipo: DevolutivaTipo;
-  conteudo?: string;
-  mediaUrl?: string;
+  texto: string;
 }
 
 export async function submitDevolutiva(input: SubmitDevolutivaInput): Promise<void> {
@@ -50,9 +47,7 @@ export async function submitDevolutiva(input: SubmitDevolutivaInput): Promise<vo
     data: {
       userId: input.userId,
       dayNumber: input.dayNumber,
-      tipo: input.tipo,
-      conteudo: input.conteudo,
-      mediaUrl: input.mediaUrl,
+      texto: input.texto,
     },
   });
 }

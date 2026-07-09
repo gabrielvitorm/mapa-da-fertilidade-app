@@ -1,13 +1,10 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import type { ReactNode } from 'react';
-import {
-  ArrowLeft, CheckCircle, CheckSquare, Sparkles, Volume2,
-} from 'lucide-react';
+import { ArrowLeft, CheckCircle, Sparkles } from 'lucide-react';
 import { ChallengeMessageBubble } from '@/components/ui/ChallengeMessageBubble';
 import { useMessageSequence } from '@/lib/useMessageSequence';
-import type { ChallengeDay, DevolutivaInput, DevolutivaTipo } from '@/types/challenge';
+import type { ChallengeDay, DevolutivaInput } from '@/types/challenge';
 
 /**
  * Tela do dia do desafio, portada de `ChallengePlayerView` (AI Studio).
@@ -50,14 +47,14 @@ export function ChallengePlayerView({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [visibleCount]);
 
-  const [journalType, setJournalType] = useState<DevolutivaTipo | 'none'>('none');
-  const [journalText, setJournalText] = useState('');
+  const [devolutivaOpen, setDevolutivaOpen] = useState(false);
+  const [devolutivaText, setDevolutivaText] = useState('');
 
-  function saveTextDevolutiva() {
-    if (!journalText.trim()) return;
-    onSubmitDevolutiva({ dayNumber: day.dayNumber, tipo: 'TEXTO', conteudo: journalText });
-    setJournalType('none');
-    setJournalText('');
+  function saveDevolutiva() {
+    if (!devolutivaText.trim()) return;
+    onSubmitDevolutiva({ dayNumber: day.dayNumber, texto: devolutivaText });
+    setDevolutivaOpen(false);
+    setDevolutivaText('');
   }
 
   return (
@@ -101,50 +98,32 @@ export function ChallengePlayerView({
       </div>
 
       {isComplete && (
-        <footer className="fixed bottom-0 inset-x-0 bg-white border-t border-[var(--color-border-soft)]/80 px-6 pt-4 pb-8 flex flex-col gap-4 shadow-sm z-30 justify-end">
-          <p className="text-[10px] font-bold text-center text-[var(--color-brand-brown)]/50 uppercase tracking-widest leading-none">
+        <footer className="fixed bottom-0 inset-x-0 bg-white border-t border-[var(--color-border-soft)]/80 px-6 pt-4 pb-8 flex flex-col gap-3 shadow-sm z-30 justify-end">
+          <button
+            onClick={() => setDevolutivaOpen((o) => !o)}
+            className="text-[10px] font-bold text-center text-[var(--color-brand-brown)]/50 uppercase tracking-widest leading-none"
+          >
             Como foi o seu desafio hoje? (opcional)
-          </p>
+          </button>
 
-          <div className="flex justify-around items-center">
-            <DevolutivaButton
-              icon={<CheckSquare className="w-4.5 h-4.5" />}
-              label="Texto"
-              active={journalType === 'TEXTO'}
-              onClick={() => setJournalType(journalType === 'TEXTO' ? 'none' : 'TEXTO')}
-            />
-            <DevolutivaButton
-              icon={<Volume2 className="w-4.5 h-4.5" />}
-              label="Áudio"
-              active={journalType === 'AUDIO'}
-              onClick={() => setJournalType('AUDIO')}
-            />
-            <DevolutivaButton
-              icon={<Sparkles className="w-4.5 h-4.5" />}
-              label="Foto"
-              active={journalType === 'FOTO'}
-              onClick={() => setJournalType('FOTO')}
-            />
-          </div>
-
-          {journalType === 'TEXTO' && (
-            <div className="bg-[var(--color-surface-cream)] rounded-xl p-3 border border-[var(--color-border-soft)] space-y-2.5 animate-fade-in mt-1">
+          {devolutivaOpen && (
+            <div className="bg-[var(--color-surface-cream)] rounded-xl p-3 border border-[var(--color-border-soft)] space-y-2.5 animate-fade-in">
               <textarea
                 placeholder="Compartilhe como você se sentiu hoje... Algum desconforto?"
                 className="w-full text-xs p-2.5 rounded-lg border-none bg-white resize-none h-14 placeholder:text-[var(--color-brand-brown)]/45"
-                value={journalText}
-                onChange={(e) => setJournalText(e.target.value)}
+                value={devolutivaText}
+                onChange={(e) => setDevolutivaText(e.target.value)}
               />
               <div className="flex justify-end gap-2">
                 <button
-                  onClick={() => setJournalType('none')}
+                  onClick={() => setDevolutivaOpen(false)}
                   className="px-3 py-1 text-[10px] font-bold uppercase text-[var(--color-brand-brown)]/60"
                 >
                   Cancelar
                 </button>
                 <button
-                  onClick={saveTextDevolutiva}
-                  disabled={!journalText.trim()}
+                  onClick={saveDevolutiva}
+                  disabled={!devolutivaText.trim()}
                   className="px-4 py-1.5 bg-[var(--color-brand-sage)] hover:opacity-90 text-white rounded text-[10px] uppercase font-bold disabled:opacity-50"
                 >
                   Salvar
@@ -168,34 +147,5 @@ function TypingIndicator() {
         digitando…
       </div>
     </div>
-  );
-}
-
-function DevolutivaButton({
-  icon,
-  label,
-  active,
-  onClick,
-}: {
-  icon: ReactNode;
-  label: string;
-  active: boolean;
-  onClick: () => void;
-}) {
-  return (
-    <button onClick={onClick} className="flex flex-col items-center gap-1.5 group outline-none">
-      <div
-        className={`w-11 h-11 rounded-lg flex items-center justify-center transition-all border ${
-          active
-            ? 'bg-[var(--color-brand-terracota)] border-[var(--color-brand-terracota)] text-white'
-            : 'bg-[var(--color-surface-cream)] border-[var(--color-border-soft)] text-[var(--color-brand-terracota)] hover:bg-[var(--color-brand-terracota)]/10'
-        }`}
-      >
-        {icon}
-      </div>
-      <span className="text-[10px] font-bold text-[var(--color-brand-brown)]/70 tracking-wide">
-        {label}
-      </span>
-    </button>
   );
 }

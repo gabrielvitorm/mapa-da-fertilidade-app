@@ -40,11 +40,7 @@ export interface ChallengeProgress {
   dayCompletions: Record<number, DayCompletion>;
 }
 
-export type DevolutivaTipo = 'TEXTO' | 'AUDIO' | 'FOTO';
-
 export interface DevolutivaInput {
   dayNumber: number;
-  tipo: DevolutivaTipo;
-  conteudo?: string; // texto livre
-  mediaUrl?: string; // áudio/foto enviados
+  texto: string;
 }
