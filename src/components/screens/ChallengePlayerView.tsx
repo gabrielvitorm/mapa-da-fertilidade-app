@@ -50,14 +50,13 @@ export function ChallengePlayerView({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [maxVisitedIndex]);
 
-  const [devolutivaOpen, setDevolutivaOpen] = useState(false);
   const [devolutivaText, setDevolutivaText] = useState('');
 
-  function saveDevolutiva() {
-    if (!devolutivaText.trim()) return;
-    onSubmitDevolutiva({ dayNumber: day.dayNumber, texto: devolutivaText });
-    setDevolutivaOpen(false);
-    setDevolutivaText('');
+  function handleComplete() {
+    if (devolutivaText.trim()) {
+      onSubmitDevolutiva({ dayNumber: day.dayNumber, texto: devolutivaText });
+    }
+    onCompleteDay();
   }
 
   const currentMessage = day.messages[currentIndex];
@@ -95,10 +94,8 @@ export function ChallengePlayerView({
         </div>
       </header>
 
-      <div className="flex-grow p-5 pb-32 flex items-center">
-        <div className="w-full">
-          <ChallengeMessageBubble key={currentMessage.ordem} message={currentMessage} />
-        </div>
+      <div className="flex-grow p-5 pb-32">
+        <ChallengeMessageBubble key={currentMessage.ordem} message={currentMessage} />
       </div>
 
       {!isLastStep && (
@@ -126,46 +123,25 @@ export function ChallengePlayerView({
 
       {isLastStep && (
         <footer className="fixed bottom-0 inset-x-0 bg-white border-t border-[var(--color-border-soft)]/80 px-6 pt-4 pb-8 flex flex-col gap-3 shadow-sm z-30 justify-end">
+          <div className="space-y-2">
+            <p className="text-[10px] font-bold text-center text-[var(--color-brand-brown)]/50 uppercase tracking-widest leading-none">
+              Como foi o seu desafio hoje? (opcional)
+            </p>
+            <textarea
+              placeholder="Compartilhe como você se sentiu hoje... Algum desconforto?"
+              className="w-full text-xs p-2.5 rounded-lg border border-[var(--color-border-soft)] bg-[var(--color-surface-cream)] resize-none h-14 placeholder:text-[var(--color-brand-brown)]/45"
+              value={devolutivaText}
+              onChange={(e) => setDevolutivaText(e.target.value)}
+            />
+          </div>
+
           <button
-            onClick={onCompleteDay}
+            onClick={handleComplete}
             className="w-full py-4 bg-[var(--color-brand-terracota)] text-white hover:opacity-90 font-bold rounded-lg text-xs uppercase tracking-wider shadow-xs transition-all flex items-center justify-center gap-1.5"
           >
             <CheckCircle className="w-4 h-4 fill-white text-[var(--color-brand-terracota)]" />
-            <span>Concluí o dia de hoje</span>
+            <span>{devolutivaText.trim() ? 'Concluir' : 'Concluir sem enviar devolutiva'}</span>
           </button>
-
-          <button
-            onClick={() => setDevolutivaOpen((o) => !o)}
-            className="text-[10px] font-bold text-center text-[var(--color-brand-brown)]/50 uppercase tracking-widest leading-none"
-          >
-            Como foi o seu desafio hoje? (opcional)
-          </button>
-
-          {devolutivaOpen && (
-            <div className="bg-[var(--color-surface-cream)] rounded-xl p-3 border border-[var(--color-border-soft)] space-y-2.5 animate-fade-in">
-              <textarea
-                placeholder="Compartilhe como você se sentiu hoje... Algum desconforto?"
-                className="w-full text-xs p-2.5 rounded-lg border-none bg-white resize-none h-14 placeholder:text-[var(--color-brand-brown)]/45"
-                value={devolutivaText}
-                onChange={(e) => setDevolutivaText(e.target.value)}
-              />
-              <div className="flex justify-end gap-2">
-                <button
-                  onClick={() => setDevolutivaOpen(false)}
-                  className="px-3 py-1 text-[10px] font-bold uppercase text-[var(--color-brand-brown)]/60"
-                >
-                  Cancelar
-                </button>
-                <button
-                  onClick={saveDevolutiva}
-                  disabled={!devolutivaText.trim()}
-                  className="px-4 py-1.5 bg-[var(--color-brand-sage)] hover:opacity-90 text-white rounded text-[10px] uppercase font-bold disabled:opacity-50"
-                >
-                  Salvar
-                </button>
-              </div>
-            </div>
-          )}
         </footer>
       )}
     </div>

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { Pause, Play } from 'lucide-react';
 import type { ChallengeMessage } from '@/types/challenge';
 
@@ -11,6 +11,13 @@ function mediaUrl(mediaKey?: string) {
   return `${base}/${mediaKey}`;
 }
 
+/** Textos curtos (títulos/afirmações) viram uma "declaração" grande e
+ * centralizada em vez de um cartão de leitura — evita a mensagem ficar
+ * perdida numa tela vazia (limiar calibrado contra o conteúdo real dos
+ * seeds: cobre exatamente os títulos "DESAFIO DAY N: ..." e afirmações
+ * curtas, sem pegar as explicações "Por quê? ..." que já têm 78+ chars). */
+const STATEMENT_MAX_LENGTH = 50;
+
 /**
  * Conteúdo de um passo do desafio — renderiza pelo `tipo` da mensagem.
  * Sem avatar/bolha de chat: é o corpo de um cartão de aula, mostrado um
@@ -19,10 +26,20 @@ function mediaUrl(mediaKey?: string) {
  */
 export function ChallengeMessageBubble({ message }: { message: ChallengeMessage }) {
   if (message.tipo === 'TEXTO') {
+    const texto = message.texto ?? '';
+    if (texto.length <= STATEMENT_MAX_LENGTH) {
+      return (
+        <div className="min-h-[50vh] flex items-center justify-center animate-fade-in">
+          <p className="font-serif italic text-2xl font-bold text-[var(--color-brand-brown)] text-center leading-snug max-w-[280px]">
+            {texto}
+          </p>
+        </div>
+      );
+    }
     return (
-      <div className="animate-fade-in">
+      <div className="bg-white rounded-xl border border-[var(--color-border-soft)] p-5 shadow-xs animate-fade-in">
         <p className="text-sm text-[var(--color-brand-brown)] leading-relaxed whitespace-pre-line">
-          {message.texto}
+          {texto}
         </p>
       </div>
     );
@@ -35,7 +52,7 @@ export function ChallengeMessageBubble({ message }: { message: ChallengeMessage 
         <img
           src={mediaUrl(message.mediaKey)}
           alt={message.texto ?? 'Imagem do desafio'}
-          className="w-full aspect-video object-cover rounded-xl border border-[var(--color-border-soft)]"
+          className="w-full h-auto max-h-[60vh] object-contain rounded-xl border border-[var(--color-border-soft)] bg-white"
         />
         {message.texto && (
           <p className="text-xs leading-relaxed text-[var(--color-brand-brown)]/80 font-medium">
@@ -70,6 +87,17 @@ export function ChallengeMessageBubble({ message }: { message: ChallengeMessage 
 function AudioContent({ message }: { message: ChallengeMessage }) {
   const [playing, setPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
+  const audioRef = useRef<HTMLAudioElement>(null);
+
+  function togglePlay() {
+    const el = audioRef.current;
+    if (!el) return;
+    if (playing) {
+      el.pause();
+    } else {
+      void el.play();
+    }
+  }
 
   return (
     <div className="animate-fade-in space-y-3">
@@ -78,7 +106,7 @@ function AudioContent({ message }: { message: ChallengeMessage }) {
       </p>
       <div className="bg-white rounded-xl p-4 flex items-center gap-3 border border-[var(--color-border-soft)]">
         <button
-          onClick={() => setPlaying((p) => !p)}
+          onClick={togglePlay}
           className="w-11 h-11 rounded-lg bg-[var(--color-brand-terracota)] text-white flex items-center justify-center active:scale-95 transition-all outline-none shrink-0"
           aria-label={playing ? 'Pausar áudio' : 'Tocar áudio'}
         >
@@ -96,7 +124,11 @@ function AudioContent({ message }: { message: ChallengeMessage }) {
         </div>
       </div>
       <audio
+        ref={audioRef}
         src={mediaUrl(message.mediaKey)}
+        onPlay={() => setPlaying(true)}
+        onPause={() => setPlaying(false)}
+        onEnded={() => setProgress(0)}
         onTimeUpdate={(e) => {
           const el = e.currentTarget;
           if (el.duration) setProgress((el.currentTime / el.duration) * 100);
