@@ -20,6 +20,9 @@
 # production
 /build
 
+# local deploy experiments
+docker-compose.easypanel.yml
+
 # misc
 .DS_Store
 *.pem
