@@ -39,6 +39,14 @@ COPY --from=prod-deps /app/prisma ./prisma
 COPY --from=prod-deps /app/node_modules ./node_modules
 COPY --from=builder /app/package.json ./package.json
 
+# src/ e seeds/ não são usados pelo server Next.js (já compilado em
+# .next/standalone), mas o script de seed (prisma/seed.ts, rodado
+# manualmente via tsx em produção) importa @/lib/* e lê seeds/*.json —
+# precisam do TypeScript bruto + tsconfig.json pra resolução de paths.
+COPY --from=builder /app/src ./src
+COPY --from=builder /app/seeds ./seeds
+COPY --from=builder /app/tsconfig.json ./tsconfig.json
+
 USER nextjs
 
 EXPOSE 3000
