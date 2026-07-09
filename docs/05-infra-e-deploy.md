@@ -21,6 +21,10 @@ Kiwify / Hotmart ── checkout + webhooks → /api/webhooks/*
 - Build de producao via `Dockerfile` multi-stage com `output: "standalone"` do
   Next.js.
 - Runtime esperado: Node 20 Alpine, `PORT=3000`, `HOSTNAME=0.0.0.0`.
+- No EasyPanel, o servico app nao deve usar `ports:` no compose. Use `expose:
+  ["3000"]` e configure o dominio/proxy do EasyPanel para apontar para a porta
+  interna `3000` do servico app. Se o painel apontar para `app:80`, o dominio
+  sobe mas nao encontra o servidor Next.
 - Startup do container:
   1. `prisma migrate deploy`
   2. `node server.js`
