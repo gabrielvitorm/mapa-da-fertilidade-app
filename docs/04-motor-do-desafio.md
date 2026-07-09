@@ -2,11 +2,15 @@
 
 ## O que o desafio é
 
-Um **roteiro de mensagens sequenciadas tipo WhatsApp**, segmentado por nível de
-fertilidade. A planilha original tem o formato
+Um **roteiro de conteúdo em formato de aula**, segmentado por nível de
+fertilidade, navegado em passos (um `ChallengeMessage` por vez, com botões
+Voltar/Próximo). A planilha original tem o formato
 `Dia | Ordem | TipoAcao | Conteudo_Texto | Conteudo_Link_Midia | Delay_ms` —
-cada linha é uma mensagem que aparece na ordem, com um delay que recria o ritmo
-de "digitando..." do WhatsApp.
+cada linha vira um passo, na ordem. O `Delay_ms` era usado pra simular o
+ritmo "digitando..." do WhatsApp da versão anterior (chat automático); a UI
+atual não lê mais esse campo — ele continua no schema e nos seeds só por
+não valer o retrabalho de remover de conteúdo já validado pela expert (ver
+`docs/superpowers/specs/2026-07-09-desafio-formato-aula-design.md`).
 
 As três trilhas estão parseadas e prontas para seed em `seeds/`:
 `desafio-track-baixa.json` (Semente), `desafio-track-moderada.json` (Raízes) e
@@ -39,19 +43,23 @@ ChallengeMessage
 `mediaKey` é o caminho no R2 (ex.: `desafio/baixa/dia1/6.jpg`), não o link do
 Drive. Ver "Mídia" abaixo.
 
-## Reprodução estilo WhatsApp
+## Reprodução em formato de aula (stepper)
 
-No app, o dia "toca" as mensagens em sequência: mostra a mensagem da `ordem` N,
-espera `delayMs`, mostra a N+1. Texto aparece como balão; áudio como player;
-imagem inline. Recomendações:
+No app, o dia mostra um passo (`ChallengeMessage`) por vez — texto como
+parágrafo, áudio/imagem/vídeo em destaque — navegado por botões
+Voltar/Próximo controlados pela usuária (sem delay automático). Pode voltar
+e avançar livremente entre passos já vistos; só revela um passo novo por
+vez. Detalhes de implementação:
+`docs/superpowers/specs/2026-07-09-desafio-formato-aula-design.md`.
 
-- Persistir até onde a usuária já "assistiu" no dia (índice da última `ordem`
-  vista) pra ela poder sair e voltar sem reiniciar.
-- O delay é cosmético: na volta, já mostre o que ela passou sem esperar de novo.
-- A mensagem "ASSISTA A AULA N" de cada dia é `tipo = VIDEO`, com o título como
-  legenda e `mediaKey` apontando para `videos/aulaN.mp4`. O Dia 0 abre com o
-  vídeo de boas-vindas (`videos/boas-vindas.mp4`). As 7 aulas + boas-vindas são
-  **compartilhadas entre as 3 trilhas** (mesmos vídeos) — ver `seeds/aulas-manifesto.csv`.
+- Persiste até onde a usuária já avançou no dia (`lastSeenOrdem`, o índice
+  do passo mais avançado alcançado) pra ela poder sair e voltar sem
+  reiniciar do zero.
+- A mensagem "ASSISTA A AULA N" de cada dia é `tipo = VIDEO`, com o título
+  como legenda e `mediaKey` apontando para `videos/aulaN.mp4`. O Dia 0 abre
+  com o vídeo de boas-vindas (`videos/boas-vindas.mp4`). As 7 aulas + boas-
+  vindas são **compartilhadas entre as 3 trilhas** (mesmos vídeos) — ver
+  `seeds/aulas-manifesto.csv`.
 
 ## Gating híbrido (a trava de avanço)
 
@@ -78,15 +86,15 @@ function isDayUnlocked(day: number, progress, track): boolean {
 ## Devolutiva (obrigatório ter, opcional usar)
 
 A funcionalidade **existe sempre**; preencher é **opcional** e **não trava** o
-avanço.
+avanço. Só texto — não há opção de áudio/foto.
 
 ```
 Devolutiva
-  id, userId, dayNumber, tipo (TEXTO|AUDIO|FOTO), conteudo?|mediaUrl?, createdAt
+  id, userId, dayNumber, texto, createdAt
 ```
 
 - Em cada dia há um espaço "Como foi seu desafio hoje?" onde a usuária pode
-  (sem obrigação) mandar texto/áudio/foto.
+  (sem obrigação) escrever um texto livre.
 - Concluir o dia e enviar devolutiva são **ações independentes**: dá pra
   concluir sem devolutiva, e a devolutiva não é um checkbox de avanço.
 - A expert visualiza as devolutivas depois (tela de acompanhamento — fora do MVP

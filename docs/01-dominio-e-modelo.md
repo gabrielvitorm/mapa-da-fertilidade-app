@@ -62,10 +62,10 @@ O avanço da usuária na trilha.
 - `dayCompletions` (JSON) — `{ "1": { completedAt }, "2": { ... } }`
 
 ### Devolutiva
-A resposta opcional da usuária a um dia. **Existe sempre; é opcional preencher.**
+A resposta opcional da usuária a um dia, sempre em texto livre. **Existe
+sempre; é opcional preencher.**
 - `id`, `userId`, `dayNumber`
-- `tipo` — `TEXTO` | `AUDIO` | `FOTO`
-- `conteudo` (texto) ou `mediaUrl`
+- `texto`
 - `createdAt`
 - Não trava o avanço. A expert pode visualizar depois.
 
