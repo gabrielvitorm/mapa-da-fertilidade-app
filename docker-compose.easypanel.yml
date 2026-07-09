@@ -12,11 +12,4 @@ services:
       - NEXT_PUBLIC_R2_PUBLIC_BASE_URL=${NEXT_PUBLIC_R2_PUBLIC_BASE_URL}
       - DEMO_MODE=${DEMO_MODE}
       - KIWIFY_WEBHOOK_SECRET=${KIWIFY_WEBHOOK_SECRET}
-    networks:
-      - default
-      - mapa-da-fertilidade
     restart: unless-stopped
-
-networks:
-  mapa-da-fertilidade:
-    external: true
