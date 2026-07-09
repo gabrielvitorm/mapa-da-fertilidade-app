@@ -21,6 +21,7 @@
 /build
 
 # local deploy experiments
+docker-compose.yml
 docker-compose.easypanel.yml
 
 # misc
