@@ -5,4 +5,11 @@ services:
       dockerfile: Dockerfile
     expose:
       - "3000"
+    environment:
+      - DATABASE_URL=${DATABASE_URL}
+      - SESSION_SECRET=${SESSION_SECRET}
+      - INGEST_TOKEN=${INGEST_TOKEN}
+      - NEXT_PUBLIC_R2_PUBLIC_BASE_URL=${NEXT_PUBLIC_R2_PUBLIC_BASE_URL}
+      - DEMO_MODE=${DEMO_MODE}
+      - KIWIFY_WEBHOOK_SECRET=${KIWIFY_WEBHOOK_SECRET}
     restart: unless-stopped
