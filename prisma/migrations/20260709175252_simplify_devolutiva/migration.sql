@@ -11,7 +11,9 @@
 ALTER TABLE "Devolutiva" DROP COLUMN "conteudo",
 DROP COLUMN "mediaUrl",
 DROP COLUMN "tipo",
-ADD COLUMN     "texto" TEXT NOT NULL;
+ADD COLUMN     "texto" TEXT NOT NULL DEFAULT '';
+
+ALTER TABLE "Devolutiva" ALTER COLUMN "texto" DROP DEFAULT;
 
 -- DropEnum
 DROP TYPE "DevolutivaTipo";
