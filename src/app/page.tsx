@@ -7,8 +7,7 @@ export default function Home() {
         Mapa da Fertilidade
       </h1>
       <p className="text-sm text-[var(--color-brand-brown)]/70 max-w-sm">
-        Esqueleto do app. Use as rotas de preview abaixo para ver as telas
-        portadas do protótipo do AI Studio.
+        Comece o funil real ou entre com a conta demo.
       </p>
       <div className="flex flex-col gap-2 mt-2">
         <Link
@@ -22,72 +21,6 @@ export default function Home() {
           className="px-4 py-2 rounded-lg bg-[var(--color-brand-sage)] text-white text-sm font-bold"
         >
           Funil real: Login
-        </Link>
-        <Link
-          href="/preview/welcome"
-          className="px-4 py-2 rounded-lg bg-[var(--color-brand-terracota)] text-white text-sm font-bold"
-        >
-          Preview: Boas-vindas
-        </Link>
-        <Link
-          href="/preview/quiz-pergunta"
-          className="px-4 py-2 rounded-lg bg-[var(--color-brand-terracota)] text-white text-sm font-bold"
-        >
-          Preview: Pergunta do Quiz
-        </Link>
-        <Link
-          href="/preview/captura"
-          className="px-4 py-2 rounded-lg bg-[var(--color-brand-terracota)] text-white text-sm font-bold"
-        >
-          Preview: Captura de Contato
-        </Link>
-        <Link
-          href="/preview/resultado-teaser"
-          className="px-4 py-2 rounded-lg bg-[var(--color-brand-terracota)] text-white text-sm font-bold"
-        >
-          Preview: Resultado Teaser
-        </Link>
-        <Link
-          href="/preview/dashboard"
-          className="px-4 py-2 rounded-lg bg-[var(--color-brand-sage)] text-white text-sm font-bold"
-        >
-          Preview: Dashboard
-        </Link>
-        <Link
-          href="/preview/checkout-relatorio"
-          className="px-4 py-2 rounded-lg bg-[var(--color-brand-terracota)] text-white text-sm font-bold"
-        >
-          Preview: Checkout Relatório
-        </Link>
-        <Link
-          href="/preview/challenge-offer"
-          className="px-4 py-2 rounded-lg bg-[var(--color-brand-sage)] text-white text-sm font-bold"
-        >
-          Preview: Oferta do Desafio
-        </Link>
-        <Link
-          href="/preview/challenge-timeline"
-          className="px-4 py-2 rounded-lg bg-[var(--color-brand-sage)] text-white text-sm font-bold"
-        >
-          Preview: Timeline do Desafio
-        </Link>
-        <Link
-          href="/preview/challenge-complete"
-          className="px-4 py-2 rounded-lg bg-[var(--color-brand-sage)] text-white text-sm font-bold"
-        >
-          Preview: Dia Concluído
-        </Link>
-        <Link
-          href="/preview/relatorio"
-          className="px-4 py-2 rounded-lg bg-[var(--color-brand-terracota)] text-white text-sm font-bold"
-        >
-          Preview: Relatório
-        </Link>
-        <Link
-          href="/preview/desafio"
-          className="px-4 py-2 rounded-lg bg-[var(--color-brand-sage)] text-white text-sm font-bold"
-        >
-          Preview: Dia do Desafio
         </Link>
       </div>
     </main>
