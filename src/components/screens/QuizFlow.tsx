@@ -17,8 +17,6 @@ interface QuizFlowProps {
   questions: QuizFlowQuestion[];
 }
 
-const TOTAL_STEPS = 42; // 1 (captura, já feita) + 41 perguntas
-
 export function QuizFlow({ questions }: QuizFlowProps) {
   const router = useRouter();
   const [index, setIndex] = useState(0);
@@ -26,6 +24,7 @@ export function QuizFlow({ questions }: QuizFlowProps) {
   const [submitting, setSubmitting] = useState(false);
 
   const current = questions[index];
+  const totalSteps = questions.length + 1;
 
   function handleAnswer(optionId: string) {
     const nextAnswers = { ...answers, [current.id]: optionId };
@@ -92,7 +91,7 @@ export function QuizFlow({ questions }: QuizFlowProps) {
       question={current.texto}
       options={current.options}
       currentStep={index + 2}
-      totalSteps={TOTAL_STEPS}
+      totalSteps={totalSteps}
       pillarLabel={PILLAR_LABEL[current.pillar]}
       onAnswer={handleAnswer}
       onBack={handleBack}
