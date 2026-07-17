@@ -51,3 +51,23 @@ export async function submitDevolutiva(input: SubmitDevolutivaInput): Promise<vo
     },
   });
 }
+
+export async function updateChecklistProgress(
+  userId: string,
+  trackId: string,
+  dayNumber: number,
+  ordem: number,
+  checkedIndices: number[]
+): Promise<void> {
+  const progress = await db.challengeProgress.findUniqueOrThrow({
+    where: { userId_trackId: { userId, trackId } },
+  });
+
+  const checklistProgress = (progress.checklistProgress as Record<string, number[]>) ?? {};
+  checklistProgress[`${dayNumber}:${ordem}`] = checkedIndices;
+
+  await db.challengeProgress.update({
+    where: { userId_trackId: { userId, trackId } },
+    data: { checklistProgress: checklistProgress as unknown as object },
+  });
+}

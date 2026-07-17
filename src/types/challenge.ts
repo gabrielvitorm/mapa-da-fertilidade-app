@@ -4,7 +4,7 @@
  * Substituem os mocks `TIMELINE_DAYS` do protótipo do AI Studio.
  */
 
-export type ChallengeMessageType = 'TEXTO' | 'AUDIO' | 'IMAGEM' | 'VIDEO';
+export type ChallengeMessageType = 'TEXTO' | 'AUDIO' | 'IMAGEM' | 'VIDEO' | 'CHECKLIST';
 
 export interface ChallengeMessage {
   ordem: number;
@@ -12,6 +12,8 @@ export interface ChallengeMessage {
   texto?: string;
   /** Caminho no R2 (ex.: "desafio/baixa/dia1/7.mp3"). Ausente para TEXTO puro. */
   mediaKey?: string;
+  /** Itens da checklist — só presente quando tipo = CHECKLIST. `texto` é usado como título. */
+  checklistItems?: string[];
   /** Delay em ms antes de revelar esta mensagem (ritmo estilo WhatsApp). */
   delayMs: number;
 }

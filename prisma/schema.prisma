@@ -199,28 +199,31 @@ enum MessageType {
   AUDIO
   IMAGEM
   VIDEO
+  CHECKLIST
 }
 
 model ChallengeMessage {
-  id       String       @id @default(cuid())
-  dayId    String
-  day      ChallengeDay @relation(fields: [dayId], references: [id])
-  ordem    Int
-  tipo     MessageType
-  texto    String?
-  mediaKey String?
-  delayMs  Int
+  id             String       @id @default(cuid())
+  dayId          String
+  day            ChallengeDay @relation(fields: [dayId], references: [id])
+  ordem          Int
+  tipo           MessageType
+  texto          String?
+  mediaKey       String?
+  checklistItems Json?
+  delayMs        Int
 }
 
 model ChallengeProgress {
-  id             String         @id @default(cuid())
-  userId         String
-  user           User           @relation(fields: [userId], references: [id])
-  trackId        String
-  track          ChallengeTrack @relation(fields: [trackId], references: [id])
-  currentDay     Int            @default(0)
-  dayCompletions Json           @default("{}")
-  lastSeenOrdem  Json           @default("{}")
+  id                String         @id @default(cuid())
+  userId            String
+  user              User           @relation(fields: [userId], references: [id])
+  trackId           String
+  track             ChallengeTrack @relation(fields: [trackId], references: [id])
+  currentDay        Int            @default(0)
+  dayCompletions    Json           @default("{}")
+  lastSeenOrdem     Json           @default("{}")
+  checklistProgress Json           @default("{}")
 
   @@unique([userId, trackId])
 }
