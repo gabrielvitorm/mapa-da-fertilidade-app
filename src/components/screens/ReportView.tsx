@@ -76,7 +76,7 @@ export function ReportView({ result, onBack, onUpsellClick }: ReportViewProps) {
           <div className="absolute -top-10 -right-10 w-24 h-24 bg-[var(--color-brand-sage)]/10 rounded-full blur-2xl" />
 
           <div className="mb-3">
-            <ScoreRing score={result.resultadoFinal} />
+            <ScoreRing score={result.resultadoFinal} showThresholds={false} />
           </div>
 
           <div className="z-10 mt-1">

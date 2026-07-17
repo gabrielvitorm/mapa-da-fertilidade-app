@@ -21,7 +21,7 @@ function sortByPriority(a: PillarResult, b: PillarResult) {
 function sortByStrength(a: PillarResult, b: PillarResult) {
   if (b.ratio !== a.ratio) return b.ratio - a.ratio;
   if (b.peso !== a.peso) return b.peso - a.peso;
-  return a.score - b.score;
+  return a.key.localeCompare(b.key);
 }
 
 export function rankPillars(pillars: PillarResult[]): RankedPillars {

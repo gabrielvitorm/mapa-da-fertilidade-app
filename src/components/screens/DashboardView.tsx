@@ -66,7 +66,7 @@ export function DashboardView({
             className="absolute -top-8 -right-8 w-28 h-28 rounded-full blur-2xl opacity-15"
             style={{ background: nivelCor }}
           />
-          <ScoreRing score={resultadoFinal} />
+          <ScoreRing score={resultadoFinal} showThresholds={false} />
           <div className="flex-1 z-10">
             <p className="text-[10px] font-bold uppercase tracking-widest text-[var(--color-brand-brown)]/40 mb-0.5">
               Nível de fertilidade
