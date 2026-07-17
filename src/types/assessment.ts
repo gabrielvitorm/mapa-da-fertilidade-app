@@ -30,6 +30,10 @@ export interface PillarResult {
   recomendacao: string;
   /** Conteúdo liberado só após pagamento (entitlement REPORT). */
   locked?: boolean;
+  score: number;
+  max: number;
+  ratio: number;
+  peso: 1 | 2 | 3;
 }
 
 export interface AssessmentResult {

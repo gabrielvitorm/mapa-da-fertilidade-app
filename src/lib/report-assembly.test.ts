@@ -51,9 +51,17 @@ const sono = result.pillars.find((p) => p.key === 'sono')!;
 assertEqual(sono.level, 'Alto', 'sono classifica Alto (0.9 >= 0.8)');
 assertEqual(sono.diagnostico, 'Sono ótimo', 'sono pega o diagnostico certo pro nível Alto');
 assertEqual(sono.label, 'Sono', 'sono usa o label correto');
+assertEqual(sono.score, 18, 'sono expõe score bruto');
+assertEqual(sono.max, 20, 'sono expõe max do pilar');
+assertEqual(sono.ratio, 0.9, 'sono expõe ratio normalizado');
+assertEqual(sono.peso, 2, 'sono expõe peso da regra');
 
 const estresse = result.pillars.find((p) => p.key === 'estresse')!;
 assertEqual(estresse.level, 'Baixo', 'estresse classifica Baixo (0.5 < 0.6)');
 assertEqual(estresse.diagnostico, 'Estresse baixo controlado', 'estresse pega o diagnostico certo pro nível Baixo');
+assertEqual(estresse.score, 15, 'estresse expõe score bruto');
+assertEqual(estresse.max, 30, 'estresse expõe max do pilar');
+assertEqual(estresse.ratio, 0.5, 'estresse expõe ratio normalizado');
+assertEqual(estresse.peso, 3, 'estresse expõe peso da regra');
 
 console.log('report-assembly.test.ts: all assertions passed');

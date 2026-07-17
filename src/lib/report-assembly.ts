@@ -33,7 +33,10 @@ export function buildAssessmentResult(
   }
 
   const pillars: PillarResult[] = rules.map((rule) => {
-    const level = pillarLevel(pillarScores[rule.pillar] ?? 0, rule.maxDoPilar);
+    const score = pillarScores[rule.pillar] ?? 0;
+    const max = rule.maxDoPilar;
+    const ratio = Math.max(0, Math.min(1, score / max));
+    const level = pillarLevel(score, max);
     const message = messageByKey.get(`${rule.pillar}:${level}`);
     if (!message) {
       throw new Error(`Faltando PillarMessage para ${rule.pillar}/${level} — rode npm run db:seed`);
@@ -44,6 +47,10 @@ export function buildAssessmentResult(
       level,
       diagnostico: message.diagnostico,
       recomendacao: message.recomendacao,
+      score,
+      max,
+      ratio,
+      peso: rule.peso as PillarResult['peso'],
     };
   });
 
