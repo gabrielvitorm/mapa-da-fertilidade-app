@@ -5,6 +5,7 @@ import {
   ArrowLeft, Flame, Moon, Brain, Calendar, Utensils, Activity,
   Droplet, Sparkles, type LucideIcon,
 } from 'lucide-react';
+import { PillarRadarChart } from '@/components/charts/PillarRadarChart';
 import { PillarLevelBadge } from '@/components/ui/PillarLevelBadge';
 import { ScoreRing } from '@/components/ui/ScoreRing';
 import {
@@ -87,6 +88,20 @@ export function ReportView({ result, onBack, onUpsellClick }: ReportViewProps) {
               {NIVEL_DESCRICAO[result.nivelGlobal]}
             </p>
           </div>
+        </section>
+
+        {/* Radar dos 13 pilares */}
+        <section className="bg-white rounded-xl border border-[var(--color-border-soft)] p-4 sm:p-5 space-y-3">
+          <div className="space-y-1 text-left">
+            <h3 className="font-serif text-base font-bold text-[var(--color-brand-brown)] leading-tight">
+              Radar dos 13 pilares
+            </h3>
+            <p className="text-[11px] leading-relaxed text-[var(--color-brand-brown)]/70">
+              Leitura normalizada em porcentagem para comparar rapidamente os pilares entre si.
+            </p>
+          </div>
+
+          <PillarRadarChart pillars={result.pillars} />
         </section>
 
         {/* Os 13 pilares */}

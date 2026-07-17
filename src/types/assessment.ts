@@ -65,3 +65,19 @@ export const PILLAR_LABEL: Record<PillarKey, string> = {
   toxinas: 'Toxinas',
   historico: 'Histórico',
 };
+
+export const PILLAR_SHORT_LABEL: Record<PillarKey, string> = {
+  fatores_infertilidade: 'Fatores',
+  saude_hormonal: 'Hormonal',
+  ciclo: 'Ciclo',
+  sono: 'Sono',
+  imunidade: 'Imunidade',
+  atividade_fisica: 'Atividade',
+  alimentacao: 'Alimentação',
+  saude_intestinal: 'Intestino',
+  figado: 'Fígado',
+  estresse: 'Estresse',
+  tireoide: 'Tireoide',
+  toxinas: 'Toxinas',
+  historico: 'Histórico',
+};
