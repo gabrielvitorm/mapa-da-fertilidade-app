@@ -72,17 +72,34 @@
         },
         {
           "ordem": 4,
-          "tipo": "IMAGEM",
+          "tipo": "CHECKLIST",
           "delayMs": 1200,
-          "mediaSourceDriveId": "1jP54FgSXKcmxXCIZs1Xcc2ZEW6z1xxAi",
-          "mediaKey": "desafio/alta/dia1/4.png"
+          "texto": "Acalmar o sistema nervoso por 7 dias, ao acordar:",
+          "checklistItems": [
+            "Atenção a Mastigação: Mastigue 30 vezes antes de engolir",
+            "Baixar as luzes cedo, evitar celular e computador.",
+            "Dormir antes das 11 horas",
+            "Praticar meditação e atos de fé e espiritualidade.",
+            "Evitar comer após o jantar",
+            "Crie o hábito de escalda pés com óleos essênciais: jeranio, laranja doce, lavanda e ou alecrim.",
+            "Uso: 2 gotas diluídas para massagem na lombar e parte inferior do abdome."
+          ]
         },
         {
           "ordem": 5,
-          "tipo": "IMAGEM",
+          "tipo": "CHECKLIST",
           "delayMs": 1200,
-          "mediaSourceDriveId": "11L7Y0rUr3qA3JhonkKYHFsEYmHKjjWUx",
-          "mediaKey": "desafio/alta/dia1/5.png"
+          "texto": "Acalmar o sistema nervoso por 7 dias, ao acordar: (continuação)",
+          "checklistItems": [
+            "Baixar as luzes cedo, evitar celular e computador.",
+            "Dormir antes das 11 horas",
+            "Praticar meditação e atos de fé e espiritualidade.",
+            "Evitar comer após o jantar",
+            "Crie o hábito de escalda pés com óleos essênciais: jeranio, laranja doce, lavanda e ou alecrim. Uso: 2 gotas diluídas para massagem na lombar e parte inferior do abdome.",
+            "Evite excesso de carne vermelha",
+            "Chá do dia: Camomila com folhas de amora (calmante e regulador hormonal)",
+            "Acrescente porção de gorduras boas (abacate, sementes, azeite)"
+          ]
         },
         {
           "ordem": 6,
@@ -125,10 +142,16 @@
         },
         {
           "ordem": 3,
-          "tipo": "IMAGEM",
+          "tipo": "CHECKLIST",
           "delayMs": 1500,
-          "mediaSourceDriveId": "12obbUmybSUau7PW4SaQedOqz_RhjD2fx",
-          "mediaKey": "desafio/alta/dia2/3.png"
+          "texto": "Desafio contínuo: prática diária de suporte ao ciclo menstrual — inicie seu diário do ciclo:",
+          "checklistItems": [
+            "Duração do sono",
+            "Energia ao acordar",
+            "Tipo de muco",
+            "Humor e libido",
+            "Sintomas físicos (dor, inchaço, cólica)"
+          ]
         },
         {
           "ordem": 4,
@@ -171,10 +194,14 @@
         },
         {
           "ordem": 3,
-          "tipo": "IMAGEM",
+          "tipo": "CHECKLIST",
           "delayMs": 1300,
-          "mediaSourceDriveId": "12BYsa-28JaX-fUzwF7HdM70QJr0frrts",
-          "mediaKey": "desafio/alta/dia3/3.png"
+          "texto": "Contínuo: organize sua alimentação com base em 3 pilares:",
+          "checklistItems": [
+            "2x/dia alimentos ricos em colina (ovos caipiras, fígado, couve)",
+            "Valorize a semente de gergelim e castanha do pará (valorizando cálcio e selênio)",
+            "Reduza ao mínimo: açúcar, industrializados, frituras"
+          ]
         },
         {
           "ordem": 4,
@@ -217,10 +244,15 @@
         },
         {
           "ordem": 3,
-          "tipo": "IMAGEM",
+          "tipo": "CHECKLIST",
           "delayMs": 1450,
-          "mediaSourceDriveId": "1nkL98MGh8WWeYkJqOHXUmmf0oVWpwWGJ",
-          "mediaKey": "desafio/alta/dia4/3.png"
+          "texto": "Contínuo: faça uma faxina de fertilidade e detox nos produtos de limpeza beleza",
+          "checklistItems": [
+            "Substitua desodorante ou cosmético com parabenos, alumínio e outros disruptores endócrinos",
+            "Troque as panelas de alumínio, se possível, por panela de inox ou cerâmica.",
+            "Evite uso de plástico para alimentos quentes ou úmidos",
+            "Inclua 1 momento diário de silêncio (sem celular/tela)"
+          ]
         },
         {
           "ordem": 4,
@@ -263,10 +295,16 @@
         },
         {
           "ordem": 3,
-          "tipo": "IMAGEM",
+          "tipo": "CHECKLIST",
           "delayMs": 1250,
-          "mediaSourceDriveId": "1-usJqXNJO39d-Q_-ZEAzP2jP4Ga-9Wra",
-          "mediaKey": "desafio/alta/dia5/3.png"
+          "texto": "Contínuo: prática diária de suporte ao fígado e intestino",
+          "checklistItems": [
+            "Caminhada após refeição",
+            "Chá noturno (camomila ou alecrim)",
+            "Fibra + vegetal + semente por dia",
+            "Massagem abdominal leve",
+            "Missões: reduzir telas à noite, sentar com presença para comer, atenção à mastigação, acrescentar limão antes do almoço ou na salada"
+          ]
         },
         {
           "ordem": 4,
@@ -309,10 +347,15 @@
         },
         {
           "ordem": 4,
-          "tipo": "IMAGEM",
+          "tipo": "CHECKLIST",
           "delayMs": 4523,
-          "mediaSourceDriveId": "1iBm-_0i7UXs0AhyAGcMzB5ZYiNNIwCgF",
-          "mediaKey": "desafio/alta/dia6/4.png"
+          "texto": "Ritual de presença e integração (10 minutos/dia)",
+          "checklistItems": [
+            "Escolha uma frase de afirmação pra repetir ao longo da prática (sugestões: \"Meu corpo está em harmonia com meu desejo de gerar.\", \"Eu acolho a vida com leveza e confiança.\", \"Sou receptiva ao novo que quer florescer em mim.\")",
+            "Sente-se confortavelmente e respire profundamente por 3 a 5 minutos.",
+            "Com um óleo vegetal ou creme natural, aplique uma massagem suave no abdômen inferior.",
+            "Feche a prática com uma respiração profunda e coloque as mãos em repouso sobre o ventre."
+          ]
         },
         {
           "ordem": 5,
@@ -328,10 +371,13 @@
         },
         {
           "ordem": 7,
-          "tipo": "IMAGEM",
+          "tipo": "CHECKLIST",
           "delayMs": 8798,
-          "mediaSourceDriveId": "1lriwhg13jLWDgqqtHhwd1RSJ8RfD_U85",
-          "mediaKey": "desafio/alta/dia6/7.png"
+          "texto": "Missões complementares do dia",
+          "checklistItems": [
+            "Escreva sua afirmação preferida em um papel e cole no espelho ou perto da cama.",
+            "Durante o dia, leve as mãos ao ventre por 1 minuto e respire conscientemente."
+          ]
         },
         {
           "ordem": 8,
@@ -388,10 +434,13 @@
         },
         {
           "ordem": 4,
-          "tipo": "IMAGEM",
+          "tipo": "CHECKLIST",
           "delayMs": 1300,
-          "mediaSourceDriveId": "1t2ta6hU4X3BFFdEu2u4QUAwR5ycdraTT",
-          "mediaKey": "desafio/alta/dia7/4.png"
+          "texto": "Jornada de descanso ativo na promessa",
+          "checklistItems": [
+            "Leia o Salmo 37:5: \"Entrega o teu caminho ao Senhor; confia nele, e o mais ele fará.\"",
+            "Escolha um lugar tranquilo da casa, sem distrações, e escreva em um papel as 3 principais coisas que você está tentando controlar sozinha (ex: sua ansiedade, o tempo do positivo, a resposta do seu corpo)."
+          ]
         },
         {
           "ordem": 5,
@@ -408,10 +457,14 @@
         },
         {
           "ordem": 7,
-          "tipo": "IMAGEM",
+          "tipo": "CHECKLIST",
           "delayMs": 1300,
-          "mediaSourceDriveId": "14DFYy1KiimyEqaHBXrl0NZmAszE2sOP9",
-          "mediaKey": "desafio/alta/dia7/7.png"
+          "texto": "Entrega em oração",
+          "checklistItems": [
+            "Ore em voz baixa ou escrevendo, dizendo: \"Senhor, eu entrego. Porque Tu és Deus, e eu sou tua filha. Eu não preciso carregar sozinha o que foi feito para ser colocado em Tuas mãos.\"",
+            "Guarde esse papel dentro da sua Bíblia ou diário.",
+            "E volte a ele toda vez que tentar retomar o controle."
+          ]
         },
         {
           "ordem": 8,

@@ -72,17 +72,33 @@
         },
         {
           "ordem": 4,
-          "tipo": "IMAGEM",
+          "tipo": "CHECKLIST",
           "delayMs": 1200,
-          "mediaSourceDriveId": "1jP54FgSXKcmxXCIZs1Xcc2ZEW6z1xxAi",
-          "mediaKey": "desafio/baixa/dia1/4.png"
+          "texto": "Acalmar o sistema nervoso por 7 dias, ao acordar:",
+          "checklistItems": [
+            "Atenção a Mastigação: Mastigue 30 vezes antes de engolir",
+            "Baixar as luzes cedo, evitar celular e computador.",
+            "Dormir antes das 11 horas",
+            "Praticar meditação e atos de fé e espiritualidade.",
+            "Evitar comer após o jantar",
+            "Crie o hábito de escalda pés com óleos essênciais: jeranio, laranja doce, lavanda e ou alecrim.",
+            "Uso: 2 gotas diluídas para massagem na lombar e parte inferior do abdome."
+          ]
         },
         {
           "ordem": 5,
-          "tipo": "IMAGEM",
+          "tipo": "CHECKLIST",
           "delayMs": 1200,
-          "mediaSourceDriveId": "1CynXh_pwXNV5B2-d_of4whgPRHYHiMnz",
-          "mediaKey": "desafio/baixa/dia1/5.png"
+          "texto": "Acalmar o sistema nervoso por 7 dias, ao acordar: (continuação)",
+          "checklistItems": [
+            "Ritual da manhã: Shot calmante (sugestão: limão, cúrcuma, mel e água morna ou própolis com limão).",
+            "Evite o mel se estiver com perfil glicêmico alterado.",
+            "Use o raspador de língua",
+            "Ingesta de água (300 a 500ml)",
+            "Tarefa: 10 minutos de respiração consciente e alongamento",
+            "Evite café por 90 minutos após acordar",
+            "Atividade Física, pelo menos 3 vezes por semana."
+          ]
         },
         {
           "ordem": 6,
@@ -125,10 +141,16 @@
         },
         {
           "ordem": 3,
-          "tipo": "IMAGEM",
+          "tipo": "CHECKLIST",
           "delayMs": 1200,
-          "mediaSourceDriveId": "1C3EzuT6esaZ7IGsFZc5j4VTsjIUYfg9i",
-          "mediaKey": "desafio/baixa/dia2/3.png"
+          "texto": "Desafio contínuo: prática diária de suporte ao ciclo menstrual — inicie seu diário do ciclo:",
+          "checklistItems": [
+            "Duração do sono",
+            "Energia ao acordar",
+            "Tipo de muco",
+            "Humor e libido",
+            "Sintomas físicos (dor, inchaço, cólica)"
+          ]
         },
         {
           "ordem": 4,
@@ -171,10 +193,14 @@
         },
         {
           "ordem": 3,
-          "tipo": "IMAGEM",
+          "tipo": "CHECKLIST",
           "delayMs": 1200,
-          "mediaSourceDriveId": "1JzhIr7YYxQQiKVmVGFA4ExTynQxHIZq1",
-          "mediaKey": "desafio/baixa/dia3/3.png"
+          "texto": "Monte um cardápio simples com base em:",
+          "checklistItems": [
+            "1 alimento anti-inflamatório por refeição (ex: abacate, gengibre, sardinha, couve)",
+            "Evite ultraprocessados e cafeína em excesso por 48h",
+            "Consuma chá de camomila, alecrim ou casca de abacaxi"
+          ]
         },
         {
           "ordem": 4,
@@ -217,10 +243,14 @@
         },
         {
           "ordem": 3,
-          "tipo": "IMAGEM",
+          "tipo": "CHECKLIST",
           "delayMs": 1200,
-          "mediaSourceDriveId": "1vdtzoTUMr_aG4j-yX2d3PEI2z3edJ-ob",
-          "mediaKey": "desafio/baixa/dia4/3.png"
+          "texto": "Limpeza ambiental e sensorial",
+          "checklistItems": [
+            "Tire 1 cosmético ou produto de limpeza comum da rotina",
+            "Use aromaterapia (lavanda, laranja doce ou hortelã)",
+            "Elimine ruídos visuais do ambiente (ex: celular, TV ao fundo)"
+          ]
         },
         {
           "ordem": 4,
@@ -263,10 +293,16 @@
         },
         {
           "ordem": 3,
-          "tipo": "IMAGEM",
+          "tipo": "CHECKLIST",
           "delayMs": 1200,
-          "mediaSourceDriveId": "1zhGK3uArzO6NEupxZ6SihWvfNa2S7Jhw",
-          "mediaKey": "desafio/baixa/dia5/3.png"
+          "texto": "Desafio: cuidar do fígado é liberar a ovulação",
+          "checklistItems": [
+            "Ritual: Meditação com foco no útero e visualização de um ninho fértil",
+            "Reforçar o Yin Chá e Acrescente goji berry",
+            "Alimento: Tofu, peixes, azeite, gergelim",
+            "Alimentos amargos no jantar (ex: agrião, rúcula, couve)",
+            "Alimento-chave: Frutas vermelhas + oleaginosas"
+          ]
         },
         {
           "ordem": 4,
@@ -309,10 +345,14 @@
         },
         {
           "ordem": 4,
-          "tipo": "IMAGEM",
+          "tipo": "CHECKLIST",
           "delayMs": 1200,
-          "mediaSourceDriveId": "1wu0isp2ozMRo-r0RPL_U8XBQQDp6C3vg",
-          "mediaKey": "desafio/baixa/dia6/4.png"
+          "texto": "Desafio: respiração + afirmação + presença",
+          "checklistItems": [
+            "Escolha uma afirmação (ex: \"Eu mereço gerar vida\", \"Estou em reconstrução e me honro por isso\")",
+            "Inspire por 5 segundos, expire por 8 (repita 5x)",
+            "Repita sua afirmação em voz baixa, de olhos fechados, com as mãos sobre o ventre"
+          ]
         },
         {
           "ordem": 5,
@@ -375,10 +415,14 @@
         },
         {
           "ordem": 4,
-          "tipo": "IMAGEM",
+          "tipo": "CHECKLIST",
           "delayMs": 1200,
-          "mediaSourceDriveId": "1-NoAhnr3qYjZNvxLZ3n-r8B2yJ5cP53u",
-          "mediaKey": "desafio/baixa/dia7/4.png"
+          "texto": "Desafio: carta de acolhimento e rendição",
+          "checklistItems": [
+            "Escreva para si mesma reconhecendo seu esforço, mesmo quando os resultados não aparecem.",
+            "Declare três coisas que você vai permitir: descansar, confiar, continuar",
+            "Termine com: \"Eu não desisto de mim. Eu me recebo em amor.\""
+          ]
         },
         {
           "ordem": 5,

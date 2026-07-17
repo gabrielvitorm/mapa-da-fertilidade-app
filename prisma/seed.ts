@@ -122,10 +122,11 @@ async function seedProducts() {
 
 interface DesafioSourceMessage {
   ordem: number;
-  tipo: 'TEXTO' | 'AUDIO' | 'IMAGEM' | 'VIDEO';
+  tipo: 'TEXTO' | 'AUDIO' | 'IMAGEM' | 'VIDEO' | 'CHECKLIST';
   delayMs: number;
   texto?: string;
   mediaKey?: string;
+  checklistItems?: string[];
 }
 interface DesafioSourceDay {
   dayNumber: number;
@@ -206,6 +207,7 @@ async function seedChallengeTracks() {
               tipo: m.tipo,
               texto: m.texto,
               mediaKey: m.mediaKey,
+              checklistItems: m.checklistItems,
               delayMs: m.delayMs,
             })),
           },

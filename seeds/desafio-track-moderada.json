@@ -72,17 +72,34 @@
         },
         {
           "ordem": 4,
-          "tipo": "IMAGEM",
+          "tipo": "CHECKLIST",
           "delayMs": 1200,
-          "mediaSourceDriveId": "1IkwfBg7PwkPXYWNT1TdjJZXh9QZbyml5",
-          "mediaKey": "desafio/moderada/dia1/4.png"
+          "texto": "Acalmar o sistema nervoso por 7 dias, ao acordar:",
+          "checklistItems": [
+            "Ritual da manhã: Shot calmante (sugestão: limão, cúrcuma, mel e água morna ou própolis com limão).",
+            "Evite o mel se estiver com perfil glicêmico alterado.",
+            "Use o raspador de língua",
+            "Ingesta de água (300 a 500ml)",
+            "Tarefa: 10 minutos de respiração consciente e alongamento",
+            "Evite café por 90 minutos após acordar",
+            "Atividade Física, pelo menos 3 vezes por semana.",
+            "Atenção a Mastigação: Mastigue 30 vezes antes de engolir"
+          ]
         },
         {
           "ordem": 5,
-          "tipo": "IMAGEM",
+          "tipo": "CHECKLIST",
           "delayMs": 1200,
-          "mediaSourceDriveId": "1b4Tc6jRTEWhlGFl0Om9-chVysBz4f4md",
-          "mediaKey": "desafio/moderada/dia1/5.png"
+          "texto": "Acalmar o sistema nervoso por 7 dias, ao acordar: (continuação)",
+          "checklistItems": [
+            "Baixar as luzes cedo, evitar celular e computador.",
+            "Dormir antes das 11 horas",
+            "Praticar meditação e atos de fé e espiritualidade.",
+            "Evitar comer após o jantar",
+            "Crie o hábito de escalda pés com óleos essênciais: jeranio, laranja doce, lavanda e ou alecrim. Uso: 2 gotas diluídas para massagem na lombar e parte inferior do abdome.",
+            "Evite excesso de carne vermelha",
+            "Anote ao longo do dia: picos de energia e cansaço, horário das suas vontades alimentares, sinais do intestino/pele/muco/temperatura e emoção predominante do dia"
+          ]
         },
         {
           "ordem": 6,
@@ -125,10 +142,14 @@
         },
         {
           "ordem": 3,
-          "tipo": "IMAGEM",
+          "tipo": "CHECKLIST",
           "delayMs": 1500,
-          "mediaSourceDriveId": "1G41ld6pfNsJfN30aQy19RH2tOcc04-OE",
-          "mediaKey": "desafio/moderada/dia2/3.png"
+          "texto": "Durante os próximos 5 dias, comece sua manhã com:",
+          "checklistItems": [
+            "2 ovos no café da manhã",
+            "Ciclo das sementes",
+            "Evite café"
+          ]
         },
         {
           "ordem": 4,
@@ -171,10 +192,14 @@
         },
         {
           "ordem": 3,
-          "tipo": "IMAGEM",
+          "tipo": "CHECKLIST",
           "delayMs": 1300,
-          "mediaSourceDriveId": "1iL82IZLCcxY_aCHLhtZnGLpHceHlmYOm",
-          "mediaKey": "desafio/moderada/dia3/3.png"
+          "texto": "Monte um cardápio simples com base em:",
+          "checklistItems": [
+            "1 alimento anti-inflamatório por refeição (ex: abacate, gengibre, sardinha, couve)",
+            "Evite: ultraprocessados e cafeína em excesso por 48h",
+            "Consuma chá de camomila, alecrim ou casca de abacaxi"
+          ]
         },
         {
           "ordem": 4,
@@ -217,10 +242,14 @@
         },
         {
           "ordem": 3,
-          "tipo": "IMAGEM",
+          "tipo": "CHECKLIST",
           "delayMs": 1450,
-          "mediaSourceDriveId": "1huBgqZeslqvsqLN7rEdzE0trL5LfdnFC",
-          "mediaKey": "desafio/moderada/dia4/3.png"
+          "texto": "Limpeza ambiental e sensorial",
+          "checklistItems": [
+            "Tire 1 cosmético ou produto de limpeza comum da rotina",
+            "Use aromaterapia (lavanda, laranja doce ou hortelã)",
+            "Elimine ruídos visuais do ambiente (ex: celular, TV ao fundo)"
+          ]
         },
         {
           "ordem": 4,
@@ -263,10 +292,14 @@
         },
         {
           "ordem": 3,
-          "tipo": "IMAGEM",
+          "tipo": "CHECKLIST",
           "delayMs": 1250,
-          "mediaSourceDriveId": "1FjszohIA85jiNh2NCyP8Phs0mvucBdTu",
-          "mediaKey": "desafio/moderada/dia5/3.png"
+          "texto": "Mini detox fígado-intestino",
+          "checklistItems": [
+            "Comece o dia com suco de limão + beterraba ou hortelã",
+            "Inclua 2 porções de vegetais amargos (couve, rúcula, agrião)",
+            "Evite laticínios por 24h"
+          ]
         },
         {
           "ordem": 4,
@@ -309,10 +342,15 @@
         },
         {
           "ordem": 4,
-          "tipo": "IMAGEM",
+          "tipo": "CHECKLIST",
           "delayMs": 1200,
-          "mediaSourceDriveId": "1ch9WA7RaDB2C4C5yOEe8AtjM_kd84UrL",
-          "mediaKey": "desafio/moderada/dia6/4.png"
+          "texto": "Desacelere para ovular",
+          "checklistItems": [
+            "Estabeleça 3 pausas conscientes no seu dia (5 minutos cada)",
+            "Coloque uma música instrumental suave enquanto almoça",
+            "Diga para si mesma 1 frase de confiança em voz alta",
+            "Não esqueça a atividade física"
+          ]
         },
         {
           "ordem": 5,
@@ -375,10 +413,14 @@
         },
         {
           "ordem": 4,
-          "tipo": "IMAGEM",
+          "tipo": "CHECKLIST",
           "delayMs": 1300,
-          "mediaSourceDriveId": "1bWrsfFMf-5NlxL0XRLKfS3yvbG4UDj3D",
-          "mediaKey": "desafio/moderada/dia7/4.png"
+          "texto": "Carta raiz de entrega e abertura",
+          "checklistItems": [
+            "Escreva uma carta para si mesma do futuro, dizendo: \"Valeu a pena confiar.\"",
+            "Declare o que você quer gerar: uma vida, uma paz, um ciclo novo.",
+            "Ore, respire, entregue."
+          ]
         },
         {
           "ordem": 5,
