@@ -1,24 +1,17 @@
-'use client';
+import { CaptureClient } from '@/components/screens/CaptureClient';
+import { db } from '@/lib/db';
 
-import { useRouter } from 'next/navigation';
-import { CaptureView, type CaptureData } from '@/components/screens/CaptureView';
+export const dynamic = 'force-dynamic';
 
-const TOTAL_STEPS = 42; // 1 (captura) + 41 perguntas do quiz
+export default async function CapturaPage() {
+  let questionCount = 0;
 
-export default function CapturaPage() {
-  const router = useRouter();
-
-  function handleSubmit(data: CaptureData) {
-    sessionStorage.setItem('leadData', JSON.stringify(data));
-    router.push('/quiz');
+  try {
+    questionCount = await db.question.count();
+  } catch {
+    // Sem banco o preview ainda precisa renderizar; nesse caso o progresso
+    // da captura cai para o mínimo viável em vez de quebrar a página.
   }
 
-  return (
-    <CaptureView
-      currentStep={1}
-      totalSteps={TOTAL_STEPS}
-      onSubmit={handleSubmit}
-      onBack={() => router.push('/welcome')}
-    />
-  );
+  return <CaptureClient totalSteps={questionCount > 0 ? questionCount + 1 : 1} />;
 }
