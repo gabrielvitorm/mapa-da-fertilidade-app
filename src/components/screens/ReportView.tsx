@@ -2,16 +2,28 @@
 
 import { useState } from 'react';
 import {
-  ArrowLeft, Flame, Moon, Brain, Calendar, Utensils, Activity,
-  Droplet, Sparkles, type LucideIcon,
+  ArrowLeft,
+  Flame,
+  Moon,
+  Brain,
+  Calendar,
+  Utensils,
+  Activity,
+  Droplet,
+  Sparkles,
+  type LucideIcon,
 } from 'lucide-react';
 import { PillarRadarChart } from '@/components/charts/PillarRadarChart';
+import { ActionPlan } from '@/components/screens/ActionPlan';
+import { PrioritySummary } from '@/components/screens/PrioritySummary';
 import { PillarLevelBadge } from '@/components/ui/PillarLevelBadge';
+import { PillarScoreBar } from '@/components/ui/PillarScoreBar';
 import { ScoreRing } from '@/components/ui/ScoreRing';
 import {
   NIVEL_GLOBAL_LABEL,
   type AssessmentResult,
   type PillarKey,
+  type PillarResult,
 } from '@/types/assessment';
 
 /**
@@ -41,6 +53,49 @@ const PILLAR_ICON: Record<PillarKey, LucideIcon> = {
   historico: Calendar,
 };
 
+const PILLAR_GROUP_META: Record<1 | 2 | 3, { title: string; description: string }> = {
+  3: {
+    title: 'Fundamentais',
+    description: 'Pilares estruturais com maior peso no resultado e maior alavanca de mudança.',
+  },
+  2: {
+    title: 'Estilo de vida',
+    description: 'Hábitos e rotina que sustentam a evolução do quadro atual.',
+  },
+  1: {
+    title: 'Complementares',
+    description: 'Ajustes de suporte e refinamento que fecham as lacunas restantes.',
+  },
+};
+
+function sortPillarsByRatio(a: PillarResult, b: PillarResult) {
+  if (a.ratio !== b.ratio) {
+    return a.ratio - b.ratio;
+  }
+
+  return a.key.localeCompare(b.key);
+}
+
+function buildPillarGroups(pillars: PillarResult[]) {
+  const grouped: Record<1 | 2 | 3, PillarResult[]> = {
+    1: [],
+    2: [],
+    3: [],
+  };
+
+  for (const pillar of pillars) {
+    grouped[pillar.peso].push(pillar);
+  }
+
+  return ([3, 2, 1] as const)
+    .map((peso) => ({
+      peso,
+      ...PILLAR_GROUP_META[peso],
+      pillars: [...grouped[peso]].sort(sortPillarsByRatio),
+    }))
+    .filter((group) => group.pillars.length > 0);
+}
+
 interface ReportViewProps {
   result: AssessmentResult;
   onBack?: () => void;
@@ -51,6 +106,7 @@ export function ReportView({ result, onBack, onUpsellClick }: ReportViewProps) {
   const [expandedPillar, setExpandedPillar] = useState<string>('');
 
   const nivelLabel = NIVEL_GLOBAL_LABEL[result.nivelGlobal];
+  const pillarGroups = buildPillarGroups(result.pillars);
   const lowestPillar = [...result.pillars]
     .filter((p) => !p.locked)
     .sort((a) => (a.level === 'Baixo' ? -1 : 1))[0];
@@ -104,70 +160,98 @@ export function ReportView({ result, onBack, onUpsellClick }: ReportViewProps) {
           <PillarRadarChart pillars={result.pillars} />
         </section>
 
+        <PrioritySummary pillars={result.pillars} />
+
+        <ActionPlan pillars={result.pillars} />
+
         {/* Os 13 pilares */}
         <div className="space-y-4">
           <h3 className="font-serif text-base font-bold text-[var(--color-brand-brown)] leading-tight">
             Pilares Examinados
           </h3>
 
-          <div className="space-y-3">
-            {result.pillars.map((pillar) => {
-              const isSelected = expandedPillar === pillar.key;
-              const Icon = PILLAR_ICON[pillar.key] ?? Sparkles;
+          <div className="space-y-5">
+            {pillarGroups.map((group) => (
+              <section key={group.peso} className="space-y-3">
+                <div className="flex items-end justify-between gap-3">
+                  <div className="space-y-1">
+                    <h4 className="font-serif text-sm font-bold text-[var(--color-brand-brown)] leading-tight">
+                      {group.title}
+                    </h4>
+                    <p className="text-[11px] leading-relaxed text-[var(--color-brand-brown)]/70">
+                      {group.description}
+                    </p>
+                  </div>
+                  <span className="shrink-0 rounded-full border border-[var(--color-border-soft)] bg-white px-2.5 py-1 text-[9px] font-bold uppercase tracking-wider text-[var(--color-brand-brown)]/55">
+                    {group.pillars.length}
+                  </span>
+                </div>
 
-              return (
-                <div
-                  key={pillar.key}
-                  className="bg-white rounded-xl border border-[var(--color-border-soft)] overflow-hidden transition-all duration-300"
-                >
-                  <button
-                    onClick={() => setExpandedPillar(isSelected ? '' : pillar.key)}
-                    disabled={pillar.locked}
-                    className="w-full p-4 flex items-center justify-between cursor-pointer hover:bg-[var(--color-surface-cream)]/50 text-left disabled:cursor-default"
-                  >
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-lg bg-[var(--color-brand-terracota)]/10 flex items-center justify-center text-[var(--color-brand-terracota)]">
-                        <Icon className="w-4 h-4" />
-                      </div>
-                      <div>
-                        <h4 className="text-xs font-bold text-[var(--color-brand-brown)]">
-                          {pillar.label}
-                        </h4>
-                        {pillar.locked ? (
-                          <span className="inline-block px-2 py-0.5 rounded text-[8px] font-bold uppercase tracking-wider bg-[var(--color-border-soft)] text-[var(--color-brand-brown)]/60">
-                            Bloqueado
-                          </span>
-                        ) : (
-                          <PillarLevelBadge level={pillar.level} />
+                <div className="space-y-3">
+                  {group.pillars.map((pillar) => {
+                    const isSelected = expandedPillar === pillar.key;
+                    const Icon = PILLAR_ICON[pillar.key] ?? Sparkles;
+
+                    return (
+                      <div
+                        key={pillar.key}
+                        className="bg-white rounded-xl border border-[var(--color-border-soft)] overflow-hidden transition-all duration-300"
+                      >
+                        <button
+                          type="button"
+                          onClick={() => setExpandedPillar(isSelected ? '' : pillar.key)}
+                          disabled={pillar.locked}
+                          className="w-full p-4 flex items-start justify-between gap-4 cursor-pointer hover:bg-[var(--color-surface-cream)]/50 text-left disabled:cursor-default"
+                        >
+                          <div className="flex items-start gap-3 min-w-0 flex-1">
+                            <div className="w-10 h-10 rounded-lg bg-[var(--color-brand-terracota)]/10 flex items-center justify-center text-[var(--color-brand-terracota)] shrink-0">
+                              <Icon className="w-4 h-4" />
+                            </div>
+                            <div className="min-w-0 flex-1 space-y-2">
+                              <div className="flex flex-wrap items-center gap-2">
+                                <h4 className="text-xs font-bold text-[var(--color-brand-brown)]">
+                                  {pillar.label}
+                                </h4>
+                                {pillar.locked ? (
+                                  <span className="inline-block rounded px-2 py-0.5 text-[8px] font-bold uppercase tracking-wider bg-[var(--color-border-soft)] text-[var(--color-brand-brown)]/60">
+                                    Bloqueado
+                                  </span>
+                                ) : (
+                                  <PillarLevelBadge level={pillar.level} />
+                                )}
+                              </div>
+                              <PillarScoreBar pillar={pillar} />
+                            </div>
+                          </div>
+                          {!pillar.locked && (
+                            <span className="text-xs transition-transform duration-300 transform font-bold text-[var(--color-brand-terracota)] shrink-0 pt-1">
+                              {isSelected ? 'Ocultar ▲' : 'Expandir ▼'}
+                            </span>
+                          )}
+                        </button>
+
+                        {isSelected && !pillar.locked && (
+                          <div className="p-4 bg-[var(--color-surface-cream)]/50 text-xs text-[var(--color-brand-brown)]/95 space-y-3 leading-relaxed border-t border-[var(--color-border-soft)] animate-fade-in">
+                            <div>
+                              <strong className="text-[var(--color-brand-terracota)] block uppercase tracking-wider text-[9px] font-bold mb-0.5">
+                                Diagnóstico
+                              </strong>
+                              <p>{pillar.diagnostico}</p>
+                            </div>
+                            <div>
+                              <strong className="text-[var(--color-brand-sage)] block uppercase tracking-wider text-[9px] font-bold mb-0.5">
+                                Recomendação personalizada
+                              </strong>
+                              <p>{pillar.recomendacao}</p>
+                            </div>
+                          </div>
                         )}
                       </div>
-                    </div>
-                    {!pillar.locked && (
-                      <span className="text-xs transition-transform duration-300 transform font-bold text-[var(--color-brand-terracota)]">
-                        {isSelected ? 'Ocultar ▲' : 'Expandir ▼'}
-                      </span>
-                    )}
-                  </button>
-
-                  {isSelected && !pillar.locked && (
-                    <div className="p-4 bg-[var(--color-surface-cream)]/50 text-xs text-[var(--color-brand-brown)]/95 space-y-3 leading-relaxed border-t border-[var(--color-border-soft)] animate-fade-in">
-                      <div>
-                        <strong className="text-[var(--color-brand-terracota)] block uppercase tracking-wider text-[9px] font-bold mb-0.5">
-                          Diagnóstico
-                        </strong>
-                        <p>{pillar.diagnostico}</p>
-                      </div>
-                      <div>
-                        <strong className="text-[var(--color-brand-sage)] block uppercase tracking-wider text-[9px] font-bold mb-0.5">
-                          Recomendação personalizada
-                        </strong>
-                        <p>{pillar.recomendacao}</p>
-                      </div>
-                    </div>
-                  )}
+                    );
+                  })}
                 </div>
-              );
-            })}
+              </section>
+            ))}
           </div>
         </div>
 
