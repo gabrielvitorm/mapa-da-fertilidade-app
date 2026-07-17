@@ -1,7 +1,7 @@
 'use client';
 
 import { useRef, useState } from 'react';
-import { Pause, Play } from 'lucide-react';
+import { Check, Pause, Play } from 'lucide-react';
 import type { ChallengeMessage } from '@/types/challenge';
 
 /** Resolve a key do R2 para uma URL pública. Ajustar a base no .env real. */
@@ -24,7 +24,20 @@ const STATEMENT_MAX_LENGTH = 50;
  * passo por vez pelo stepper
  * (docs/superpowers/specs/2026-07-09-desafio-formato-aula-design.md).
  */
-export function ChallengeMessageBubble({ message }: { message: ChallengeMessage }) {
+
+interface ChallengeMessageBubbleProps {
+  message: ChallengeMessage;
+  /** Índices já marcados quando a mensagem é CHECKLIST (retomada). */
+  initialCheckedIndices?: number[];
+  /** Disparado a cada toque num item, com o array atualizado de índices marcados. */
+  onChecklistChange?: (checkedIndices: number[]) => void;
+}
+
+export function ChallengeMessageBubble({
+  message,
+  initialCheckedIndices = [],
+  onChecklistChange,
+}: ChallengeMessageBubbleProps) {
   if (message.tipo === 'TEXTO') {
     const texto = message.texto ?? '';
     if (texto.length <= STATEMENT_MAX_LENGTH) {
@@ -42,6 +55,17 @@ export function ChallengeMessageBubble({ message }: { message: ChallengeMessage 
           {texto}
         </p>
       </div>
+    );
+  }
+
+  if (message.tipo === 'CHECKLIST') {
+    return (
+      <ChecklistContent
+        title={message.texto ?? ''}
+        items={message.checklistItems ?? []}
+        initialCheckedIndices={initialCheckedIndices}
+        onChange={onChecklistChange}
+      />
     );
   }
 
@@ -135,6 +159,72 @@ function AudioContent({ message }: { message: ChallengeMessage }) {
         }}
         className="hidden"
       />
+    </div>
+  );
+}
+
+function ChecklistContent({
+  title,
+  items,
+  initialCheckedIndices,
+  onChange,
+}: {
+  title: string;
+  items: string[];
+  initialCheckedIndices: number[];
+  onChange?: (checkedIndices: number[]) => void;
+}) {
+  const [checked, setChecked] = useState<Set<number>>(new Set(initialCheckedIndices));
+
+  function toggle(index: number) {
+    setChecked((prev) => {
+      const next = new Set(prev);
+      if (next.has(index)) {
+        next.delete(index);
+      } else {
+        next.add(index);
+      }
+      onChange?.([...next].sort((a, b) => a - b));
+      return next;
+    });
+  }
+
+  return (
+    <div className="animate-fade-in space-y-4">
+      <p className="font-serif italic text-xl font-bold text-[var(--color-brand-brown)] text-center leading-snug">
+        {title}
+      </p>
+      <div className="bg-white rounded-xl border border-[var(--color-border-soft)] divide-y divide-[var(--color-border-soft)] overflow-hidden">
+        {items.map((item, index) => {
+          const isChecked = checked.has(index);
+          return (
+            <button
+              key={index}
+              onClick={() => toggle(index)}
+              className="w-full flex items-start gap-3 p-3.5 text-left"
+            >
+              <span
+                className={`mt-0.5 w-5 h-5 rounded-md border-2 flex items-center justify-center shrink-0 transition-colors ${
+                  isChecked
+                    ? 'bg-[var(--color-brand-sage)] border-[var(--color-brand-sage)]'
+                    : 'border-[var(--color-border-soft)]'
+                }`}
+              >
+                {isChecked && <Check className="w-3.5 h-3.5 text-white" />}
+              </span>
+              <span
+                className={`text-xs leading-relaxed ${
+                  isChecked
+                    ? 'text-[var(--color-brand-brown)]/40 line-through'
+                    : 'text-[var(--color-brand-brown)]'
+                }`}
+              >
+                {item}
+              </span>
+            </button>
+          );
+        })}
+      </div>
     </div>
   );
 }

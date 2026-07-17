@@ -9,6 +9,7 @@ interface ChallengePlayerClientProps {
   day: ChallengeDay;
   dayTitle: string;
   initialVisibleCount: number;
+  initialChecklistProgress?: Record<string, number[]>;
 }
 
 export function ChallengePlayerClient({
@@ -16,6 +17,7 @@ export function ChallengePlayerClient({
   day,
   dayTitle,
   initialVisibleCount,
+  initialChecklistProgress,
 }: ChallengePlayerClientProps) {
   const router = useRouter();
 
@@ -44,15 +46,25 @@ export function ChallengePlayerClient({
     });
   }
 
+  function handleChecklistChange(ordem: number, checkedIndices: number[]) {
+    void fetch('/api/challenge/checklist', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ trackId, dayNumber: day.dayNumber, ordem, checkedIndices }),
+    });
+  }
+
   return (
     <ChallengePlayerView
       day={day}
       dayTitle={dayTitle}
       initialVisibleCount={initialVisibleCount}
+      initialChecklistProgress={initialChecklistProgress}
       onBack={() => router.push('/desafio')}
       onCompleteDay={handleCompleteDay}
       onSubmitDevolutiva={handleSubmitDevolutiva}
       onProgressChange={handleProgressChange}
+      onChecklistChange={handleChecklistChange}
     />
   );
 }

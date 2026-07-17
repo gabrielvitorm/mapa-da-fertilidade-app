@@ -26,20 +26,25 @@ interface ChallengePlayerViewProps {
   day: ChallengeDay;
   dayTitle: string;
   initialVisibleCount?: number;
+  /** Progresso de checklist já salvo, chave "<dayNumber>:<ordem>" -> índices marcados. */
+  initialChecklistProgress?: Record<string, number[]>;
   onBack?: () => void;
   onCompleteDay: () => void;
   onSubmitDevolutiva: (input: DevolutivaInput) => void;
   onProgressChange?: (visibleCount: number) => void;
+  onChecklistChange?: (ordem: number, checkedIndices: number[]) => void;
 }
 
 export function ChallengePlayerView({
   day,
   dayTitle,
   initialVisibleCount = 0,
+  initialChecklistProgress = {},
   onBack,
   onCompleteDay,
   onSubmitDevolutiva,
   onProgressChange,
+  onChecklistChange,
 }: ChallengePlayerViewProps) {
   const totalSteps = day.messages.length;
   const { currentIndex, maxVisitedIndex, next, previous, canGoNext, canGoBack, isLastStep } =
@@ -95,7 +100,12 @@ export function ChallengePlayerView({
       </header>
 
       <div className="flex-grow p-5 pb-32">
-        <ChallengeMessageBubble key={currentMessage.ordem} message={currentMessage} />
+        <ChallengeMessageBubble
+          key={currentMessage.ordem}
+          message={currentMessage}
+          initialCheckedIndices={initialChecklistProgress[`${day.dayNumber}:${currentMessage.ordem}`] ?? []}
+          onChecklistChange={(checkedIndices) => onChecklistChange?.(currentMessage.ordem, checkedIndices)}
+        />
       </div>
 
       {!isLastStep && (

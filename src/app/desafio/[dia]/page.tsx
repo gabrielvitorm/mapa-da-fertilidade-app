@@ -58,6 +58,7 @@ export default async function DesafioDiaPage({ params }: DesafioDiaPageProps) {
 
   const lastSeenOrdem = (progressRow.lastSeenOrdem as Record<string, number>) ?? {};
   const initialVisibleCount = lastSeenOrdem[String(dayNumber)] ?? 0;
+  const checklistProgress = (progressRow.checklistProgress as Record<string, number[]>) ?? {};
 
   return (
     <ChallengePlayerClient
@@ -70,11 +71,13 @@ export default async function DesafioDiaPage({ params }: DesafioDiaPageProps) {
           tipo: m.tipo,
           texto: m.texto ?? undefined,
           mediaKey: m.mediaKey ?? undefined,
+          checklistItems: (m.checklistItems as string[] | null) ?? undefined,
           delayMs: m.delayMs,
         })),
       }}
       dayTitle={day.title}
       initialVisibleCount={initialVisibleCount}
+      initialChecklistProgress={checklistProgress}
     />
   );
 }
