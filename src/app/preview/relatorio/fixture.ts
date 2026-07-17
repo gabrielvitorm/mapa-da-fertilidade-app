@@ -7,8 +7,8 @@ import { PILLAR_LABEL } from '@/types/assessment';
  * docs/02-motor-de-score.md), nunca hardcoded como aqui.
  */
 export const sampleAssessmentResult: AssessmentResult = {
-  scoreTotal: 198,
-  resultadoFinal: 69.5,
+  scoreTotal: 175,
+  resultadoFinal: 61.4,
   nivelGlobal: 'MODERADA',
   pillars: [
     {

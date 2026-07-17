@@ -65,3 +65,18 @@ assertEqual(estresse.ratio, 0.5, 'estresse expõe ratio normalizado');
 assertEqual(estresse.peso, 3, 'estresse expõe peso da regra');
 
 console.log('report-assembly.test.ts: all assertions passed');
+
+let invalidPesoThrown = false;
+try {
+  buildAssessmentResult(
+    { scoreTotal: 1, resultadoFinal: 1, nivelGlobal: 'BAIXA' },
+    { sono: 18, estresse: 15 } as Record<PillarKey, number>,
+    [{ pillar: 'sono', peso: 4, maxDoPilar: 20 }],
+    [{ pillar: 'sono' as PillarKey, level: 'Alto', diagnostico: 'x', recomendacao: 'y' }],
+    pillarLabels
+  );
+} catch (error) {
+  invalidPesoThrown = String(error).includes('Peso inválido para sono: 4');
+}
+
+assertEqual(invalidPesoThrown, true, 'peso inválido deve falhar em runtime');

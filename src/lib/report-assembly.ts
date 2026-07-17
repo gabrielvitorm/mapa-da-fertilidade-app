@@ -15,6 +15,14 @@ function pillarLevel(score: number, max: number): PillarLevel {
   return 'Baixo';
 }
 
+function assertValidPeso(peso: number, pillar: PillarKey): PillarResult['peso'] {
+  if (peso === 1 || peso === 2 || peso === 3) {
+    return peso;
+  }
+
+  throw new Error(`Peso inválido para ${pillar}: ${peso} — rode npm run db:seed`);
+}
+
 /**
  * Monta o AssessmentResult completo (13 pilares com diagnóstico e
  * recomendação reais) a partir do resultado já calculado por
@@ -50,7 +58,7 @@ export function buildAssessmentResult(
       score,
       max,
       ratio,
-      peso: rule.peso as PillarResult['peso'],
+      peso: assertValidPeso(rule.peso, rule.pillar),
     };
   });
 
