@@ -177,16 +177,14 @@ function ChecklistContent({
   const [checked, setChecked] = useState<Set<number>>(new Set(initialCheckedIndices));
 
   function toggle(index: number) {
-    setChecked((prev) => {
-      const next = new Set(prev);
-      if (next.has(index)) {
-        next.delete(index);
-      } else {
-        next.add(index);
-      }
-      onChange?.([...next].sort((a, b) => a - b));
-      return next;
-    });
+    const next = new Set(checked);
+    if (next.has(index)) {
+      next.delete(index);
+    } else {
+      next.add(index);
+    }
+    setChecked(next);
+    onChange?.([...next].sort((a, b) => a - b));
   }
 
   return (

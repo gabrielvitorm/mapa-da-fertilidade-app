@@ -1,6 +1,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 import { ChallengePlayerView } from '@/components/screens/ChallengePlayerView';
 import type { ChallengeDay, DevolutivaInput } from '@/types/challenge';
 
@@ -20,6 +21,7 @@ export function ChallengePlayerClient({
   initialChecklistProgress,
 }: ChallengePlayerClientProps) {
   const router = useRouter();
+  const [checklistProgress, setChecklistProgress] = useState(initialChecklistProgress ?? {});
 
   async function handleCompleteDay() {
     await fetch('/api/challenge/complete-day', {
@@ -47,6 +49,7 @@ export function ChallengePlayerClient({
   }
 
   function handleChecklistChange(ordem: number, checkedIndices: number[]) {
+    setChecklistProgress((prev) => ({ ...prev, [`${day.dayNumber}:${ordem}`]: checkedIndices }));
     void fetch('/api/challenge/checklist', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -59,7 +62,7 @@ export function ChallengePlayerClient({
       day={day}
       dayTitle={dayTitle}
       initialVisibleCount={initialVisibleCount}
-      initialChecklistProgress={initialChecklistProgress}
+      initialChecklistProgress={checklistProgress}
       onBack={() => router.push('/desafio')}
       onCompleteDay={handleCompleteDay}
       onSubmitDevolutiva={handleSubmitDevolutiva}
