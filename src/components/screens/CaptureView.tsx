@@ -11,7 +11,7 @@ export interface CaptureData {
 
 interface CaptureViewProps {
   currentStep: number;
-  totalSteps: number;
+  totalSteps?: number;
   onSubmit: (data: CaptureData) => void;
   onBack?: () => void;
 }
@@ -24,6 +24,7 @@ export function CaptureView({ currentStep, totalSteps, onSubmit, onBack }: Captu
 
   const emailValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   const podeEnviar = nome.trim().length >= 2 && emailValido;
+  const temProgresso = typeof totalSteps === 'number' && totalSteps > 0;
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -32,7 +33,7 @@ export function CaptureView({ currentStep, totalSteps, onSubmit, onBack }: Captu
     onSubmit({ nome: nome.trim(), email: email.trim(), celular: celular.trim() || undefined });
   }
 
-  const progress = currentStep / totalSteps;
+  const progress = temProgresso ? currentStep / totalSteps : 0;
 
   return (
     <div className="flex flex-col min-h-screen bg-[var(--color-surface-cream)]">
@@ -52,18 +53,22 @@ export function CaptureView({ currentStep, totalSteps, onSubmit, onBack }: Captu
           )}
 
           <span className="text-[10px] font-bold text-[var(--color-brand-brown)]/50 uppercase tracking-widest">
-            {currentStep} de {totalSteps}
+            {temProgresso ? `${currentStep} de ${totalSteps}` : `${currentStep}`}
           </span>
 
           <div className="w-8" />
         </div>
 
-        <div className="h-1.5 rounded-full bg-[var(--color-border-soft)] overflow-hidden">
-          <div
-            className="h-full rounded-full bg-[var(--color-brand-terracota)] transition-all duration-500"
-            style={{ width: `${progress * 100}%` }}
-          />
-        </div>
+        {temProgresso ? (
+          <div className="h-1.5 rounded-full bg-[var(--color-border-soft)] overflow-hidden">
+            <div
+              className="h-full rounded-full bg-[var(--color-brand-terracota)] transition-all duration-500"
+              style={{ width: `${progress * 100}%` }}
+            />
+          </div>
+        ) : (
+          <div className="h-1.5 rounded-full bg-[var(--color-border-soft)] overflow-hidden opacity-70" />
+        )}
       </header>
 
       {/* Corpo */}

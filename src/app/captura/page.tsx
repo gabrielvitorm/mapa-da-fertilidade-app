@@ -13,5 +13,5 @@ export default async function CapturaPage() {
     // da captura cai para o mínimo viável em vez de quebrar a página.
   }
 
-  return <CaptureClient totalSteps={questionCount > 0 ? questionCount + 1 : 1} />;
+  return <CaptureClient totalSteps={questionCount > 0 ? questionCount + 1 : undefined} />;
 }
