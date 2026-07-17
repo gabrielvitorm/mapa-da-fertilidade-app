@@ -4,14 +4,15 @@ import { db } from '@/lib/db';
 export const dynamic = 'force-dynamic';
 
 export default async function CapturaPage() {
-  let questionCount = 0;
+  let totalSteps: number | undefined;
 
   try {
-    questionCount = await db.question.count();
+    const questionCount = await db.question.count();
+    totalSteps = questionCount + 1;
   } catch {
     // Sem banco o preview ainda precisa renderizar; nesse caso o progresso
-    // da captura cai para o mínimo viável em vez de quebrar a página.
+    // da captura fica sem total explícito em vez de inventar uma contagem.
   }
 
-  return <CaptureClient totalSteps={questionCount > 0 ? questionCount + 1 : undefined} />;
+  return <CaptureClient totalSteps={totalSteps} />;
 }

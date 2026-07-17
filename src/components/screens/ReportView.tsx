@@ -3,15 +3,8 @@
 import { useState } from 'react';
 import {
   ArrowLeft,
-  Flame,
-  Moon,
-  Brain,
-  Calendar,
-  Utensils,
-  Activity,
-  Droplet,
+  Download,
   Sparkles,
-  type LucideIcon,
 } from 'lucide-react';
 import { PillarRadarChart } from '@/components/charts/PillarRadarChart';
 import { ActionPlan } from '@/components/screens/ActionPlan';
@@ -19,10 +12,10 @@ import { PrioritySummary } from '@/components/screens/PrioritySummary';
 import { PillarLevelBadge } from '@/components/ui/PillarLevelBadge';
 import { PillarScoreBar } from '@/components/ui/PillarScoreBar';
 import { ScoreRing } from '@/components/ui/ScoreRing';
+import { PILLAR_ICON } from '@/lib/pillar-icons';
 import {
   NIVEL_GLOBAL_LABEL,
   type AssessmentResult,
-  type PillarKey,
   type PillarResult,
 } from '@/types/assessment';
 
@@ -36,22 +29,6 @@ import {
  * - Pilares com `locked: true` mostram um teaser bloqueado em vez do
  *   diagnóstico — usado na fase anônima/pré-pagamento (ver docs/03).
  */
-
-const PILLAR_ICON: Record<PillarKey, LucideIcon> = {
-  fatores_infertilidade: Sparkles,
-  saude_hormonal: Flame,
-  ciclo: Calendar,
-  sono: Moon,
-  imunidade: Activity,
-  atividade_fisica: Activity,
-  alimentacao: Utensils,
-  saude_intestinal: Droplet,
-  figado: Flame,
-  estresse: Brain,
-  tireoide: Sparkles,
-  toxinas: Droplet,
-  historico: Calendar,
-};
 
 const PILLAR_GROUP_META: Record<1 | 2 | 3, { title: string; description: string }> = {
   3: {
@@ -99,17 +76,18 @@ function buildPillarGroups(pillars: PillarResult[]) {
 interface ReportViewProps {
   result: AssessmentResult;
   onBack?: () => void;
+  onPrintClick?: () => void;
   onUpsellClick?: () => void;
 }
 
-export function ReportView({ result, onBack, onUpsellClick }: ReportViewProps) {
+export function ReportView({ result, onBack, onPrintClick, onUpsellClick }: ReportViewProps) {
   const [expandedPillar, setExpandedPillar] = useState<string>('');
 
   const nivelLabel = NIVEL_GLOBAL_LABEL[result.nivelGlobal];
   const pillarGroups = buildPillarGroups(result.pillars);
   const lowestPillar = [...result.pillars]
     .filter((p) => !p.locked)
-    .sort((a) => (a.level === 'Baixo' ? -1 : 1))[0];
+    .sort((a, b) => a.ratio - b.ratio || b.peso - a.peso || a.key.localeCompare(b.key))[0];
 
   return (
     <div className="flex-grow flex flex-col bg-[var(--color-surface-cream)] min-h-screen">
@@ -124,7 +102,20 @@ export function ReportView({ result, onBack, onUpsellClick }: ReportViewProps) {
         <h1 className="font-serif italic text-sm font-bold text-[var(--color-brand-terracota)] flex-1 text-center pr-2">
           Relatório Completo
         </h1>
-        <div className="w-8" />
+        <div className="flex min-w-[92px] items-center justify-end">
+          {onPrintClick ? (
+            <button
+              type="button"
+              onClick={onPrintClick}
+              className="inline-flex items-center gap-1.5 rounded-lg border border-[var(--color-border-soft)] bg-[var(--color-surface-cream)] px-2.5 py-2 text-[9px] font-bold uppercase tracking-wider text-[var(--color-brand-brown)] hover:bg-white"
+            >
+              <Download className="h-3.5 w-3.5 text-[var(--color-brand-terracota)]" />
+              <span className="hidden sm:inline">Exportar PDF</span>
+            </button>
+          ) : (
+            <div className="w-8" />
+          )}
+        </div>
       </header>
 
       <div className="flex-grow p-6 space-y-6 pb-24 text-left">
