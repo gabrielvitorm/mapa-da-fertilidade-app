@@ -198,6 +198,7 @@ function ChecklistContent({
           return (
             <button
               key={index}
+              type="button"
               onClick={() => toggle(index)}
               className="w-full flex items-start gap-3 p-3.5 text-left"
             >
