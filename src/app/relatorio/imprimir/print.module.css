@@ -1,0 +1,35 @@
+@page {
+  size: A4;
+  margin: 14mm;
+}
+
+.printRoot {
+  min-height: 100vh;
+  background: var(--color-surface-cream);
+  color: var(--color-brand-brown);
+}
+
+.avoidBreak {
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+.screenOnly {
+  display: flex;
+}
+
+@media print {
+  .printRoot {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .avoidBreak {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .screenOnly {
+    display: none !important;
+  }
+}

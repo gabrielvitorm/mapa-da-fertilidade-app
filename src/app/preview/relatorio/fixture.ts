@@ -97,7 +97,7 @@ export const sampleAssessmentResult: AssessmentResult = {
       score: 16,
       max: 20,
       ratio: 0.8,
-      peso: 1,
+      peso: 2,
     },
     {
       key: 'atividade_fisica',
@@ -108,7 +108,7 @@ export const sampleAssessmentResult: AssessmentResult = {
       score: 13,
       max: 20,
       ratio: 0.65,
-      peso: 1,
+      peso: 2,
     },
     {
       key: 'saude_intestinal',
@@ -119,7 +119,7 @@ export const sampleAssessmentResult: AssessmentResult = {
       score: 8,
       max: 20,
       ratio: 0.4,
-      peso: 3,
+      peso: 2,
     },
     {
       key: 'tireoide',

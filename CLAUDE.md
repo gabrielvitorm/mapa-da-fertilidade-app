@@ -106,35 +106,41 @@ Tailwind v4 usa `@theme` no `globals.css` em vez de `tailwind.config.js`. Todos 
 
 ## Estado atual do código
 
-Este repositório já tem um esqueleto Next.js (App Router, Tailwind v4) com:
-- Design system migrado para `src/app/globals.css` (tokens de cor/fonte
-  idênticos ao protótipo do AI Studio que validou o visual).
-- Tipos de domínio reais em `src/types/` (substituem os mocks do protótipo).
-- Gating do desafio implementado e testável em `src/lib/challenge-gating.ts`.
-- Duas telas portadas como prova de conceito em `src/components/screens/`:
-  `ReportView` (13 pilares reais, não os 3 mockados do protótipo) e
-  `ChallengePlayerView` (consome `ChallengeMessage[]` real dos seeds, com
-  sequenciamento por delay e devolutiva opcional).
-- Páginas de demonstração em `src/app/preview/` carregando dados de exemplo
-  (relatório) e o seed real da trilha Moderada (desafio).
+O funil completo está implementado e rodando com dados reais (nada mockado
+fora de `/preview/*`). As 10 telas do protótipo original do AI Studio estão
+todas portadas em `src/components/screens/`, cada uma com rota real em
+`src/app/`:
 
-As outras 8 telas do funil (welcome, quiz, capture, dashboard, checkout do
-relatório, oferta do desafio, trilha/timeline, dia concluído) ainda **não**
-foram portadas — seguem só como referência visual no protótipo original do
-AI Studio. Ao portá-las, siga o mesmo padrão: visual fiel, dados via props
-(nunca mock hardcoded), Client Component só onde há interatividade real.
+| Tela | Componente | Rota |
+| --- | --- | --- |
+| Boas-vindas | `WelcomeView` | `/welcome` |
+| Quiz | `QuizFlow` / `QuizQuestionView` | `/quiz` |
+| Captura de contato | `CaptureView` | `/captura` |
+| Resultado teaser | `ResultTeaserView` | `/resultado` |
+| Dashboard | `DashboardView` | `/dashboard` |
+| Relatório | `ReportView` | `/relatorio` |
+| Checkout do relatório | `CheckoutReportView` | `/checkout` |
+| Oferta do desafio | `ChallengeOfferView` | `/desafio/oferta` |
+| Trilha/timeline do desafio | `ChallengeTimelineView` | `/desafio` |
+| Player do desafio (formato de aula, com checklist interativa) | `ChallengePlayerView` | `/desafio/[dia]` |
+| Dia concluído | `ChallengeCompleteView` | `/desafio/[dia]/concluido` |
+
+Gating do desafio é testável em `src/lib/challenge-gating.ts`. Auth por magic
+link (login sem senha) em `/login`. `DEMO_MODE=true` habilita um botão
+"[Demo] Simular pagamento aprovado" no checkout e na oferta do desafio, já
+que o checkout real da Kiwify ainda não está conectado (links são
+placeholder).
+
+Páginas em `src/app/preview/` continuam existindo para iterar em uma tela
+isolada sem precisar de banco/login — não são o funil de produção.
 
 ## Origem do design visual
 
 A direção visual (creme/terracota/sálvia/dourado, serifa Literata + DM Sans,
 estilo wellness acolhedor) foi validada num protótipo do Google AI Studio
-antes de entrar no código de produção. As 10 telas do protótipo mapeiam para
-o `ScreenId` original: welcome, quiz, capture, dashboard, report,
-checkout_report, challenge_offer, challenge_timeline, challenge_player,
-challenge_complete. Ao portar uma tela nova, é mais rápido pedir ao Claude
-Code para localizar a função `XxxView()` correspondente no histórico do
-projeto e adaptá-la ao mesmo padrão das duas já portadas, do que desenhar do
-zero.
+antes de entrar no código de produção. As 10 telas do protótipo já foram
+todas portadas (ver tabela acima) — o protótipo permanece só como referência
+histórica de onde o visual veio.
 
 ## Mapa dos docs
 

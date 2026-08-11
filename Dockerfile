@@ -31,10 +31,11 @@ COPY prisma ./prisma
 RUN npx prisma generate
 
 FROM base AS runner
-RUN apk add --no-cache libc6-compat
+RUN apk add --no-cache libc6-compat chromium nss freetype harfbuzz ttf-freefont
 ENV NODE_ENV=production
 ENV PORT=3000
 ENV HOSTNAME=0.0.0.0
+ENV CHROME_EXECUTABLE_PATH=/usr/bin/chromium-browser
 
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs

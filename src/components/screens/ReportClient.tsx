@@ -15,6 +15,9 @@ export function ReportClient({ result }: ReportClientProps) {
     <ReportView
       result={result}
       onBack={() => router.push('/dashboard')}
+      onPrintClick={() => {
+        window.location.assign('/relatorio/pdf');
+      }}
       onUpsellClick={() => router.push('/desafio/oferta')}
     />
   );
