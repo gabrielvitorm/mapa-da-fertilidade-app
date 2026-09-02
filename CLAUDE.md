@@ -10,15 +10,20 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Comandos
 
 ```bash
-npm run dev      # servidor Next.js em http://localhost:3000
-npm run build    # build de produção (checa tipos + compila)
-npm run lint     # ESLint (eslint-config-next)
-npm start        # serve o build de produção
-npx prisma migrate dev   # roda migrations pendentes (quando Prisma for adicionado)
-npx tsx <arquivo>        # executa scripts TypeScript avulsos (seeds, migrations de dados)
+npm run dev             # servidor Next.js em http://localhost:3000
+npm run build           # build de produção (checa tipos + compila)
+npm run lint            # ESLint (eslint-config-next)
+npm start                # serve o build de produção
+npx prisma migrate dev   # roda migrations pendentes
+npx prisma studio        # inspeciona o banco local
+npm run db:seed          # roda prisma/seed.ts
+npx tsx <arquivo>        # executa scripts TypeScript avulsos (seeds, migrations de dados, testes)
 ```
 
-Não há runner de testes configurado ainda (`jest`/`vitest` ausentes no `package.json`). Para validar lógica de gating/score, use scripts `tsx` apontando para `src/lib/`.
+Não há `jest`/`vitest` no `package.json`. Testes de lógica pura (`src/lib/*.test.ts`, ex.
+`scoring.test.ts`, `challenge-stepper.test.ts`, `report-assembly.test.ts`) usam apenas
+`node:assert/strict` em blocos soltos e rodam direto com `npx tsx src/lib/<arquivo>.test.ts` —
+não há test runner nem watch mode, cada arquivo é um script que lança se um `assert` falhar.
 
 Páginas de preview para testar as telas já portadas sem banco:
 - `http://localhost:3000/preview/relatorio` — ReportView com fixture de 13 pilares
@@ -68,7 +73,7 @@ novo é trabalho de *cadastro de produto*, não de código.
 
 - **Full-stack:** Next.js 16 (App Router) como monolito — route handlers / server
   actions no back-end. Sem Spring Boot separado para este porte.
-- **Banco:** PostgreSQL (EasyPanel na VPS Hostinger).
+- **Banco:** PostgreSQL (EasyPanel na VPS Hostinger), via Prisma (`prisma/schema.prisma`, migrations em `prisma/migrations/`).
 - **Mídia:** Cloudflare R2 (áudios/imagens do desafio).
 - **Deploy:** GitHub Actions → VPS Hostinger.
 - **DNS/cache:** Cloudflare.
@@ -87,7 +92,8 @@ src/
     ui/             # Primitivos reutilizáveis (PillarLevelBadge, ScoreRing, ChallengeMessageBubble)
   lib/              # Lógica pura sem dependência de framework
     challenge-gating.ts   # isDayUnlocked / hoursUntilUnlock / isDayCompleted
-    useMessageSequence.ts # Hook para sequenciar mensagens com delay estilo WhatsApp
+    quiz-sections.ts       # Agrupa perguntas do quiz em capítulos por pilar
+    useQuizPersistence.ts  # Retomada do quiz via localStorage (docs/07)
   types/            # Contratos de domínio (assessment.ts, challenge.ts)
 seeds/              # Dados iniciais (JSON das trilhas, CSVs de mídia)
 docs/               # Especificações (leia antes de alterar domínio ou regras de negócio)
@@ -149,6 +155,8 @@ histórica de onde o visual veio.
 - `docs/03-funil-e-webhooks.md` — as duas portas, checkout, contrato de webhook.
 - `docs/04-motor-do-desafio.md` — trilhas, roteiro, gating híbrido, devolutiva, mídia.
 - `docs/05-infra-e-deploy.md` — VPS, EasyPanel, R2, Cloudflare, CI/CD.
+- `docs/06-relatorio-v2.md` — segunda versão do relatório (PDF, impressão).
+- `docs/07-quiz-v2.md` — segunda versão do quiz nativo.
 - `seeds/desafio-track-{baixa,moderada,alta}.json` — roteiro das 3 trilhas pronto pra seed.
 - `seeds/midia-manifesto.csv` — áudios/imagens a migrar pro R2 (com flag de duplicado).
 - `seeds/aulas-manifesto.csv` — 8 vídeos (boas-vindas + 7 aulas), compartilhados entre trilhas.
