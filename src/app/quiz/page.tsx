@@ -20,5 +20,18 @@ export default async function QuizPage() {
     options: q.options.map((o) => ({ id: o.id, label: o.label })),
   }));
 
+  if (flowQuestions.length === 0) {
+    return (
+      <div className="flex min-h-screen flex-col items-center justify-center gap-3 bg-[var(--color-surface-cream)] px-8 text-center">
+        <p className="text-sm font-medium text-[var(--color-brand-brown)]">
+          O quiz ainda não está disponível.
+        </p>
+        <p className="text-xs text-[var(--color-brand-brown)]/60">
+          Tente novamente em alguns minutos.
+        </p>
+      </div>
+    );
+  }
+
   return <QuizFlow questions={flowQuestions} />;
 }
