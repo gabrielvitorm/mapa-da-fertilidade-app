@@ -16,6 +16,23 @@ interface CaptureViewProps {
   onBack?: () => void;
 }
 
+/** Formata dígitos como celular brasileiro: (00) 00000-0000. */
+function formatCelular(value: string): string {
+  const digits = value.replace(/\D/g, '').slice(0, 11);
+  const ddd = digits.slice(0, 2);
+  const rest = digits.slice(2);
+
+  if (digits.length === 0) return '';
+  if (digits.length <= 2) return `(${ddd}`;
+
+  const isCelular = rest.length > 4;
+  const prefixLen = isCelular ? 5 : 4;
+  const prefix = rest.slice(0, prefixLen);
+  const suffix = rest.slice(prefixLen);
+
+  return suffix ? `(${ddd}) ${prefix}-${suffix}` : `(${ddd}) ${prefix}`;
+}
+
 export function CaptureView({ currentStep, totalSteps, onSubmit, onBack }: CaptureViewProps) {
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
@@ -126,7 +143,7 @@ export function CaptureView({ currentStep, totalSteps, onSubmit, onBack }: Captu
               autoComplete="tel"
               placeholder="(00) 00000-0000"
               value={celular}
-              onChange={(e) => setCelular(e.target.value)}
+              onChange={(e) => setCelular(formatCelular(e.target.value))}
               className={inputClass(false)}
             />
           </Field>
@@ -138,7 +155,7 @@ export function CaptureView({ currentStep, totalSteps, onSubmit, onBack }: Captu
             disabled={!podeEnviar}
             className="w-full py-4 bg-[var(--color-brand-terracota)] hover:opacity-90 disabled:opacity-40 text-white font-bold rounded-xl text-sm uppercase tracking-wider transition-opacity"
           >
-            Ver meu resultado
+            Fazer Meu Teste
           </button>
           <p className="text-center text-[10px] text-[var(--color-brand-brown)]/40 leading-relaxed">
             Seus dados ficam seguros e não são compartilhados com terceiros.

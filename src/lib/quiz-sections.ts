@@ -61,3 +61,19 @@ export function sectionForIndex(
   const section = sections[sectionIndex];
   return { section, sectionIndex, questionInSection: index - section.startIndex };
 }
+
+/**
+ * Um checkpoint (PillarIntroView) só aparece ao avançar para uma seção nova
+ * que não seja a primeira — a pergunta 1 já é a abertura do quiz.
+ */
+export function crossesSectionBoundary(sections: QuizSection[], fromIndex: number, toIndex: number): boolean {
+  if (toIndex <= fromIndex) return false;
+
+  const { sectionIndex: toSectionIndex } = sectionForIndex(sections, toIndex);
+  if (toSectionIndex === 0) return false;
+
+  if (fromIndex < 0) return true;
+
+  const { sectionIndex: fromSectionIndex } = sectionForIndex(sections, fromIndex);
+  return toSectionIndex !== fromSectionIndex;
+}

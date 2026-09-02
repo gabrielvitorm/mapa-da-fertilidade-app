@@ -46,8 +46,11 @@ export default function QuizPerguntaPreviewPage() {
       question={current.question}
       options={current.options}
       pillarLabel={current.pillarLabel}
-      currentStep={step + 1}
-      totalSteps={PERGUNTAS.length}
+      sectionIndex={step % PERGUNTAS.length}
+      totalSections={PERGUNTAS.length}
+      sectionProgress={0}
+      questionNumber={step + 1}
+      totalQuestions={PERGUNTAS.length}
       onAnswer={(id) => {
         console.log(`Pergunta ${step + 1} respondida: opção ${id}`);
         setStep((s) => s + 1);
