@@ -15,14 +15,14 @@ Cada pilar tem um **peso** (multiplicador da pontuação das suas perguntas) e u
 | 2 | `saude_hormonal` | 3 | 36 |
 | 3 | `ciclo` | 3 | 27 |
 | 4 | `sono` | 2 | 24 |
-| 5 | `imunidade` | 2 | 24 |
+| 5 | `imunidade` | 2 | 18 |
 | 6 | `atividade_fisica` | 2 | 18 |
 | 7 | `alimentacao` | 2 | 18 |
 | 8 | `saude_intestinal` | 2 | 18 |
-| 9 | `figado` | 2 | 18 |
+| 9 | `figado` | 2 | 24 |
 | 10 | `estresse` | 2 | 18 |
-| 11 | `tireoide` | 2 | 9 |
-| 12 | `toxinas` | 1 | 6 |
+| 11 | `tireoide` | 2 | 6 |
+| 12 | `toxinas` | 1 | 3 |
 | 13 | `historico` | 1 | 3 |
 
 ## Score global
@@ -36,10 +36,17 @@ nivelGlobal:
   resultadoFinal  < 60          → BAIXA
 ```
 
-> **Atenção — constante a confirmar:** a soma dos *máximos* dos 13 pilares dá
-> **291**, mas o denominador usado é **285**. No Typebot o 285 é fixo. Trate 285
-> como uma **constante de calibração** (`SCORE_DENOMINATOR = 285`) e confirme com
-> a expert se é intencional. Não derive o denominador da soma dos máximos.
+> **Correção aplicada (confirmada):** o Typebot original tinha os `max` de
+> `figado`, `imunidade`, `tireoide` e `toxinas` hardcoded no JS de cada
+> "Cálculo personalizado", mas descolados do que as próprias perguntas desses
+> pilares conseguem somar (peso × maior `rawScore` de cada pergunta). Isso
+> tornava `imunidade`/`tireoide` estruturalmente incapazes de chegar a "Alto"
+> (mesmo com as melhores respostas em tudo) e travava `toxinas` sempre em
+> "Baixo" — enquanto `figado` ficava fácil demais. Os `max` acima já foram
+> ajustados pra bater com o alcançável, e a soma dos 13 agora fecha exatamente
+> em **285**, igual ao `SCORE_DENOMINATOR` — sem precisar de constante de
+> calibração separada. Isso diverge do Typebot original de propósito; se a
+> expert discordar do ajuste, os valores antigos estão no histórico do git.
 
 ## Nível por pilar (os "pontos de atenção")
 
@@ -80,8 +87,8 @@ type Pillar =
 
 const PILLAR_MAX: Record<Pillar, number> = {
   fatores_infertilidade: 72, saude_hormonal: 36, ciclo: 27, sono: 24,
-  imunidade: 24, atividade_fisica: 18, alimentacao: 18, saude_intestinal: 18,
-  figado: 18, estresse: 18, tireoide: 9, toxinas: 6, historico: 3,
+  imunidade: 18, atividade_fisica: 18, alimentacao: 18, saude_intestinal: 18,
+  figado: 24, estresse: 18, tireoide: 6, toxinas: 3, historico: 3,
 };
 const SCORE_DENOMINATOR = 285;
 

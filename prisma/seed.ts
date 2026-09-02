@@ -12,6 +12,7 @@ interface QuizSourceOption {
   ordem: number;
   label: string;
   rawScore: number;
+  insight?: string;
 }
 interface QuizSourceQuestion {
   ordem: number;
@@ -75,6 +76,7 @@ async function seedQuestions() {
               label: o.label,
               ordem: o.ordem,
               rawScore: o.rawScore,
+              insight: o.insight,
             })),
           },
         },

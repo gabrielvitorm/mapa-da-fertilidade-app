@@ -13,22 +13,26 @@
             {
               "ordem": 1,
               "label": "Até 35 anos",
-              "rawScore": 3.0
+              "rawScore": 3.0,
+              "insight": "Sua idade está na janela mais favorável para a reserva ovariana."
             },
             {
               "ordem": 2,
               "label": "36 a 38 anos",
-              "rawScore": 2.0
+              "rawScore": 2.0,
+              "insight": "Nessa faixa a reserva ovariana já começa a declinar de forma mais perceptível."
             },
             {
               "ordem": 3,
               "label": "39 a 41 anos",
-              "rawScore": 1.0
+              "rawScore": 1.0,
+              "insight": "A partir dos 39 anos a queda na quantidade e qualidade dos óvulos se acelera."
             },
             {
               "ordem": 4,
               "label": "Acima de 41 anos",
-              "rawScore": 0.0
+              "rawScore": 0.0,
+              "insight": "Acima dos 41 anos a fertilidade natural cai bastante, mas não impede um planejamento bem orientado."
             }
           ]
         },
@@ -39,17 +43,20 @@
             {
               "ordem": 1,
               "label": "Não",
-              "rawScore": 3.0
+              "rawScore": 3.0,
+              "insight": "Sem sinais de endometriose, um fator a menos pressionando sua fertilidade."
             },
             {
               "ordem": 2,
               "label": "Suspeita",
-              "rawScore": 1.0
+              "rawScore": 1.0,
+              "insight": "Uma suspeita de endometriose merece investigação — ela pode afetar a qualidade dos óvulos e a implantação."
             },
             {
               "ordem": 3,
               "label": "Sim",
-              "rawScore": 0.0
+              "rawScore": 0.0,
+              "insight": "Endometriose confirmada é um dos fatores que mais pesam contra a fertilidade e pede acompanhamento direcionado."
             }
           ]
         },
@@ -60,17 +67,20 @@
             {
               "ordem": 1,
               "label": "Não",
-              "rawScore": 3.0
+              "rawScore": 3.0,
+              "insight": "Sem SOP, seus ciclos tendem a ser hormonalmente mais previsíveis."
             },
             {
               "ordem": 2,
               "label": "Suspeita",
-              "rawScore": 1.0
+              "rawScore": 1.0,
+              "insight": "Uma suspeita de SOP pode explicar irregularidades no ciclo e na ovulação."
             },
             {
               "ordem": 3,
               "label": "Sim",
-              "rawScore": 0.0
+              "rawScore": 0.0,
+              "insight": "SOP confirmada altera diretamente a ovulação e costuma pedir manejo metabólico e hormonal específico."
             }
           ]
         },
@@ -81,12 +91,14 @@
             {
               "ordem": 1,
               "label": "Não",
-              "rawScore": 3.0
+              "rawScore": 3.0,
+              "insight": "Sem sensibilidade ao glúten, seu intestino tem uma barreira a menos para absorver nutrientes."
             },
             {
               "ordem": 2,
               "label": "Sim",
-              "rawScore": 0.0
+              "rawScore": 0.0,
+              "insight": "Doença celíaca ou sensibilidade ao glúten pode prejudicar a absorção de nutrientes essenciais à fertilidade."
             }
           ]
         },
@@ -97,12 +109,14 @@
             {
               "ordem": 1,
               "label": "Não",
-              "rawScore": 3.0
+              "rawScore": 3.0,
+              "insight": "Sem doença autoimune diagnosticada, seu sistema imunológico não está competindo contra a fertilidade."
             },
             {
               "ordem": 2,
               "label": "Sim",
-              "rawScore": 0.0
+              "rawScore": 0.0,
+              "insight": "Doenças autoimunes como Hashimoto ou Lúpus podem gerar inflamação que interfere na implantação."
             }
           ]
         },
@@ -113,12 +127,14 @@
             {
               "ordem": 1,
               "label": "Não",
-              "rawScore": 3.0
+              "rawScore": 3.0,
+              "insight": "Sem obstrução nas trompas, a via natural para a fecundação está livre."
             },
             {
               "ordem": 2,
               "label": "Sim",
-              "rawScore": 0.0
+              "rawScore": 0.0,
+              "insight": "Obstrução tubária impede o encontro natural entre óvulo e espermatozoide e costuma exigir avaliação especializada."
             }
           ]
         },
@@ -129,12 +145,14 @@
             {
               "ordem": 1,
               "label": "Não",
-              "rawScore": 3.0
+              "rawScore": 3.0,
+              "insight": "Seu peso não está entre os fatores pressionando sua fertilidade agora."
             },
             {
               "ordem": 2,
               "label": "Sim",
-              "rawScore": 0.0
+              "rawScore": 0.0,
+              "insight": "Excesso de gordura corporal altera a produção hormonal e pode dificultar a ovulação."
             }
           ]
         },
@@ -145,12 +163,14 @@
             {
               "ordem": 1,
               "label": "Não",
-              "rawScore": 3.0
+              "rawScore": 3.0,
+              "insight": "Seu peso está numa faixa que sustenta a produção hormonal necessária pra ovulação."
             },
             {
               "ordem": 2,
               "label": "Sim",
-              "rawScore": 0.0
+              "rawScore": 0.0,
+              "insight": "Magreza severa pode reduzir a produção de estrogênio a ponto de interromper a ovulação."
             }
           ]
         }
@@ -168,22 +188,26 @@
             {
               "ordem": 1,
               "label": "<8",
-              "rawScore": 3.0
+              "rawScore": 3.0,
+              "insight": "Seu FSH está numa faixa que sugere boa reserva ovariana."
             },
             {
               "ordem": 2,
               "label": "8 - 10",
-              "rawScore": 2.0
+              "rawScore": 2.0,
+              "insight": "FSH nessa faixa já é um sinal inicial de queda na reserva ovariana."
             },
             {
               "ordem": 3,
               "label": "10",
-              "rawScore": 1.0
+              "rawScore": 1.0,
+              "insight": "FSH elevado indica que os ovários estão exigindo mais estímulo hormonal para funcionar — sinal de reserva reduzida."
             },
             {
               "ordem": 4,
               "label": "Não sei",
-              "rawScore": 0.0
+              "rawScore": 0.0,
+              "insight": "Sem saber seu FSH, esse é um exame simples que vale pedir ao seu ginecologista."
             }
           ]
         },
@@ -194,22 +218,26 @@
             {
               "ordem": 1,
               "label": "1,5 ng/mL",
-              "rawScore": 3.0
+              "rawScore": 3.0,
+              "insight": "Seu AMH indica uma reserva ovariana dentro do esperado."
             },
             {
               "ordem": 2,
               "label": "1–1,5 ng/mL",
-              "rawScore": 2.0
+              "rawScore": 2.0,
+              "insight": "AMH nessa faixa já sinaliza uma reserva ovariana em declínio moderado."
             },
             {
               "ordem": 3,
               "label": "<1 ng/mL",
-              "rawScore": 1.0
+              "rawScore": 1.0,
+              "insight": "AMH baixo indica reserva ovariana reduzida — vale mapear as opções com um especialista."
             },
             {
               "ordem": 4,
               "label": "Não sei!",
-              "rawScore": 0.0
+              "rawScore": 0.0,
+              "insight": "O AMH é o exame mais direto pra estimar sua reserva ovariana — considere solicitá-lo."
             }
           ]
         },
@@ -220,17 +248,20 @@
             {
               "ordem": 1,
               "label": "10",
-              "rawScore": 3.0
+              "rawScore": 3.0,
+              "insight": "Sua contagem de folículos antrais sugere uma boa reserva de óvulos disponíveis no ciclo."
             },
             {
               "ordem": 2,
               "label": "6-10",
-              "rawScore": 2.0
+              "rawScore": 2.0,
+              "insight": "Contagem de folículos antrais moderada — ainda dentro de uma faixa funcional, mas vale monitorar."
             },
             {
               "ordem": 3,
               "label": "<6",
-              "rawScore": 1.0
+              "rawScore": 1.0,
+              "insight": "Poucos folículos antrais indicam reserva ovariana mais limitada para este ciclo."
             }
           ]
         },
@@ -241,27 +272,32 @@
             {
               "ordem": 1,
               "label": "10 ng/mL",
-              "rawScore": 3.0
+              "rawScore": 3.0,
+              "insight": "Sua progesterona na fase lútea está numa faixa que costuma sustentar bem a implantação."
             },
             {
               "ordem": 2,
               "label": "7-10 ng/mL",
-              "rawScore": 2.0
+              "rawScore": 2.0,
+              "insight": "Progesterona um pouco abaixo do ideal pode deixar a fase lútea mais curta."
             },
             {
               "ordem": 3,
               "label": "5-7 ng/mL",
-              "rawScore": 1.0
+              "rawScore": 1.0,
+              "insight": "Progesterona baixa na fase lútea é um dos motivos mais comuns de dificuldade de implantação."
             },
             {
               "ordem": 4,
               "label": "<5 ng/mL",
-              "rawScore": 0.0
+              "rawScore": 0.0,
+              "insight": "Progesterona muito baixa na fase lútea compromete diretamente a sustentação de uma gravidez inicial."
             },
             {
               "ordem": 5,
               "label": "não sei",
-              "rawScore": 0.0
+              "rawScore": 0.0,
+              "insight": "Vale medir sua progesterona na fase lútea — ela é decisiva pra sustentar a implantação."
             }
           ]
         }
@@ -279,22 +315,26 @@
             {
               "ordem": 1,
               "label": "7–9h",
-              "rawScore": 3.0
+              "rawScore": 3.0,
+              "insight": "Você dorme na faixa que o corpo precisa pra regular os hormônios reprodutivos."
             },
             {
               "ordem": 2,
               "label": "6–7h",
-              "rawScore": 2.0
+              "rawScore": 2.0,
+              "insight": "Um pouco abaixo do ideal — a curto prazo o corpo compensa, mas o hormônio do sono já sente."
             },
             {
               "ordem": 3,
               "label": "5–6h",
-              "rawScore": 1.0
+              "rawScore": 1.0,
+              "insight": "Dormir tão pouco por noite já mexe na produção de melatonina e progesterona."
             },
             {
               "ordem": 4,
               "label": "<5h",
-              "rawScore": 0.0
+              "rawScore": 0.0,
+              "insight": "Menos de 5h de sono é o suficiente pra desregular o eixo hormonal que sustenta a ovulação."
             }
           ]
         },
@@ -305,22 +345,26 @@
             {
               "ordem": 1,
               "label": "Profundo",
-              "rawScore": 3.0
+              "rawScore": 3.0,
+              "insight": "Sono profundo é quando o corpo faz a maior parte da regulação hormonal noturna."
             },
             {
               "ordem": 2,
               "label": "Moderado",
-              "rawScore": 2.0
+              "rawScore": 2.0,
+              "insight": "Um sono moderadamente reparador, mas ainda com espaço pra aprofundar as fases de recuperação."
             },
             {
               "ordem": 3,
               "label": "Leve",
-              "rawScore": 1.0
+              "rawScore": 1.0,
+              "insight": "Sono leve significa menos tempo nas fases profundas, onde a regulação hormonal acontece de verdade."
             },
             {
               "ordem": 4,
               "label": "Muito Leve",
-              "rawScore": 0.0
+              "rawScore": 0.0,
+              "insight": "Sono muito leve quase não entrega as fases profundas que o corpo precisa pra se regular."
             }
           ]
         },
@@ -331,22 +375,26 @@
             {
               "ordem": 1,
               "label": "Não",
-              "rawScore": 3.0
+              "rawScore": 3.0,
+              "insight": "Poucos sonhos lembrados costuma indicar um sono mais estável, sem despertares frequentes."
             },
             {
               "ordem": 2,
               "label": "Moderadamente",
-              "rawScore": 2.0
+              "rawScore": 2.0,
+              "insight": "Sonhar moderadamente é normal e não costuma indicar fragmentação relevante do sono."
             },
             {
               "ordem": 3,
               "label": "Excessivamente",
-              "rawScore": 1.0
+              "rawScore": 1.0,
+              "insight": "Sonhar excessivamente pode ser sinal de um sono mais fragmentado do que parece."
             },
             {
               "ordem": 4,
               "label": "Pesadelos/Sono agitado",
-              "rawScore": 0.0
+              "rawScore": 0.0,
+              "insight": "Pesadelos ou sono agitado com frequência sugerem um sono que não está cumprindo seu papel restaurador."
             }
           ]
         },
@@ -357,22 +405,26 @@
             {
               "ordem": 1,
               "label": "Nunca",
-              "rawScore": 3.0
+              "rawScore": 3.0,
+              "insight": "Sem dificuldade pra dormir, seu ritmo circadiano parece bem ajustado."
             },
             {
               "ordem": 2,
               "label": "Às vezes",
-              "rawScore": 2.0
+              "rawScore": 2.0,
+              "insight": "Dificuldade ocasional pra dormir ainda é administrável, mas vale observar o padrão."
             },
             {
               "ordem": 3,
               "label": "Frequente",
-              "rawScore": 1.0
+              "rawScore": 1.0,
+              "insight": "Dificuldade frequente pra iniciar ou manter o sono já indica um ritmo circadiano desregulado."
             },
             {
               "ordem": 4,
               "label": "Sempre",
-              "rawScore": 0.0
+              "rawScore": 0.0,
+              "insight": "Dificuldade constante pra dormir é um dos sinais mais diretos de desequilíbrio no eixo do estresse."
             }
           ]
         }
@@ -390,22 +442,26 @@
             {
               "ordem": 1,
               "label": "3 vezes ou mais na semana",
-              "rawScore": 3.0
+              "rawScore": 3.0,
+              "insight": "Você já está na frequência que ajuda a regular insulina e hormônios reprodutivos."
             },
             {
               "ordem": 2,
               "label": "2 vezes na semana",
-              "rawScore": 2.0
+              "rawScore": 2.0,
+              "insight": "Uma frequência razoável, mas ainda abaixo do que costuma trazer benefício hormonal consistente."
             },
             {
               "ordem": 3,
               "label": "1 vez na semana",
-              "rawScore": 1.0
+              "rawScore": 1.0,
+              "insight": "Uma vez por semana é pouco pra sustentar os efeitos metabólicos que ajudam a fertilidade."
             },
             {
               "ordem": 4,
               "label": "Não pratico",
-              "rawScore": 0.0
+              "rawScore": 0.0,
+              "insight": "Sem atividade física regular, o corpo perde um dos aliados mais fortes do equilíbrio hormonal."
             }
           ]
         },
@@ -416,22 +472,26 @@
             {
               "ordem": 1,
               "label": "Sim",
-              "rawScore": 3.0
+              "rawScore": 3.0,
+              "insight": "Combinar força e aeróbico é o formato que mais favorece o equilíbrio metabólico."
             },
             {
               "ordem": 2,
               "label": "Parcialmente",
-              "rawScore": 2.0
+              "rawScore": 2.0,
+              "insight": "Um treino parcialmente equilibrado já ajuda, mas ainda deixa benefícios na mesa."
             },
             {
               "ordem": 3,
               "label": "Só um tipo",
-              "rawScore": 1.0
+              "rawScore": 1.0,
+              "insight": "Treinar só um tipo de exercício limita parte do benefício metabólico do movimento."
             },
             {
               "ordem": 4,
               "label": "Nenhum",
-              "rawScore": 0.0
+              "rawScore": 0.0,
+              "insight": "Sem um treino estruturado, falta o estímulo que ajuda a regular insulina e cortisol."
             }
           ]
         },
@@ -442,22 +502,26 @@
             {
               "ordem": 1,
               "label": "Não",
-              "rawScore": 3.0
+              "rawScore": 3.0,
+              "insight": "Sem sedentarismo, seu corpo se movimenta o suficiente pra sustentar o metabolismo em dia."
             },
             {
               "ordem": 2,
               "label": "Um pouco",
-              "rawScore": 2.0
+              "rawScore": 2.0,
+              "insight": "Um estilo de vida um pouco sedentário já começa a pesar no metabolismo."
             },
             {
               "ordem": 3,
               "label": "Bastante",
-              "rawScore": 1.0
+              "rawScore": 1.0,
+              "insight": "Um estilo de vida bastante sedentário costuma vir acompanhado de resistência à insulina."
             },
             {
               "ordem": 4,
               "label": "Extremamente",
-              "rawScore": 0.0
+              "rawScore": 0.0,
+              "insight": "Sedentarismo extremo é um dos fatores mais silenciosos de desequilíbrio metabólico e hormonal."
             }
           ]
         }
@@ -475,22 +539,26 @@
             {
               "ordem": 1,
               "label": "1 vez na semana",
-              "rawScore": 3.0
+              "rawScore": 3.0,
+              "insight": "Consumo baixo de ultraprocessados protege seu corpo de picos inflamatórios frequentes."
             },
             {
               "ordem": 2,
               "label": "2 a 3 vezes na semana",
-              "rawScore": 2.0
+              "rawScore": 2.0,
+              "insight": "Um consumo moderado de ultraprocessados já soma alguma carga inflamatória ao longo da semana."
             },
             {
               "ordem": 3,
               "label": "4 a 5 vezes na semana",
-              "rawScore": 1.0
+              "rawScore": 1.0,
+              "insight": "Ultraprocessados quase todo dia mantêm o corpo em um estado inflamatório de baixo grau."
             },
             {
               "ordem": 4,
               "label": "Diariamente",
-              "rawScore": 0.0
+              "rawScore": 0.0,
+              "insight": "Ultraprocessados diários são uma das maiores fontes de inflamação silenciosa que afeta a fertilidade."
             }
           ]
         },
@@ -501,22 +569,26 @@
             {
               "ordem": 1,
               "label": "5 Porções",
-              "rawScore": 3.0
+              "rawScore": 3.0,
+              "insight": "Você já come a quantidade de fibras e vegetais que sustenta um intestino saudável."
             },
             {
               "ordem": 2,
               "label": "3 a 4 Porções",
-              "rawScore": 2.0
+              "rawScore": 2.0,
+              "insight": "Um consumo bom de fibras, mas ainda dá pra reforçar o suporte ao intestino."
             },
             {
               "ordem": 3,
               "label": "1 a 2 Porções",
-              "rawScore": 1.0
+              "rawScore": 1.0,
+              "insight": "Poucas porções de fibras e vegetais deixam o intestino com menos suporte pra eliminar toxinas."
             },
             {
               "ordem": 4,
               "label": "Nenhuma",
-              "rawScore": 0.0
+              "rawScore": 0.0,
+              "insight": "Sem fibras, frutas ou vegetais no dia a dia, o intestino perde sua principal fonte de suporte."
             }
           ]
         },
@@ -527,22 +599,26 @@
             {
               "ordem": 1,
               "label": "Diariamente",
-              "rawScore": 3.0
+              "rawScore": 3.0,
+              "insight": "Proteína de qualidade todo dia dá ao corpo a matéria-prima que os hormônios precisam."
             },
             {
               "ordem": 2,
               "label": "4 a 5 vezes na semana",
-              "rawScore": 2.0
+              "rawScore": 2.0,
+              "insight": "Um bom consumo de proteína, quase diário, sustenta bem a produção hormonal."
             },
             {
               "ordem": 3,
               "label": "2 a 3 vezes na semana",
-              "rawScore": 1.0
+              "rawScore": 1.0,
+              "insight": "Proteína de qualidade só algumas vezes por semana pode deixar a produção hormonal com menos matéria-prima."
             },
             {
               "ordem": 4,
               "label": "1 ou menos vezes na semana",
-              "rawScore": 0.0
+              "rawScore": 0.0,
+              "insight": "Pouquíssima proteína de qualidade limita a matéria-prima que o corpo usa pra produzir hormônios."
             }
           ]
         }
@@ -560,22 +636,26 @@
             {
               "ordem": 1,
               "label": "1 vez ao dia",
-              "rawScore": 3.0
+              "rawScore": 3.0,
+              "insight": "Um ritmo intestinal diário ajuda a eliminar o excesso hormonal de forma eficiente."
             },
             {
               "ordem": 2,
               "label": "5 a 6 vezes na semana",
-              "rawScore": 2.0
+              "rawScore": 2.0,
+              "insight": "Um ritmo intestinal quase diário, ainda dentro de uma faixa saudável."
             },
             {
               "ordem": 3,
               "label": "3 a 4 vezes na semana",
-              "rawScore": 1.0
+              "rawScore": 1.0,
+              "insight": "Um ritmo intestinal mais lento pode significar reabsorção de hormônios que deveriam ser eliminados."
             },
             {
               "ordem": 4,
               "label": "menos que 3 vezes",
-              "rawScore": 0.0
+              "rawScore": 0.0,
+              "insight": "Evacuar poucas vezes por semana é sinal de que o intestino não está eliminando toxinas e hormônios como deveria."
             }
           ]
         },
@@ -586,22 +666,26 @@
             {
               "ordem": 1,
               "label": "Nunca",
-              "rawScore": 3.0
+              "rawScore": 3.0,
+              "insight": "Sem gases ou inchaço, seu intestino parece estar processando bem os alimentos."
             },
             {
               "ordem": 2,
               "label": "Raramente",
-              "rawScore": 2.0
+              "rawScore": 2.0,
+              "insight": "Gases ou inchaço raros ainda são um sinal leve de que vale observar."
             },
             {
               "ordem": 3,
               "label": "Frequentemente",
-              "rawScore": 1.0
+              "rawScore": 1.0,
+              "insight": "Gases e inchaço frequentes indicam um desequilíbrio na flora intestinal que merece atenção."
             },
             {
               "ordem": 4,
               "label": "Sempre",
-              "rawScore": 0.0
+              "rawScore": 0.0,
+              "insight": "Inchaço constante costuma ser sinal de disbiose, que também afeta a absorção de nutrientes."
             }
           ]
         },
@@ -612,22 +696,26 @@
             {
               "ordem": 1,
               "label": "Não",
-              "rawScore": 3.0
+              "rawScore": 3.0,
+              "insight": "Sem histórico de disbiose ou uso crônico de antibióticos, sua flora intestinal tem menos motivo pra estar alterada."
             },
             {
               "ordem": 2,
               "label": "Uso pontual",
-              "rawScore": 2.0
+              "rawScore": 2.0,
+              "insight": "Um uso pontual de antibióticos costuma ser recuperável com o suporte certo à flora intestinal."
             },
             {
               "ordem": 3,
               "label": "Recorrente",
-              "rawScore": 1.0
+              "rawScore": 1.0,
+              "insight": "Uso recorrente de antibióticos tende a desequilibrar a flora intestinal de forma mais persistente."
             },
             {
               "ordem": 4,
               "label": "Contínuo",
-              "rawScore": 0.0
+              "rawScore": 0.0,
+              "insight": "Uso contínuo de antibióticos ou disbiose recorrente costuma exigir um trabalho ativo de repovoamento da flora."
             }
           ]
         }
@@ -636,7 +724,7 @@
     {
       "pillar": "figado",
       "weight": 2,
-      "max": 18,
+      "max": 24,
       "questions": [
         {
           "ordem": 1,
@@ -645,22 +733,26 @@
             {
               "ordem": 1,
               "label": "Não",
-              "rawScore": 3.0
+              "rawScore": 3.0,
+              "insight": "Sem esteatose hepática, seu fígado processa hormônios sem essa sobrecarga extra."
             },
             {
               "ordem": 2,
               "label": "Leve",
-              "rawScore": 2.0
+              "rawScore": 2.0,
+              "insight": "Esteatose leve já é um sinal de que o fígado está começando a acumular gordura."
             },
             {
               "ordem": 3,
               "label": "Moderado",
-              "rawScore": 1.0
+              "rawScore": 1.0,
+              "insight": "Esteatose moderada reduz a capacidade do fígado de metabolizar hormônios em excesso, como o estrogênio."
             },
             {
               "ordem": 4,
               "label": "Grave",
-              "rawScore": 0.0
+              "rawScore": 0.0,
+              "insight": "Esteatose grave compromete significativamente a capacidade do fígado de metabolizar hormônios."
             }
           ]
         },
@@ -671,22 +763,26 @@
             {
               "ordem": 1,
               "label": "Não",
-              "rawScore": 3.0
+              "rawScore": 3.0,
+              "insight": "Sem uso de medicamentos ou anticoncepcionais, o fígado tem uma carga a menos pra metabolizar."
             },
             {
               "ordem": 2,
               "label": "Ocasionalmente",
-              "rawScore": 2.0
+              "rawScore": 2.0,
+              "insight": "Uso ocasional de medicamentos costuma ser tranquilo pro fígado processar."
             },
             {
               "ordem": 3,
               "label": "Frequentemente",
-              "rawScore": 1.0
+              "rawScore": 1.0,
+              "insight": "Uso frequente de medicamentos ou anticoncepcionais aumenta a carga de trabalho do fígado."
             },
             {
               "ordem": 4,
               "label": "Sempre",
-              "rawScore": 0.0
+              "rawScore": 0.0,
+              "insight": "Uso constante de medicamentos ou anticoncepcionais mantém o fígado trabalhando pesado o tempo todo."
             }
           ]
         },
@@ -697,22 +793,26 @@
             {
               "ordem": 1,
               "label": "Normal",
-              "rawScore": 3.0
+              "rawScore": 3.0,
+              "insight": "Uma língua com cor normal é, na medicina tradicional, sinal de digestão e fígado equilibrados."
             },
             {
               "ordem": 2,
               "label": "Branca leve",
-              "rawScore": 2.0
+              "rawScore": 2.0,
+              "insight": "Uma saburra branca leve costuma indicar um princípio de sobrecarga digestiva."
             },
             {
               "ordem": 3,
               "label": "Amarela/branca intensa",
-              "rawScore": 1.0
+              "rawScore": 1.0,
+              "insight": "Saburra amarelada ou intensa é um sinal clássico de sobrecarga hepática e digestiva."
             },
             {
               "ordem": 4,
               "label": "Pastosa e espessa",
-              "rawScore": 0.0
+              "rawScore": 0.0,
+              "insight": "Uma língua pastosa e espessa costuma indicar acúmulo e estagnação digestiva importante."
             }
           ]
         },
@@ -723,22 +823,26 @@
             {
               "ordem": 1,
               "label": "Nenhum sintoma",
-              "rawScore": 3.0
+              "rawScore": 3.0,
+              "insight": "Sem esses sintomas, seu fígado parece estar dando conta de metabolizar o excesso hormonal."
             },
             {
               "ordem": 2,
               "label": "1–2 leves",
-              "rawScore": 2.0
+              "rawScore": 2.0,
+              "insight": "Alguns sintomas leves já podem ser o fígado sinalizando sobrecarga hormonal."
             },
             {
               "ordem": 3,
               "label": "3 moderados",
-              "rawScore": 1.0
+              "rawScore": 1.0,
+              "insight": "Vários sintomas moderados juntos costumam apontar pra sobrecarga hepática no metabolismo hormonal."
             },
             {
               "ordem": 4,
               "label": "4 ou mais intensos",
-              "rawScore": 0.0
+              "rawScore": 0.0,
+              "insight": "Múltiplos sintomas intensos indicam que o fígado está com dificuldade real de metabolizar o excesso hormonal."
             }
           ]
         }
@@ -747,7 +851,7 @@
     {
       "pillar": "imunidade",
       "weight": 2,
-      "max": 24,
+      "max": 18,
       "questions": [
         {
           "ordem": 1,
@@ -756,22 +860,26 @@
             {
               "ordem": 1,
               "label": "Raro",
-              "rawScore": 3.0
+              "rawScore": 3.0,
+              "insight": "Poucas infecções indicam um sistema imunológico respondendo bem."
             },
             {
               "ordem": 2,
               "label": "1 ou 2 vezes ao ano",
-              "rawScore": 2.0
+              "rawScore": 2.0,
+              "insight": "Uma ou duas infecções por ano ainda é uma frequência dentro do esperado."
             },
             {
               "ordem": 3,
               "label": "3 a 4 vezes ao ano",
-              "rawScore": 1.0
+              "rawScore": 1.0,
+              "insight": "Infecções recorrentes algumas vezes ao ano sugerem uma imunidade um pouco mais vulnerável."
             },
             {
               "ordem": 4,
               "label": "mais de 5 vezes ao ano",
-              "rawScore": 0.0
+              "rawScore": 0.0,
+              "insight": "Infecções muito frequentes indicam um sistema imunológico sobrecarregado ou desregulado."
             }
           ]
         },
@@ -782,22 +890,26 @@
             {
               "ordem": 1,
               "label": "Não",
-              "rawScore": 3.0
+              "rawScore": 3.0,
+              "insight": "Sem doenças autoimunes, seu sistema imunológico não está em conflito com o próprio corpo."
             },
             {
               "ordem": 2,
               "label": "Suspeita",
-              "rawScore": 2.0
+              "rawScore": 2.0,
+              "insight": "Uma suspeita de doença autoimune vale investigar — inflamação crônica pode afetar a implantação."
             },
             {
               "ordem": 3,
               "label": "Confirmada leve",
-              "rawScore": 1.0
+              "rawScore": 1.0,
+              "insight": "Uma condição autoimune leve já pede atenção ao componente inflamatório na fertilidade."
             },
             {
               "ordem": 4,
               "label": "Confirmada grave",
-              "rawScore": 0.0
+              "rawScore": 0.0,
+              "insight": "Uma condição autoimune mais grave costuma exigir manejo inflamatório específico dentro do plano de fertilidade."
             }
           ]
         },
@@ -808,22 +920,26 @@
             {
               "ordem": 1,
               "label": "Todos normais",
-              "rawScore": 3.0
+              "rawScore": 3.0,
+              "insight": "Marcadores inflamatórios normais indicam baixo nível de inflamação sistêmica agora."
             },
             {
               "ordem": 2,
               "label": "1 alterado",
-              "rawScore": 2.0
+              "rawScore": 2.0,
+              "insight": "Um marcador inflamatório alterado já é um sinal inicial de inflamação de baixo grau."
             },
             {
               "ordem": 3,
               "label": "2 alterados",
-              "rawScore": 1.0
+              "rawScore": 1.0,
+              "insight": "Dois marcadores inflamatórios alterados sugerem um processo inflamatório mais estabelecido."
             },
             {
               "ordem": 4,
               "label": "3 ou mais",
-              "rawScore": 0.0
+              "rawScore": 0.0,
+              "insight": "Vários marcadores inflamatórios alterados juntos indicam inflamação sistêmica relevante pra investigar."
             }
           ]
         }
@@ -841,22 +957,26 @@
             {
               "ordem": 1,
               "label": "Nunca",
-              "rawScore": 3.0
+              "rawScore": 3.0,
+              "insight": "Sem estresse diário, seu eixo hormonal do estresse (cortisol) tende a ficar mais estável."
             },
             {
               "ordem": 2,
               "label": "Às vezes",
-              "rawScore": 2.0
+              "rawScore": 2.0,
+              "insight": "Estresse ocasional é normal e geralmente não desregula o cortisol de forma persistente."
             },
             {
               "ordem": 3,
               "label": "Frequentemente",
-              "rawScore": 1.0
+              "rawScore": 1.0,
+              "insight": "Estresse frequente mantém o cortisol elevado com mais frequência do que o corpo consegue compensar."
             },
             {
               "ordem": 4,
               "label": "Sempre",
-              "rawScore": 0.0
+              "rawScore": 0.0,
+              "insight": "Estresse constante mantém o cortisol cronicamente alto, o que compete diretamente com a progesterona."
             }
           ]
         },
@@ -867,22 +987,26 @@
             {
               "ordem": 1,
               "label": "Não",
-              "rawScore": 3.0
+              "rawScore": 3.0,
+              "insight": "Sem exaustão, suas reservas de energia parecem estar sendo repostas adequadamente."
             },
             {
               "ordem": 2,
               "label": "Leve",
-              "rawScore": 2.0
+              "rawScore": 2.0,
+              "insight": "Uma exaustão leve ainda é recuperável com ajustes simples de rotina."
             },
             {
               "ordem": 3,
               "label": "Moderada",
-              "rawScore": 1.0
+              "rawScore": 1.0,
+              "insight": "Exaustão moderada já indica reservas de energia comprometidas por um tempo."
             },
             {
               "ordem": 4,
               "label": "Grave",
-              "rawScore": 0.0
+              "rawScore": 0.0,
+              "insight": "Exaustão grave é sinal de que o corpo está operando no limite, sem margem de recuperação."
             }
           ]
         },
@@ -893,22 +1017,26 @@
             {
               "ordem": 1,
               "label": "Nunca",
-              "rawScore": 3.0
+              "rawScore": 3.0,
+              "insight": "Sem ansiedade ou insônia, seu sistema nervoso parece estar bem regulado."
             },
             {
               "ordem": 2,
               "label": "Leve",
-              "rawScore": 2.0
+              "rawScore": 2.0,
+              "insight": "Ansiedade leve ocasional costuma ser administrável sem grande impacto hormonal."
             },
             {
               "ordem": 3,
               "label": "Moderado",
-              "rawScore": 1.0
+              "rawScore": 1.0,
+              "insight": "Ansiedade moderada e constante já mantém o sistema nervoso em estado de alerta prolongado."
             },
             {
               "ordem": 4,
               "label": "Grave",
-              "rawScore": 0.0
+              "rawScore": 0.0,
+              "insight": "Ansiedade grave ou insônia persistente mantêm o corpo em alerta constante, dificultando a regulação hormonal."
             }
           ]
         }
@@ -926,22 +1054,26 @@
             {
               "ordem": 1,
               "label": "Sim",
-              "rawScore": 3.0
+              "rawScore": 3.0,
+              "insight": "Um ciclo regular é um dos sinais mais diretos de que a ovulação está acontecendo de forma previsível."
             },
             {
               "ordem": 2,
               "label": "Varia um pouco",
-              "rawScore": 2.0
+              "rawScore": 2.0,
+              "insight": "Uma variação leve no ciclo ainda pode ser normal, mas vale observar o padrão."
             },
             {
               "ordem": 3,
               "label": "Muito irregular",
-              "rawScore": 1.0
+              "rawScore": 1.0,
+              "insight": "Um ciclo muito irregular costuma indicar que a ovulação não está acontecendo de forma consistente."
             },
             {
               "ordem": 4,
               "label": "Ausente",
-              "rawScore": 0.0
+              "rawScore": 0.0,
+              "insight": "Ausência de ciclo é um sinal importante que pede investigação hormonal prioritária."
             }
           ]
         },
@@ -952,22 +1084,26 @@
             {
               "ordem": 1,
               "label": "Sim",
-              "rawScore": 3.0
+              "rawScore": 3.0,
+              "insight": "Confirmar a ovulação é uma das informações mais valiosas que você pode ter sobre sua fertilidade."
             },
             {
               "ordem": 2,
               "label": "Suspeita",
-              "rawScore": 2.0
+              "rawScore": 2.0,
+              "insight": "Suspeitar da ovulação sem confirmar deixa uma peça-chave do quebra-cabeça em aberto."
             },
             {
               "ordem": 3,
               "label": "Não sabe",
-              "rawScore": 1.0
+              "rawScore": 1.0,
+              "insight": "Vale rastrear sua ovulação (muco, temperatura ou testes) — é uma das informações mais úteis que existem."
             },
             {
               "ordem": 4,
               "label": "Não ovula",
-              "rawScore": 0.0
+              "rawScore": 0.0,
+              "insight": "Não ovular é a causa mais direta de dificuldade pra engravidar naturalmente, e também uma das mais tratáveis."
             }
           ]
         },
@@ -978,22 +1114,26 @@
             {
               "ordem": 1,
               "label": "Sim",
-              "rawScore": 3.0
+              "rawScore": 3.0,
+              "insight": "Um fluxo menstrual normal sugere um revestimento uterino se formando e descamando de forma saudável."
             },
             {
               "ordem": 2,
               "label": "Um pouco intenso",
-              "rawScore": 2.0
+              "rawScore": 2.0,
+              "insight": "Um fluxo um pouco mais intenso ainda pode estar dentro da variação normal, mas vale observar."
             },
             {
               "ordem": 3,
               "label": "Intenso com coágulos",
-              "rawScore": 1.0
+              "rawScore": 1.0,
+              "insight": "Fluxo intenso com coágulos pode indicar desequilíbrio hormonal ou alterações uterinas que merecem avaliação."
             },
             {
               "ordem": 4,
               "label": "Ausente/Hemorragia",
-              "rawScore": 0.0
+              "rawScore": 0.0,
+              "insight": "Ausência de fluxo ou hemorragia são sinais que pedem avaliação médica prioritária."
             }
           ]
         }
@@ -1002,7 +1142,7 @@
     {
       "pillar": "tireoide",
       "weight": 2,
-      "max": 9,
+      "max": 6,
       "questions": [
         {
           "ordem": 1,
@@ -1011,17 +1151,20 @@
             {
               "ordem": 1,
               "label": "menor ou igual a 2,5",
-              "rawScore": 3.0
+              "rawScore": 3.0,
+              "insight": "Seu TSH está na faixa considerada ideal pra fertilidade, mais rigorosa que a faixa geral de exames."
             },
             {
               "ordem": 2,
               "label": "entre 2,5 e 3,0",
-              "rawScore": 1.0
+              "rawScore": 1.0,
+              "insight": "TSH nessa faixa já está acima do ideal pra fertilidade, mesmo dentro do considerado 'normal' em exames gerais."
             },
             {
               "ordem": 3,
               "label": "entre 3,5 e 4,5",
-              "rawScore": 0.0
+              "rawScore": 0.0,
+              "insight": "TSH nessa faixa costuma indicar hipotireoidismo subclínico, que pode interferir na ovulação e na implantação."
             }
           ]
         }
@@ -1030,7 +1173,7 @@
     {
       "pillar": "toxinas",
       "weight": 1,
-      "max": 6,
+      "max": 3,
       "questions": [
         {
           "ordem": 1,
@@ -1039,22 +1182,26 @@
             {
               "ordem": 1,
               "label": "Nunca",
-              "rawScore": 3.0
+              "rawScore": 3.0,
+              "insight": "Baixa exposição a plásticos e parabenos poupa seu corpo de disruptores hormonais desnecessários."
             },
             {
               "ordem": 2,
               "label": "Raramente",
-              "rawScore": 2.0
+              "rawScore": 2.0,
+              "insight": "Exposição rara a essas substâncias representa um risco baixo pro seu equilíbrio hormonal."
             },
             {
               "ordem": 3,
               "label": "Frequentemente",
-              "rawScore": 1.0
+              "rawScore": 1.0,
+              "insight": "Exposição frequente a plásticos e parabenos introduz disruptores que imitam ou bloqueiam hormônios do corpo."
             },
             {
               "ordem": 4,
               "label": "Diariamente",
-              "rawScore": 0.0
+              "rawScore": 0.0,
+              "insight": "Exposição diária a plásticos, parabenos ou água contaminada é uma fonte constante de disruptores hormonais."
             }
           ]
         }
@@ -1072,22 +1219,26 @@
             {
               "ordem": 1,
               "label": "Não",
-              "rawScore": 3.0
+              "rawScore": 3.0,
+              "insight": "Sem histórico familiar de dificuldade pra engravidar, esse não é um fator de risco herdado pra você."
             },
             {
               "ordem": 2,
               "label": "Um caso",
-              "rawScore": 2.0
+              "rawScore": 2.0,
+              "insight": "Um caso na família já é um dado relevante — vale mencionar ao seu médico."
             },
             {
               "ordem": 3,
               "label": "Mais de um",
-              "rawScore": 1.0
+              "rawScore": 1.0,
+              "insight": "Mais de um caso na família pode indicar um componente genético ou hormonal herdado que vale investigar."
             },
             {
               "ordem": 4,
               "label": "Vários casos",
-              "rawScore": 0.0
+              "rawScore": 0.0,
+              "insight": "Vários casos na família são um sinal forte de que vale investigar fatores hereditários com um especialista."
             }
           ]
         }

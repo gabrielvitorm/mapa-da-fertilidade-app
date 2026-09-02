@@ -76,6 +76,8 @@ model QuestionOption {
   label      String
   ordem      Int
   rawScore   Float
+  /** Frase curta explicando o que essa resposta específica indica — usada no teaser pré-pagamento. */
+  insight    String?
 }
 
 model ScoreRule {

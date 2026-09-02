@@ -9,8 +9,13 @@ import {
 interface ResultTeaserViewProps {
   primeiroNome: string;
   nivelGlobal: NivelGlobal;
-  /** 2–3 pilares exibidos como teaser bloqueado para motivar o desbloqueio. */
-  pontosAtencao: Pick<PillarResult, 'label' | 'level'>[];
+  /** 2–3 pilares exibidos como teaser: diagnóstico liberado, recomendação borrada. */
+  pontosAtencao: (Pick<PillarResult, 'label' | 'level' | 'diagnostico' | 'recomendacao'> & {
+    /** As respostas reais da usuária que mais pesaram nesse pilar, com insight próprio de cada uma. */
+    evidencias: { pergunta: string; resposta: string; insight: string }[];
+  })[];
+  /** Nomes dos demais pilares do mapa, exibidos como lista (não abstrato). */
+  outrosPilares: string[];
   /** URL do produto no Kiwify/Hotmart. Vem do catálogo (tabela products). */
   checkoutUrl: string;
 }
@@ -37,6 +42,7 @@ export function ResultTeaserView({
   primeiroNome,
   nivelGlobal,
   pontosAtencao,
+  outrosPilares,
   checkoutUrl,
 }: ResultTeaserViewProps) {
   const nivelLabel = NIVEL_GLOBAL_LABEL[nivelGlobal];
@@ -85,29 +91,65 @@ export function ResultTeaserView({
           {pontosAtencao.map((pilar) => (
             <div
               key={pilar.label}
-              className="bg-white rounded-xl border border-[var(--color-border-soft)] p-4 flex items-center justify-between"
+              className="bg-white rounded-xl border border-[var(--color-border-soft)] p-4 flex flex-col gap-3"
             >
-              <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-lg bg-[var(--color-surface-cream)] border border-[var(--color-border-soft)] flex items-center justify-center">
-                  <Lock className="w-3.5 h-3.5 text-[var(--color-brand-brown)]/30" />
-                </div>
-                <div>
-                  <p className="text-xs font-bold text-[var(--color-brand-brown)]">{pilar.label}</p>
-                  <PillarLevelBadge level={pilar.level} />
-                </div>
+              <div className="flex items-center justify-between">
+                <p className="text-xs font-bold text-[var(--color-brand-brown)]">{pilar.label}</p>
+                <PillarLevelBadge level={pilar.level} />
               </div>
-              <span className="text-[10px] font-bold text-[var(--color-brand-brown)]/25 uppercase tracking-wider">
-                Bloqueado
-              </span>
+
+              <p className="text-[11px] leading-relaxed text-[var(--color-brand-brown)]/70">
+                {pilar.diagnostico}
+              </p>
+
+              {pilar.evidencias.length > 0 && (
+                <div className="flex flex-col gap-2">
+                  {pilar.evidencias.map((ev) => (
+                    <div key={ev.pergunta} className="flex items-start gap-2">
+                      <span className="w-1 h-1 rounded-full bg-[var(--color-brand-terracota)] shrink-0 mt-[5px]" />
+                      <div>
+                        <p className="text-[11px] leading-relaxed text-[var(--color-brand-brown)]/65">
+                          {ev.insight}
+                        </p>
+                        <p className="text-[9px] text-[var(--color-brand-brown)]/35 mt-0.5">
+                          {ev.pergunta} — sua resposta: &ldquo;{ev.resposta}&rdquo;
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              <div className="flex items-start gap-1.5 pt-2 border-t border-dashed border-[var(--color-border-soft)]">
+                <Lock className="w-3 h-3 shrink-0 mt-0.5 text-[var(--color-brand-brown)]/30" />
+                <p
+                  className="text-[11px] leading-relaxed text-[var(--color-brand-brown)]/50 blur-[3px] select-none line-clamp-1"
+                  aria-hidden="true"
+                >
+                  {pilar.recomendacao}
+                </p>
+              </div>
             </div>
           ))}
 
-          {/* Card indicando que há mais pilares ocultos */}
-          <div className="bg-white rounded-xl border border-dashed border-[var(--color-border-soft)] p-4 flex items-center justify-center gap-2">
-            <Lock className="w-3.5 h-3.5 text-[var(--color-brand-brown)]/20" />
-            <p className="text-[11px] text-[var(--color-brand-brown)]/35">
-              + {13 - pontosAtencao.length} pilares disponíveis no relatório completo
-            </p>
+          {/* Lista com os demais pilares do mapa (concreta, não um número abstrato) */}
+          <div className="bg-white rounded-xl border border-dashed border-[var(--color-border-soft)] p-4">
+            <div className="flex items-center gap-2 mb-3">
+              <Lock className="w-3.5 h-3.5 text-[var(--color-brand-brown)]/20" />
+              <p className="text-[11px] text-[var(--color-brand-brown)]/45">
+                + {outrosPilares.length} pilares no seu mapa completo
+              </p>
+            </div>
+            <div className="flex flex-wrap gap-1.5">
+              {outrosPilares.map((label) => (
+                <span
+                  key={label}
+                  className="text-[10px] font-medium text-[var(--color-brand-brown)]/40 bg-[var(--color-surface-cream)] border border-[var(--color-border-soft)] rounded-full px-2.5 py-1"
+                >
+                  {label}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
       </div>
