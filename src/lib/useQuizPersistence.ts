@@ -1,10 +1,12 @@
 export interface QuizProgressSnapshot {
-  answers: Record<string, string>;
+  /** questionId → optionIds marcados (um só em perguntas de escolha única). */
+  answers: Record<string, string[]>;
   index: number;
   updatedAt: number;
 }
 
-const QUIZ_PROGRESS_KEY = 'mapa:quizProgress:v1';
+// v2: respostas viraram listas (múltipla escolha); snapshots v1 são ignorados.
+const QUIZ_PROGRESS_KEY = 'mapa:quizProgress:v2';
 const MAX_PROGRESS_AGE_MS = 7 * 24 * 60 * 60 * 1000;
 
 function getStorage() {
@@ -32,7 +34,11 @@ function isQuizProgressSnapshot(value: unknown, questionIds: string[]): value is
 
   const questionIdSet = new Set(questionIds);
   return Object.entries(snapshot.answers).every(
-    ([questionId, optionId]) => questionIdSet.has(questionId) && typeof optionId === 'string'
+    ([questionId, optionIds]) =>
+      questionIdSet.has(questionId) &&
+      Array.isArray(optionIds) &&
+      optionIds.length > 0 &&
+      optionIds.every((id) => typeof id === 'string')
   );
 }
 

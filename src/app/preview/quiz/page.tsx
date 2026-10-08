@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { QuizFlow } from '@/components/screens/QuizFlow';
+import { quizPillarMeta } from '@/lib/quiz-sections';
 import { fixtureQuestions } from './fixture';
 
 export default function QuizPreviewPage() {
@@ -18,5 +19,5 @@ export default function QuizPreviewPage() {
 
   if (!ready) return null;
 
-  return <QuizFlow questions={fixtureQuestions} />;
+  return <QuizFlow questions={fixtureQuestions} pillarMeta={quizPillarMeta('CHECKLIST_V2')} />;
 }

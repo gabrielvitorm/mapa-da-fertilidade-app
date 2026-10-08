@@ -6,7 +6,10 @@ import { NIVEL_GLOBAL_LABEL, type NivelGlobal } from '@/types/assessment';
 interface DashboardViewProps {
   primeiroNome: string;
   nivelGlobal: NivelGlobal;
-  resultadoFinal: number;
+  /** % do Mapa v1. Nulo no Checklist v2, que mostra `perfil` no lugar do anel. */
+  resultadoFinal: number | null;
+  /** Classificação do Checklist v2 (sem porcentagem — orientação do manual). */
+  perfil?: { label: string; cor: string; descricao: string };
   relatorioHref: string;
   /** Rota interna (/desafio) se a usuária tem acesso; checkoutUrl se não tem. */
   desafioHref: string;
@@ -25,13 +28,14 @@ export function DashboardView({
   primeiroNome,
   nivelGlobal,
   resultadoFinal,
+  perfil,
   relatorioHref,
   desafioHref,
   temDesafio,
   progressoDesafio,
 }: DashboardViewProps) {
   const nivelLabel = NIVEL_GLOBAL_LABEL[nivelGlobal];
-  const nivelCor = NIVEL_COR[nivelGlobal];
+  const nivelCor = perfil?.cor ?? NIVEL_COR[nivelGlobal];
 
   return (
     <div className="flex flex-col min-h-screen bg-[var(--color-surface-cream)]">
@@ -66,21 +70,37 @@ export function DashboardView({
             className="absolute -top-8 -right-8 w-28 h-28 rounded-full blur-2xl opacity-15"
             style={{ background: nivelCor }}
           />
-          <ScoreRing score={resultadoFinal} showThresholds={false} />
-          <div className="flex-1 z-10">
-            <p className="text-[10px] font-bold uppercase tracking-widest text-[var(--color-brand-brown)]/40 mb-0.5">
-              Nível de fertilidade
-            </p>
-            <p
-              className="font-serif italic text-2xl font-bold leading-tight"
-              style={{ color: nivelCor }}
-            >
-              {nivelLabel}
-            </p>
-            <p className="text-[11px] text-[var(--color-brand-brown)]/55 mt-1 leading-relaxed">
-              {Math.round(resultadoFinal)}% dos pilares avaliados
-            </p>
-          </div>
+          {perfil || resultadoFinal === null ? (
+            <div className="flex-1 z-10">
+              <p className="text-[10px] font-bold uppercase tracking-widest text-[var(--color-brand-brown)]/40 mb-0.5">
+                Checklist da Fertilidade
+              </p>
+              <p className="font-serif italic text-2xl font-bold leading-tight" style={{ color: nivelCor }}>
+                {perfil?.label ?? nivelLabel}
+              </p>
+              {perfil && (
+                <p className="text-[11px] text-[var(--color-brand-brown)]/55 mt-1 leading-relaxed">{perfil.descricao}</p>
+              )}
+            </div>
+          ) : (
+            <>
+              <ScoreRing score={resultadoFinal} showThresholds={false} />
+              <div className="flex-1 z-10">
+                <p className="text-[10px] font-bold uppercase tracking-widest text-[var(--color-brand-brown)]/40 mb-0.5">
+                  Nível de fertilidade
+                </p>
+                <p
+                  className="font-serif italic text-2xl font-bold leading-tight"
+                  style={{ color: nivelCor }}
+                >
+                  {nivelLabel}
+                </p>
+                <p className="text-[11px] text-[var(--color-brand-brown)]/55 mt-1 leading-relaxed">
+                  {Math.round(resultadoFinal)}% dos pilares avaliados
+                </p>
+              </div>
+            </>
+          )}
         </div>
 
         {/* Card — Relatório */}
@@ -98,7 +118,7 @@ export function DashboardView({
             <div className="flex-1 min-w-0">
               <p className="text-sm font-bold text-[var(--color-brand-brown)]">Relatório completo</p>
               <p className="text-[11px] text-[var(--color-brand-brown)]/55">
-                13 pilares · diagnóstico e recomendações
+                {perfil ? '13 pilares · achados e próximos passos' : '13 pilares · diagnóstico e recomendações'}
               </p>
             </div>
             <ChevronRight className="w-4 h-4 text-[var(--color-brand-brown)]/30 shrink-0" />

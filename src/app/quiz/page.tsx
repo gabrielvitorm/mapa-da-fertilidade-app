@@ -1,6 +1,7 @@
 import { db } from '@/lib/db';
 import { QuizFlow, type QuizFlowQuestion } from '@/components/screens/QuizFlow';
-import type { PillarKey } from '@/types/assessment';
+import { quizPillarMeta } from '@/lib/quiz-sections';
+import { activeQuizVersion } from '@/lib/quiz-version';
 
 // Sem isso, o Next.js pré-renderiza esta página como estática no build,
 // congelando as perguntas no snapshot do momento do build em vez de buscá-las
@@ -8,16 +9,21 @@ import type { PillarKey } from '@/types/assessment';
 export const dynamic = 'force-dynamic';
 
 export default async function QuizPage() {
+  // Só a versão ativa é servida; a outra continua no banco, oculta (docs/08).
+  const version = activeQuizVersion();
   const questions = await db.question.findMany({
+    where: { version },
     orderBy: [{ pillarOrdem: 'asc' }, { ordem: 'asc' }],
     include: { options: { orderBy: { ordem: 'asc' } } },
   });
 
   const flowQuestions: QuizFlowQuestion[] = questions.map((q) => ({
     id: q.id,
-    pillar: q.pillar as PillarKey,
+    pillar: q.pillar,
     texto: q.texto,
-    options: q.options.map((o) => ({ id: o.id, label: o.label })),
+    helpText: q.helpText ?? undefined,
+    multiSelect: q.multiSelect,
+    options: q.options.map((o) => ({ id: o.id, label: o.label, exclusive: o.exclusive })),
   }));
 
   if (flowQuestions.length === 0) {
@@ -33,5 +39,5 @@ export default async function QuizPage() {
     );
   }
 
-  return <QuizFlow questions={flowQuestions} />;
+  return <QuizFlow questions={flowQuestions} pillarMeta={quizPillarMeta(version)} />;
 }

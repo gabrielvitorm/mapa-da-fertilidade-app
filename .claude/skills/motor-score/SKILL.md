@@ -5,6 +5,10 @@ description: Use ao implementar ou alterar o cálculo do assessment de fertilida
 
 # Motor de score do assessment
 
+> **Este é o motor do Mapa v1 (legado, oculto).** O quiz padrão agora é o
+> Checklist da Fertilidade: regras em `docs/08-checklist-da-fertilidade.md` e
+> `src/lib/checklist-scoring.ts` (pilares 0–3/ND/NA, travas, sem porcentagem).
+
 Implemente como **função pura** em `/lib/scoring` com testes. A spec completa
 está em `docs/02-motor-de-score.md`. Pontos que não podem ser alterados sem
 confirmação da expert:

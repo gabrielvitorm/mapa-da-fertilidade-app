@@ -3,6 +3,8 @@ import { db } from '@/lib/db';
 import { computeAssessment } from '@/lib/scoring';
 import { buildAssessmentResult } from '@/lib/report-assembly';
 import { ResultTeaserView } from '@/components/screens/ResultTeaserView';
+import { ChecklistTeaserView } from '@/components/screens/ChecklistTeaserView';
+import { loadChecklistReport } from '@/lib/report-data';
 import type { RawAnswer } from '@/lib/assessment-service';
 import { PILLAR_LABEL, type NivelGlobal, type PillarKey, type PillarLevel } from '@/types/assessment';
 
@@ -18,6 +20,16 @@ export default async function ResultadoPage({ searchParams }: ResultadoPageProps
 
   const assessment = await db.assessment.findUnique({ where: { id: assessmentId } });
   if (!assessment) redirect('/welcome');
+
+  if (assessment.quizVersion === 'CHECKLIST_V2') {
+    return (
+      <ChecklistTeaserView
+        primeiroNome={assessment.leadNome?.split(' ')[0] ?? 'Você'}
+        report={await loadChecklistReport(assessment)}
+        checkoutUrl={`/checkout?assessmentId=${assessment.id}`}
+      />
+    );
+  }
 
   const rules = await db.scoreRule.findMany();
   const pillarMessages = await db.pillarMessage.findMany();

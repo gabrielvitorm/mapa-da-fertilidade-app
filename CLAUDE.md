@@ -26,7 +26,10 @@ Não há `jest`/`vitest` no `package.json`. Testes de lógica pura (`src/lib/*.t
 não há test runner nem watch mode, cada arquivo é um script que lança se um `assert` falhar.
 
 Páginas de preview para testar as telas já portadas sem banco:
-- `http://localhost:3000/preview/relatorio` — ReportView com fixture de 13 pilares
+- `http://localhost:3000/preview/quiz` — quiz com as perguntas reais do Checklist v2
+- `http://localhost:3000/preview/relatorio-checklist?perfil=alta` — relatório do Checklist v2 (`favoravel|intermediario|alta|inconclusivo`)
+- `http://localhost:3000/preview/resultado-checklist?perfil=inconclusivo` — teaser do Checklist v2
+- `http://localhost:3000/preview/relatorio` — ReportView legado (Mapa v1) com fixture de 13 pilares
 - `http://localhost:3000/preview/desafio` — ChallengePlayerView com seed da trilha Moderada
 
 ## O que este produto é (em uma frase)
@@ -64,10 +67,15 @@ novo é trabalho de *cadastro de produto*, não de código.
    quiz sem conta. O `Assessment` nasce órfão (sem `userId`) e é **adotado** pelo
    webhook de pagamento, casando por e-mail/CPF.
 4. **Auth por magic link** (e-mail). A conta nasce atrelada à compra.
-5. **Conteúdo é dado, não código.** Regras de score, textos do relatório e o
-   roteiro dos 7 dias vivem no banco. A expert atualiza sem redeploy.
+5. **Conteúdo é dado, não código.** Perguntas, textos do relatório e o
+   roteiro dos 7 dias vivem no banco. A expert atualiza sem redeploy. Exceção:
+   as regras do Checklist v2 (combinações, travas, ND/NA) são código puro e testado
+   em `src/lib/checklist-scoring.ts`.
 6. **Desafio é um roteiro tipo WhatsApp**, segmentado por nível de fertilidade
    (trilhas Baixa/Moderada/Alta), com gating híbrido (concluído + cooldown).
+7. **Dois quizzes, um ativo.** O Checklist da Fertilidade (v2, docs/08) é o
+   padrão; o Mapa v1 do Typebot fica oculto mas preservado (`QUIZ_VERSION=MAPA_V1`
+   reativa). Cada `Assessment` grava `quizVersion` e é renderizado pela tela da sua versão.
 
 ## Stack
 
@@ -91,6 +99,9 @@ src/
     screens/        # Telas completas (ReportView, ChallengePlayerView)
     ui/             # Primitivos reutilizáveis (PillarLevelBadge, ScoreRing, ChallengeMessageBubble)
   lib/              # Lógica pura sem dependência de framework
+    checklist-scoring.ts  # Motor do Checklist v2: pilares 0–3/ND/NA, travas, classificação
+    checklist-report.ts   # Monta o relatório v2 com os textos de ChecklistText
+    quiz-version.ts       # Versão de quiz servida em /quiz (QUIZ_VERSION)
     challenge-gating.ts   # isDayUnlocked / hoursUntilUnlock / isDayCompleted
     quiz-sections.ts       # Agrupa perguntas do quiz em capítulos por pilar
     useQuizPersistence.ts  # Retomada do quiz via localStorage (docs/07)
@@ -151,7 +162,8 @@ histórica de onde o visual veio.
 ## Mapa dos docs
 
 - `docs/01-dominio-e-modelo.md` — entidades, ERD, ciclo de vida do entitlement.
-- `docs/02-motor-de-score.md` — cálculo do assessment (13 pilares, fórmula, cortes).
+- `docs/02-motor-de-score.md` — cálculo do Mapa v1 (legado, oculto).
+- `docs/08-checklist-da-fertilidade.md` — Checklist v2: pontuação 0–3, travas, ND/NA, decisões a validar.
 - `docs/03-funil-e-webhooks.md` — as duas portas, checkout, contrato de webhook.
 - `docs/04-motor-do-desafio.md` — trilhas, roteiro, gating híbrido, devolutiva, mídia.
 - `docs/05-infra-e-deploy.md` — VPS, EasyPanel, R2, Cloudflare, CI/CD.

@@ -7,6 +7,8 @@ interface CheckoutReportViewProps {
   /** Presente quando a usuária já tem um assessment — personaliza o copy. */
   primeiroNome?: string;
   nivelGlobal?: NivelGlobal;
+  /** Checklist v2: classificação no lugar do nível e pilares do checklist novo. */
+  checklist?: { perfilLabel: string; pilaresDestaque: string[] };
 }
 
 const PILARES_DESTAQUE = [
@@ -25,12 +27,22 @@ const O_QUE_INCLUI = [
   'Acesso permanente ao relatório no app',
 ];
 
+const O_QUE_INCLUI_CHECKLIST = [
+  'Análise dos 13 pilares do Checklist da Fertilidade',
+  'Cada achado explicado com o próximo passo indicado',
+  'Travas de prioridade e exames essenciais pendentes',
+  'Relatório em PDF para levar à consulta',
+];
+
 export function CheckoutReportView({
   checkoutUrl,
   primeiroNome,
   nivelGlobal,
+  checklist,
 }: CheckoutReportViewProps) {
-  const nivelLabel = nivelGlobal ? NIVEL_GLOBAL_LABEL[nivelGlobal] : null;
+  const nivelLabel = checklist ? checklist.perfilLabel.toLowerCase() : nivelGlobal ? NIVEL_GLOBAL_LABEL[nivelGlobal] : null;
+  const pilaresDestaque = checklist?.pilaresDestaque ?? PILARES_DESTAQUE;
+  const oQueInclui = checklist ? O_QUE_INCLUI_CHECKLIST : O_QUE_INCLUI;
 
   return (
     <div className="flex flex-col min-h-screen bg-[var(--color-surface-cream)]">
@@ -48,7 +60,7 @@ export function CheckoutReportView({
             {primeiroNome && (
               <p className="text-[10px] font-bold uppercase tracking-widest text-[var(--color-brand-brown)]/45 mb-1">
                 {primeiroNome}
-                {nivelLabel ? `, nível ${nivelLabel}` : ''}
+                {nivelLabel ? (checklist ? `, ${nivelLabel}` : `, nível ${nivelLabel}`) : ''}
               </p>
             )}
             <h1 className="font-serif italic text-2xl font-bold text-[var(--color-brand-brown)] leading-snug">
@@ -57,9 +69,11 @@ export function CheckoutReportView({
           </div>
 
           <p className="text-xs leading-relaxed text-[var(--color-brand-brown)]/65 max-w-[300px]">
-            {nivelLabel
-              ? `Seu diagnóstico personalizado para o nível ${nivelLabel} — com orientações práticas para cada pilar avaliado.`
-              : 'Um diagnóstico detalhado dos 13 pilares da sua fertilidade, com orientações práticas e personalizadas.'}
+            {checklist
+              ? 'Os 13 pilares do Checklist da Fertilidade, com cada achado explicado e o próximo passo indicado para o seu caso.'
+              : nivelLabel
+                ? `Seu diagnóstico personalizado para o nível ${nivelLabel} — com orientações práticas para cada pilar avaliado.`
+                : 'Um diagnóstico detalhado dos 13 pilares da sua fertilidade, com orientações práticas e personalizadas.'}
           </p>
         </div>
       </div>
@@ -71,7 +85,7 @@ export function CheckoutReportView({
             O que você recebe
           </p>
           <ul className="space-y-2.5">
-            {O_QUE_INCLUI.map((item) => (
+            {oQueInclui.map((item) => (
               <li key={item} className="flex items-start gap-3">
                 <CheckCircle className="w-4 h-4 text-[var(--color-brand-sage)] shrink-0 mt-0.5" />
                 <span className="text-xs text-[var(--color-brand-brown)]/80 leading-relaxed">
@@ -88,7 +102,7 @@ export function CheckoutReportView({
             Pilares avaliados
           </p>
           <div className="grid grid-cols-2 gap-2">
-            {PILARES_DESTAQUE.map((label) => (
+            {pilaresDestaque.map((label) => (
               <div
                 key={label}
                 className="bg-white rounded-lg border border-[var(--color-border-soft)] px-3 py-2.5 flex items-center gap-2"
@@ -101,7 +115,7 @@ export function CheckoutReportView({
             ))}
             <div className="bg-white rounded-lg border border-dashed border-[var(--color-border-soft)] px-3 py-2.5 flex items-center justify-center col-span-2">
               <span className="text-[10px] text-[var(--color-brand-brown)]/35">
-                + 7 pilares adicionais
+                + {13 - pilaresDestaque.length} pilares adicionais
               </span>
             </div>
           </div>

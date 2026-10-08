@@ -3,6 +3,8 @@ import { db } from '@/lib/db';
 import { DashboardView } from '@/components/screens/DashboardView';
 import { LogoutButton } from '@/components/screens/LogoutButton';
 import type { NivelGlobal } from '@/types/assessment';
+import { CLASSIFICATION_LABEL } from '@/types/checklist';
+import { CLASSIFICATION_COLOR, CLASSIFICATION_SHORT_TEXT } from '@/lib/checklist-theme';
 
 export const dynamic = 'force-dynamic';
 
@@ -51,6 +53,15 @@ export default async function DashboardPage() {
         primeiroNome={user.nome?.split(' ')[0] ?? 'Você'}
         nivelGlobal={assessment.nivelGlobal as NivelGlobal}
         resultadoFinal={assessment.resultadoFinal}
+        perfil={
+          assessment.classification
+            ? {
+                label: CLASSIFICATION_LABEL[assessment.classification],
+                cor: CLASSIFICATION_COLOR[assessment.classification],
+                descricao: CLASSIFICATION_SHORT_TEXT[assessment.classification],
+              }
+            : undefined
+        }
         relatorioHref="/relatorio"
         desafioHref={challengeEntitlement ? '/desafio' : '/desafio/oferta'}
         temDesafio={Boolean(challengeEntitlement)}

@@ -21,8 +21,8 @@ export async function GET(request: NextRequest) {
     return NextResponse.redirect(new URL('/dashboard', request.url));
   }
 
-  const result = await loadReportData(user.id);
-  if (!result) {
+  const data = await loadReportData(user.id);
+  if (!data) {
     return NextResponse.redirect(new URL('/dashboard', request.url));
   }
 

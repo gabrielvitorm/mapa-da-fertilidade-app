@@ -43,30 +43,56 @@ enum NivelGlobal {
   ALTA
 }
 
+/// MAPA_V1 = quiz original do Typebot (oculto, preservado); CHECKLIST_V2 = Checklist da Fertilidade (docs/08).
+enum QuizVersion {
+  MAPA_V1
+  CHECKLIST_V2
+}
+
+enum ChecklistClassification {
+  FAVORAVEL
+  INTERMEDIARIA
+  ALTA_PRIORIDADE
+  INCONCLUSIVA
+}
+
 model Assessment {
-  id             String           @id @default(cuid())
-  userId         String?
-  user           User?            @relation(fields: [userId], references: [id])
-  source         AssessmentSource
-  leadEmail      String?
-  leadCpf        String?
-  leadNome       String?
-  leadCelular    String?
-  answers        Json
-  pillarScores   Json
-  scoreTotal     Float
-  resultadoFinal Float
-  nivelGlobal    NivelGlobal
-  createdAt      DateTime         @default(now())
+  id              String                   @id @default(cuid())
+  userId          String?
+  user            User?                    @relation(fields: [userId], references: [id])
+  source          AssessmentSource
+  leadEmail       String?
+  leadCpf         String?
+  leadNome        String?
+  leadCelular     String?
+  answers         Json
+  pillarScores    Json
+  scoreTotal      Float
+  /// % do Mapa v1. Nulo no Checklist v2, que não usa porcentagem.
+  resultadoFinal  Float?
+  /// Trilha do desafio. No Checklist v2 é derivada da classificação (CLASSIFICATION_TO_TRACK).
+  nivelGlobal     NivelGlobal
+  quizVersion     QuizVersion              @default(MAPA_V1)
+  classification  ChecklistClassification?
+  /// Snapshot do cálculo do Checklist v2 (auditoria); o relatório recalcula a partir de `answers`.
+  checklistResult Json?
+  createdAt       DateTime                 @default(now())
 }
 
 model Question {
-  id           String           @id @default(cuid())
-  pillar       String
-  pillarOrdem  Int
-  ordem        Int
-  texto        String
-  options      QuestionOption[]
+  id          String           @id @default(cuid())
+  version     QuizVersion      @default(MAPA_V1)
+  /// Código estável usado pelo motor do Checklist v2 (nulo no Mapa v1).
+  code        String?
+  pillar      String
+  pillarOrdem Int
+  ordem       Int
+  texto       String
+  helpText    String?
+  multiSelect Boolean          @default(false)
+  options     QuestionOption[]
+
+  @@unique([version, code])
 }
 
 model QuestionOption {
@@ -76,8 +102,14 @@ model QuestionOption {
   label      String
   ordem      Int
   rawScore   Float
-  /** Frase curta explicando o que essa resposta específica indica — usada no teaser pré-pagamento. */
+  /**
+   * Frase curta explicando o que essa resposta específica indica — usada no teaser pré-pagamento.
+   */
   insight    String?
+  /// Valor estável da opção para o motor do Checklist v2 (nulo no Mapa v1).
+  value      String?
+  /// Em perguntas multiSelect, desmarca as demais (ex.: "Nenhum desses").
+  exclusive  Boolean  @default(false)
 }
 
 model ScoreRule {
@@ -91,6 +123,13 @@ enum PillarLevel {
   Alto
   Moderado
   Baixo
+}
+
+/// Textos editáveis do relatório do Checklist v2: achados, frases por pilar, classificações.
+model ChecklistText {
+  key   String  @id
+  title String?
+  body  String
 }
 
 model PillarMessage {

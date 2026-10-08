@@ -6,21 +6,24 @@ import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import { QuizQuestionView, type QuizOption } from '@/components/screens/QuizQuestionView';
 import { PillarIntroView } from '@/components/screens/PillarIntroView';
 import { CalculatingView } from '@/components/screens/CalculatingView';
-import { PILLAR_INTRO, buildSections, crossesSectionBoundary, sectionForIndex } from '@/lib/quiz-sections';
+import { buildSections, crossesSectionBoundary, sectionForIndex, type QuizPillarMeta } from '@/lib/quiz-sections';
 import { clearQuizProgress, loadQuizProgress, saveQuizProgress } from '@/lib/useQuizPersistence';
-import { PILLAR_ICON } from '@/lib/pillar-icons';
-import type { PillarKey } from '@/types/assessment';
+import { pillarIcon } from '@/lib/pillar-icons';
 import type { CaptureData } from '@/components/screens/CaptureView';
 
 export interface QuizFlowQuestion {
   id: string;
-  pillar: PillarKey;
+  pillar: string;
   texto: string;
+  helpText?: string;
+  multiSelect?: boolean;
   options: QuizOption[];
 }
 
 interface QuizFlowProps {
   questions: QuizFlowQuestion[];
+  /** Rótulos e textos de checkpoint dos pilares da versão servida (quizPillarMeta). */
+  pillarMeta: Record<string, QuizPillarMeta>;
 }
 
 type Phase = 'question' | 'intro' | 'resume' | 'calculating';
@@ -32,18 +35,18 @@ const slideVariants = {
   exit: (direction: Direction) => ({ opacity: 0, x: direction === 'forward' ? -24 : 24 }),
 };
 
-export function QuizFlow({ questions }: QuizFlowProps) {
+export function QuizFlow({ questions, pillarMeta }: QuizFlowProps) {
   const router = useRouter();
   const reduceMotion = useReducedMotion();
 
   const [phase, setPhase] = useState<Phase>('question');
   const [index, setIndex] = useState(0);
-  const [answers, setAnswers] = useState<Record<string, string>>({});
+  const [answers, setAnswers] = useState<Record<string, string[]>>({});
   const [direction, setDirection] = useState<Direction>('forward');
   const [pendingIndex, setPendingIndex] = useState<number | null>(null);
   const [submitError, setSubmitError] = useState(false);
 
-  const sections = useMemo(() => buildSections(questions), [questions]);
+  const sections = useMemo(() => buildSections(questions, pillarMeta), [questions, pillarMeta]);
 
   useEffect(() => {
     const ids = questions.map((q) => q.id);
@@ -65,9 +68,9 @@ export function QuizFlow({ questions }: QuizFlowProps) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  function handleAnswer(optionId: string) {
+  function handleAnswer(optionIds: string[]) {
     const current = questions[index];
-    const nextAnswers = { ...answers, [current.id]: optionId };
+    const nextAnswers = { ...answers, [current.id]: optionIds };
     setAnswers(nextAnswers);
 
     const nextIndex = index + 1;
@@ -106,7 +109,7 @@ export function QuizFlow({ questions }: QuizFlowProps) {
     saveQuizProgress({ answers, index: index - 1, updatedAt: Date.now() });
   }
 
-  async function submit(finalAnswers: Record<string, string>) {
+  async function submit(finalAnswers: Record<string, string[]>) {
     setPhase('calculating');
     setSubmitError(false);
 
@@ -117,10 +120,9 @@ export function QuizFlow({ questions }: QuizFlowProps) {
     }
     const lead = JSON.parse(leadRaw) as CaptureData;
 
-    const answersPayload = Object.entries(finalAnswers).map(([questionId, optionId]) => ({
-      questionId,
-      optionId,
-    }));
+    const answersPayload = Object.entries(finalAnswers).flatMap(([questionId, optionIds]) =>
+      optionIds.map((optionId) => ({ questionId, optionId }))
+    );
 
     try {
       const [res] = await Promise.all([
@@ -154,7 +156,7 @@ export function QuizFlow({ questions }: QuizFlowProps) {
     return (
       <div className="flex min-h-screen flex-col items-center justify-center gap-6 bg-[var(--color-surface-cream)] px-8 text-center">
         <p className="text-sm text-[var(--color-brand-brown)]/80">
-          Você parou na pergunta {index + 1} ({section.label}).
+          Você parou na pergunta {index + 1} ({section.shortLabel}).
         </p>
         <div className="flex w-full max-w-xs flex-col gap-3">
           <button
@@ -185,11 +187,11 @@ export function QuizFlow({ questions }: QuizFlowProps) {
     const { section, sectionIndex } = sectionForIndex(sections, pendingIndex);
     return (
       <PillarIntroView
-        icon={PILLAR_ICON[section.pillar]}
+        icon={pillarIcon(section.pillar)}
         pillarLabel={section.label}
         pillarNumber={sectionIndex + 1}
         totalPillars={sections.length}
-        introText={PILLAR_INTRO[section.pillar]}
+        introText={section.intro}
         onContinue={handleIntroContinue}
       />
     );
@@ -211,14 +213,16 @@ export function QuizFlow({ questions }: QuizFlowProps) {
       >
         <QuizQuestionView
           question={current.texto}
+          helpText={current.helpText}
           options={current.options}
-          pillarLabel={section.label}
+          multiSelect={current.multiSelect}
+          pillarLabel={section.shortLabel}
           sectionIndex={sectionIndex}
           totalSections={sections.length}
           sectionProgress={questionInSection / section.questionCount}
           questionNumber={index + 1}
           totalQuestions={questions.length}
-          selectedOptionId={answers[current.id]}
+          selectedOptionIds={answers[current.id]}
           onAnswer={handleAnswer}
           onBack={handleBack}
         />

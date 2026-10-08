@@ -1,0 +1,624 @@
+{
+  "version": "CHECKLIST_V2",
+  "source": "Checklist da Fertilidade + Manual Profissional (Carolina Palitot, set/2026)",
+  "questions": [
+    {
+      "pillar": "idade_tentativa",
+      "code": "idade",
+      "texto": "Qual é a sua idade?",
+      "options": [
+        { "value": "lt35", "label": "Menos de 35 anos" },
+        { "value": "35_39", "label": "Entre 35 e 39 anos" },
+        { "value": "gte40", "label": "40 anos ou mais" }
+      ]
+    },
+    {
+      "pillar": "idade_tentativa",
+      "code": "tempo_tentativa",
+      "texto": "Há quanto tempo você está tentando engravidar?",
+      "options": [
+        { "value": "nao_comecei", "label": "Ainda não comecei a tentar" },
+        { "value": "lt6", "label": "Menos de 6 meses" },
+        { "value": "6_11", "label": "De 6 a 11 meses" },
+        { "value": "gte12", "label": "12 meses ou mais" }
+      ]
+    },
+    {
+      "pillar": "ciclo_ovulacao",
+      "code": "ciclo_duracao",
+      "texto": "Seus ciclos costumam durar quantos dias?",
+      "helpText": "Conte do 1º dia de uma menstruação até o 1º dia da seguinte.",
+      "options": [
+        { "value": "21_35", "label": "Entre 21 e 35 dias (por volta de 28)" },
+        { "value": "lt21", "label": "Menos de 21 dias" },
+        { "value": "gt35", "label": "Mais de 35 dias" },
+        { "value": "irregular", "label": "Variam muito, são imprevisíveis" },
+        { "value": "nao_sei", "label": "Não sei informar" }
+      ]
+    },
+    {
+      "pillar": "ciclo_ovulacao",
+      "code": "amenorreia_90",
+      "texto": "Nos últimos 12 meses, você ficou 90 dias ou mais sem menstruar?",
+      "helpText": "Sem estar grávida, amamentando ou usando anticoncepcional.",
+      "options": [
+        { "value": "nao", "label": "Não" },
+        { "value": "sim", "label": "Sim" }
+      ]
+    },
+    {
+      "pillar": "ciclo_ovulacao",
+      "code": "sangramento",
+      "texto": "Sobre o seu sangramento, marque o que acontece com você:",
+      "multiSelect": true,
+      "options": [
+        { "value": "fluxo_intenso", "label": "Fluxo muito intenso" },
+        { "value": "coagulos", "label": "Elimino coágulos grandes" },
+        { "value": "sangramento_longo", "label": "Sangramento que dura mais de 7 dias" },
+        { "value": "entre_menstruacoes", "label": "Sangramento entre as menstruações" },
+        { "value": "escapes", "label": "Escapes antes da menstruação" },
+        { "value": "nenhum", "label": "Nada disso", "exclusive": true }
+      ]
+    },
+    {
+      "pillar": "ciclo_ovulacao",
+      "code": "sinais_ovulacao",
+      "texto": "Como você percebe ou acompanha a sua ovulação?",
+      "multiSelect": true,
+      "options": [
+        { "value": "muco", "label": "Percebo muco transparente e elástico (tipo clara de ovo)" },
+        { "value": "lh_pico", "label": "Faço teste de LH e consigo identificar o pico" },
+        { "value": "lh_sem_pico", "label": "Faço teste de LH, mas não consigo identificar o pico" },
+        { "value": "usg_seriada", "label": "Já fiz ultrassonografia seriada (acompanhamento da ovulação)" },
+        { "value": "nenhum", "label": "Não acompanho / não percebo sinais", "exclusive": true }
+      ]
+    },
+    {
+      "pillar": "ciclo_ovulacao",
+      "code": "progesterona",
+      "texto": "Já dosou a progesterona cerca de 7 dias antes da menstruação?",
+      "options": [
+        { "value": "nao", "label": "Não dosei" },
+        { "value": "gt3", "label": "Sim, veio acima de 3 ng/mL" },
+        { "value": "lte3", "label": "Sim, veio 3 ng/mL ou menos" },
+        { "value": "nao_lembro", "label": "Dosei, mas não sei o resultado" }
+      ]
+    },
+    {
+      "pillar": "ciclo_ovulacao",
+      "code": "sintomas_hormonais",
+      "texto": "Você tem ondas de calor, suor noturno ou secura vaginal?",
+      "options": [
+        { "value": "nao", "label": "Não" },
+        { "value": "sim", "label": "Sim" }
+      ]
+    },
+    {
+      "pillar": "somp",
+      "code": "sinais_androgenicos",
+      "texto": "Você tem algum destes sinais?",
+      "multiSelect": true,
+      "options": [
+        { "value": "hirsutismo", "label": "Pelos grossos no rosto, tórax, abdome ou costas" },
+        { "value": "acne", "label": "Acne persistente" },
+        { "value": "queda_cabelo", "label": "Queda de cabelo" },
+        { "value": "acantose", "label": "Escurecimento da pele no pescoço, axilas ou virilha" },
+        { "value": "nenhum", "label": "Nenhum desses", "exclusive": true }
+      ]
+    },
+    {
+      "pillar": "somp",
+      "code": "exames_somp",
+      "texto": "Algum exame seu já mostrou:",
+      "multiSelect": true,
+      "options": [
+        { "value": "androgenos_altos", "label": "Testosterona ou outros andrógenos elevados" },
+        { "value": "usg_policistico", "label": "Ovários com aspecto policístico no ultrassom" },
+        { "value": "glicemia_alterada", "label": "Glicose, insulina ou hemoglobina glicada alteradas" },
+        { "value": "nenhum", "label": "Nenhum desses / nunca fiz", "exclusive": true }
+      ]
+    },
+    {
+      "pillar": "somp",
+      "code": "diagnostico_somp",
+      "texto": "Você já recebeu diagnóstico de SOP/SOMP?",
+      "options": [
+        { "value": "nao", "label": "Não" },
+        { "value": "sim_acompanhada", "label": "Sim, e faço acompanhamento" },
+        { "value": "sim_sem_acompanhamento", "label": "Sim, mas não faço acompanhamento" }
+      ]
+    },
+    {
+      "pillar": "endometriose_pelve",
+      "code": "dor_pelvica",
+      "texto": "Você sente alguma destas dores?",
+      "multiSelect": true,
+      "options": [
+        { "value": "colica_incapacitante", "label": "Cólica que me impede de fazer minhas atividades" },
+        { "value": "dispareunia", "label": "Dor profunda durante ou depois da relação" },
+        { "value": "dor_evacuar_urinar", "label": "Dor para evacuar ou urinar durante a menstruação" },
+        { "value": "dor_fora_menstruacao", "label": "Dor pélvica fora da menstruação" },
+        { "value": "nenhum", "label": "Nenhuma dessas", "exclusive": true }
+      ]
+    },
+    {
+      "pillar": "endometriose_pelve",
+      "code": "achados_pelvicos",
+      "texto": "Você tem ou já teve:",
+      "multiSelect": true,
+      "options": [
+        { "value": "endometriose_diagnostico", "label": "Diagnóstico de endometriose ou adenomiose" },
+        { "value": "endometrioma", "label": "Endometrioma (cisto de endometriose no ovário)" },
+        { "value": "cirurgia_endometriose", "label": "Cirurgia para endometriose ou endometrioma" },
+        { "value": "miomas", "label": "Miomas" },
+        { "value": "polipos", "label": "Pólipos endometriais (atuais ou já retirados)" },
+        { "value": "aderencias", "label": "Aderências uterinas" },
+        { "value": "malformacao", "label": "Malformação uterina" },
+        { "value": "cirurgia_uterina", "label": "Histeroscopia ou outra cirurgia uterina" },
+        { "value": "nenhum", "label": "Nenhum desses", "exclusive": true }
+      ]
+    },
+    {
+      "pillar": "trompas",
+      "code": "avaliacao_trompas",
+      "texto": "Já fez exame para avaliar as trompas (histerossalpingografia ou HyCoSy)?",
+      "options": [
+        { "value": "nao", "label": "Não fiz" },
+        { "value": "pervias", "label": "Sim: trompas pérvias (sem obstrução)" },
+        { "value": "obstrucao_unilateral", "label": "Sim: obstrução em uma trompa" },
+        { "value": "obstrucao_bilateral", "label": "Sim: obstrução nas duas trompas" },
+        { "value": "nao_lembro", "label": "Fiz, mas não sei o resultado" }
+      ]
+    },
+    {
+      "pillar": "trompas",
+      "code": "riscos_trompas",
+      "texto": "Você tem ou já teve:",
+      "multiSelect": true,
+      "options": [
+        { "value": "hidrossalpinge", "label": "Hidrossalpinge (trompa com líquido)" },
+        { "value": "ectopica", "label": "Gravidez ectópica (fora do útero)" },
+        { "value": "ist_dip", "label": "Clamídia, gonorreia ou doença inflamatória pélvica" },
+        { "value": "nenhum", "label": "Nenhum desses", "exclusive": true }
+      ]
+    },
+    {
+      "pillar": "reserva_ovariana",
+      "code": "amh",
+      "texto": "Já dosou o AMH (hormônio antimülleriano)? Como veio?",
+      "options": [
+        { "value": "nao", "label": "Não dosei" },
+        { "value": "lt1", "label": "Abaixo de 1,0 ng/mL" },
+        { "value": "1_1_5", "label": "Entre 1,0 e 1,5 ng/mL" },
+        { "value": "1_5_4", "label": "Entre 1,5 e 4,0 ng/mL" },
+        { "value": "gt4", "label": "Acima de 4,0 ng/mL" },
+        { "value": "nao_lembro", "label": "Dosei, mas não sei o resultado" }
+      ]
+    },
+    {
+      "pillar": "reserva_ovariana",
+      "code": "cfa",
+      "texto": "Já fez a contagem de folículos antrais (ultrassom no início do ciclo)? Quantos foram?",
+      "options": [
+        { "value": "nao", "label": "Não fiz" },
+        { "value": "lt5", "label": "Menos de 5 folículos" },
+        { "value": "5_7", "label": "De 5 a 7 folículos" },
+        { "value": "gte8", "label": "8 folículos ou mais" },
+        { "value": "nao_lembro", "label": "Fiz, mas não sei o resultado" }
+      ]
+    },
+    {
+      "pillar": "reserva_ovariana",
+      "code": "fsh",
+      "texto": "Já dosou FSH e estradiol entre o 2º e o 4º dia do ciclo? Como veio o FSH?",
+      "options": [
+        { "value": "nao", "label": "Não dosei" },
+        { "value": "lt10", "label": "FSH abaixo de 10 mUI/mL" },
+        { "value": "gte10", "label": "FSH de 10 mUI/mL ou mais" },
+        { "value": "nao_lembro", "label": "Dosei, mas não sei o resultado" }
+      ]
+    },
+    {
+      "pillar": "reserva_ovariana",
+      "code": "historico_ovariano",
+      "texto": "Algum destes se aplica a você?",
+      "multiSelect": true,
+      "options": [
+        { "value": "retirou_endometrioma", "label": "Já retirei endometrioma" },
+        { "value": "um_ovario", "label": "Tenho apenas um ovário" },
+        { "value": "nenhum", "label": "Nenhum", "exclusive": true }
+      ]
+    },
+    {
+      "pillar": "tireoide",
+      "code": "tireoide_condicao",
+      "texto": "Você tem hipotireoidismo, hipertireoidismo ou Hashimoto?",
+      "options": [
+        { "value": "nao", "label": "Não" },
+        { "value": "sim_controlada", "label": "Sim, e está controlada com acompanhamento médico" },
+        { "value": "sim_descompensada", "label": "Sim, mas está descompensada ou sem acompanhamento" }
+      ]
+    },
+    {
+      "pillar": "tireoide",
+      "code": "tireoide_extra",
+      "texto": "E sobre a tireoide, algum destes se aplica?",
+      "multiSelect": true,
+      "options": [
+        { "value": "anticorpos_positivos", "label": "Anti-TPO ou anti-tireoglobulina positivos" },
+        { "value": "historico_familiar", "label": "Histórico familiar de doença da tireoide" },
+        { "value": "nenhum", "label": "Nenhum / nunca dosei os anticorpos", "exclusive": true }
+      ]
+    },
+    {
+      "pillar": "disruptores",
+      "code": "exposicao_domestica",
+      "texto": "No seu dia a dia, você costuma:",
+      "multiSelect": true,
+      "options": [
+        { "value": "aquece_plastico", "label": "Aquecer comida em potes plásticos (inclusive no micro-ondas)" },
+        { "value": "embalagem_quente", "label": "Consumir alimentos ou bebidas quentes em embalagens plásticas" },
+        { "value": "reutiliza_garrafa", "label": "Reutilizar garrafas plásticas que ficam expostas ao calor" },
+        { "value": "aromatizadores", "label": "Usar muitos aromatizadores, perfumes ou produtos perfumados" },
+        { "value": "nenhum", "label": "Nada disso", "exclusive": true }
+      ]
+    },
+    {
+      "pillar": "disruptores",
+      "code": "exposicao_relevante",
+      "texto": "Algum destes faz parte da sua rotina?",
+      "multiSelect": true,
+      "options": [
+        { "value": "fuma", "label": "Eu fumo" },
+        { "value": "convive_fumantes", "label": "Convivo frequentemente com fumantes" },
+        { "value": "ocupacional", "label": "Contato frequente com pesticidas, solventes, tintas ou combustíveis" },
+        { "value": "nenhum", "label": "Nenhum desses", "exclusive": true }
+      ]
+    },
+    {
+      "pillar": "figado",
+      "code": "figado_exames",
+      "texto": "Sobre o seu fígado, você tem ou já teve:",
+      "multiSelect": true,
+      "options": [
+        { "value": "esteatose", "label": "Gordura no fígado" },
+        { "value": "enzimas_alteradas", "label": "TGO, TGP ou GGT alteradas" },
+        { "value": "doenca_hepatica", "label": "Alguma doença no fígado" },
+        { "value": "nenhum", "label": "Nenhum desses", "exclusive": true }
+      ]
+    },
+    {
+      "pillar": "figado",
+      "code": "figado_sinais",
+      "texto": "Algum destes se aplica a você?",
+      "multiSelect": true,
+      "options": [
+        { "value": "alcool", "label": "Consumo bebida alcoólica com frequência" },
+        { "value": "enxaqueca", "label": "Tenho enxaqueca frequente" },
+        { "value": "lingua", "label": "Percebo alterações persistentes na língua" },
+        { "value": "autoimune", "label": "Tenho alguma doença autoimune" },
+        { "value": "nenhum", "label": "Nenhum desses", "exclusive": true }
+      ]
+    },
+    {
+      "pillar": "intestino",
+      "code": "sintomas_intestinais",
+      "texto": "Você tem algum destes sintomas intestinais?",
+      "multiSelect": true,
+      "options": [
+        { "value": "constipacao", "label": "Constipação (intestino preso)" },
+        { "value": "diarreia", "label": "Diarreia frequente" },
+        { "value": "alterna", "label": "Alterno entre constipação e diarreia" },
+        { "value": "estufamento", "label": "Estufamento" },
+        { "value": "gases", "label": "Excesso de gases" },
+        { "value": "dor_abdominal", "label": "Dor abdominal" },
+        { "value": "alarme", "label": "Sangue nas fezes ou emagrecimento sem explicação" },
+        { "value": "nenhum", "label": "Nenhum desses", "exclusive": true }
+      ]
+    },
+    {
+      "pillar": "intestino",
+      "code": "frequencia_intestinal",
+      "texto": "Com que frequência esses sintomas intestinais aparecem?",
+      "options": [
+        { "value": "nao_tenho", "label": "Não tenho esses sintomas" },
+        { "value": "ocasional", "label": "De vez em quando" },
+        { "value": "persistente", "label": "Quase toda semana ou mais" }
+      ]
+    },
+    {
+      "pillar": "intestino",
+      "code": "condicoes_intestinais",
+      "texto": "Você tem algum destes quadros?",
+      "multiSelect": true,
+      "options": [
+        { "value": "intolerancia", "label": "Intolerância ou sensibilidade alimentar" },
+        { "value": "gluten", "label": "Sensibilidade ao glúten ou doença celíaca" },
+        { "value": "candidiase", "label": "Candidíase ou infecção fúngica recorrente" },
+        { "value": "nenhum", "label": "Nenhum desses", "exclusive": true }
+      ]
+    },
+    {
+      "pillar": "metabolismo_nutricao",
+      "code": "peso_variacao",
+      "texto": "Nos últimos 12 meses, você teve perda ou ganho importante de peso?",
+      "options": [
+        { "value": "nao", "label": "Não" },
+        { "value": "leve", "label": "Sim, uma variação leve (até 5 kg)" },
+        { "value": "importante", "label": "Sim, uma variação grande (mais de 5 kg)" }
+      ]
+    },
+    {
+      "pillar": "metabolismo_nutricao",
+      "code": "estado_nutricional",
+      "texto": "Como está o seu peso hoje?",
+      "helpText": "IMC = peso (kg) ÷ altura (m) ÷ altura (m).",
+      "options": [
+        { "value": "magreza", "label": "Abaixo do peso (IMC menor que 18,5)" },
+        { "value": "adequado", "label": "Peso adequado (IMC de 18,5 a 24,9)" },
+        { "value": "sobrepeso", "label": "Sobrepeso (IMC de 25 a 29,9)" },
+        { "value": "obesidade", "label": "Obesidade (IMC 30 ou mais)" },
+        { "value": "nao_sei", "label": "Não sei" }
+      ]
+    },
+    {
+      "pillar": "metabolismo_nutricao",
+      "code": "comportamento_alimentar",
+      "texto": "Algum destes se aplica a você?",
+      "multiSelect": true,
+      "options": [
+        { "value": "gordura_elevada", "label": "Percentual de gordura corporal elevado (em bioimpedância ou avaliação)" },
+        { "value": "compulsao", "label": "Episódios de compulsão alimentar" },
+        { "value": "restricao", "label": "Restrição alimentar importante ou dietas muito restritivas" },
+        { "value": "transtorno_ativo", "label": "Transtorno alimentar diagnosticado e ativo" },
+        { "value": "nenhum", "label": "Nenhum desses", "exclusive": true }
+      ]
+    },
+    {
+      "pillar": "metabolismo_nutricao",
+      "code": "cafeina",
+      "texto": "Quanta cafeína você consome por dia (café, chás, energéticos, chocolate, suplementos)?",
+      "options": [
+        { "value": "nao_consumo", "label": "Não consumo" },
+        { "value": "ate_200", "label": "Até 2 xícaras de café (até ~200 mg)" },
+        { "value": "acima_200", "label": "Mais de 2 xícaras de café (acima de ~200 mg)" }
+      ]
+    },
+    {
+      "pillar": "metilacao_inflamacao",
+      "code": "homocisteina",
+      "texto": "Já dosou a homocisteína? Como veio?",
+      "options": [
+        { "value": "nao", "label": "Não dosei" },
+        { "value": "ate_8", "label": "Até 8 µmol/L" },
+        { "value": "acima_8", "label": "Acima de 8 µmol/L" },
+        { "value": "nao_lembro", "label": "Dosei, mas não sei o resultado" }
+      ]
+    },
+    {
+      "pillar": "metilacao_inflamacao",
+      "code": "deficiencias",
+      "texto": "Algum exame já mostrou deficiência de:",
+      "multiSelect": true,
+      "options": [
+        { "value": "vit_d", "label": "Vitamina D" },
+        { "value": "b12", "label": "Vitamina B12" },
+        { "value": "folato", "label": "Folato" },
+        { "value": "b6", "label": "Vitamina B6" },
+        { "value": "ferro", "label": "Ferro ou ferritina baixa" },
+        { "value": "zinco", "label": "Zinco" },
+        { "value": "selenio", "label": "Selênio" },
+        { "value": "nenhuma", "label": "Investiguei e não tive deficiência", "exclusive": true },
+        { "value": "nunca_investiguei", "label": "Nunca investiguei", "exclusive": true }
+      ]
+    },
+    {
+      "pillar": "metilacao_inflamacao",
+      "code": "inflamacao",
+      "texto": "Já dosou PCR ultrassensível ou VHS? Como vieram?",
+      "options": [
+        { "value": "nao", "label": "Não dosei" },
+        { "value": "normais", "label": "Vieram normais" },
+        { "value": "alterados", "label": "Algum veio alterado" },
+        { "value": "nao_lembro", "label": "Dosei, mas não sei o resultado" }
+      ]
+    },
+    {
+      "pillar": "fator_masculino",
+      "code": "parceiro_idade",
+      "texto": "Qual é a idade do seu parceiro?",
+      "options": [
+        { "value": "lt40", "label": "Menos de 40 anos" },
+        { "value": "40_49", "label": "Entre 40 e 49 anos" },
+        { "value": "gte50", "label": "50 anos ou mais" },
+        { "value": "sem_parceiro", "label": "Não se aplica (não tenho parceiro homem)" }
+      ]
+    },
+    {
+      "pillar": "fator_masculino",
+      "code": "espermograma",
+      "texto": "Ele já fez espermograma? Qual foi o resultado?",
+      "options": [
+        { "value": "nao", "label": "Ainda não fez" },
+        { "value": "normal", "label": "Normal" },
+        { "value": "alterado", "label": "Alterado" },
+        { "value": "grave", "label": "Azoospermia (sem espermatozoides) ou alteração grave" },
+        { "value": "nao_sei", "label": "Fez, mas não sei o resultado" },
+        { "value": "nao_se_aplica", "label": "Não se aplica" }
+      ]
+    },
+    {
+      "pillar": "fator_masculino",
+      "code": "fragmentacao",
+      "texto": "Ele já fez o exame de fragmentação espermática?",
+      "options": [
+        { "value": "nao", "label": "Não fez" },
+        { "value": "normal", "label": "Sim, normal" },
+        { "value": "alterada", "label": "Sim, alterada" },
+        { "value": "nao_se_aplica", "label": "Não se aplica" }
+      ]
+    },
+    {
+      "pillar": "fator_masculino",
+      "code": "riscos_masculinos",
+      "texto": "Algum destes se aplica ao seu parceiro?",
+      "multiSelect": true,
+      "options": [
+        { "value": "varicocele", "label": "Tem varicocele" },
+        { "value": "trauma_cirurgia", "label": "Sofreu trauma ou cirurgia nos testículos" },
+        { "value": "testosterona", "label": "Usa testosterona, anabolizantes ou moduladores hormonais" },
+        { "value": "quimio_radio", "label": "Fez quimioterapia ou radioterapia" },
+        { "value": "fuma", "label": "Fuma" },
+        { "value": "nenhum", "label": "Nenhum desses / não se aplica", "exclusive": true }
+      ]
+    }
+  ],
+  "texts": [
+    { "key": "disclaimer", "body": "Esta classificação resume os fatores informados no Checklist da Fertilidade. Não representa diagnóstico, porcentagem de chance de gravidez, qualidade dos óvulos ou garantia de resultado. O objetivo é organizar prioridades e orientar os próximos passos. Este checklist não substitui a consulta com os profissionais responsáveis pelo seu acompanhamento médico e nutricional." },
+    { "key": "closing", "body": "Este resultado não representa um diagnóstico e não determina sua possibilidade de engravidar. O Checklist da Fertilidade identificou fatores que merecem atenção e que podem orientar os próximos passos do seu cuidado e da sua investigação." },
+    { "key": "classification.FAVORAVEL", "title": "Perfil favorável", "body": "O checklist identificou um perfil atualmente favorável entre os fatores avaliados. Não foram encontrados sinais de alta prioridade nas informações fornecidas. Este resultado não garante gravidez e deve ser revisto caso surjam novos sintomas, exames ou aumento do tempo de tentativa." },
+    { "key": "classification.INTERMEDIARIA", "title": "Perfil intermediário", "body": "O checklist identificou um perfil intermediário, com pontos que merecem acompanhamento, ajustes ou investigação. Isso não significa impossibilidade de engravidar. O resultado mostra onde concentrar o cuidado e quais avaliações podem ser priorizadas." },
+    { "key": "classification.ALTA_PRIORIDADE", "title": "Alta prioridade", "body": "O checklist identificou um ou mais fatores de maior impacto que justificam avaliação médica ou reprodutiva prioritária. A classificação não significa infertilidade definitiva nem impossibilidade de gravidez." },
+    { "key": "classification.INCONCLUSIVA", "title": "Resultado inconclusivo", "body": "As informações disponíveis ainda não permitem uma classificação responsável. Existem exames ou avaliações essenciais pendentes para o momento atual. O relatório indica quais dados precisam ser obtidos antes de concluir o perfil do checklist." },
+    { "key": "pillar.idade_tentativa", "body": "Considerando sua idade e o tempo de tentativa, recomenda-se avaliação médica da fertilidade conforme a prioridade identificada." },
+    { "key": "pillar.ciclo_ovulacao", "body": "O padrão menstrual relatado pode estar associado a alteração ovulatória e merece investigação direcionada." },
+    { "key": "pillar.somp", "body": "Os sinais relatados podem estar associados à SOMP. O diagnóstico depende da avaliação do conjunto clínico, hormonal e ultrassonográfico." },
+    { "key": "pillar.endometriose_pelve", "body": "Os sintomas ou achados informados justificam acompanhamento ginecológico e planejamento reprodutivo individualizado." },
+    { "key": "pillar.trompas", "body": "A permeabilidade tubária é um componente central da investigação e deve ser discutida com o especialista quando ainda não foi avaliada ou apresentou alteração." },
+    { "key": "pillar.reserva_ovariana", "body": "Os marcadores de reserva devem ser interpretados com idade, histórico, FSH, estradiol, AMH e contagem de folículos. Eles não definem sozinhos a chance de gravidez natural." },
+    { "key": "pillar.tireoide", "body": "A condição tireoidiana deve ser acompanhada antes e durante a gestação. Anticorpos isolados não determinam infertilidade." },
+    { "key": "pillar.disruptores", "body": "Foram identificadas exposições evitáveis. Recomenda-se reduzir principalmente o aquecimento de plástico, a fumaça, os pesticidas e os solventes." },
+    { "key": "pillar.figado", "body": "Os achados indicam a necessidade de avaliação da saúde hepática e metabólica conforme exames, sintomas e histórico." },
+    { "key": "pillar.intestino", "body": "Os sintomas digestivos merecem avaliação clínica e nutricional individualizada, evitando restrições desnecessárias." },
+    { "key": "pillar.metabolismo_nutricao", "body": "O estado nutricional e metabólico pode influenciar a ovulação e a saúde gestacional e deve ser trabalhado de forma individualizada." },
+    { "key": "pillar.metilacao_inflamacao", "body": "As alterações identificadas devem ser correlacionadas com sintomas, alimentação, exames e acompanhamento profissional." },
+    { "key": "pillar.fator_masculino", "body": "A fertilidade é uma avaliação do casal. O espermograma alterado, ou ainda pendente quando indicado, merece avaliação com urologista." },
+    { "key": "pillar_favoravel.idade_tentativa", "body": "Pela sua idade e pelo tempo de tentativa, ainda não há indicação formal de investigação. Reavalie se o tempo de tentativa aumentar." },
+    { "key": "pillar_favoravel.ciclo_ovulacao", "body": "Seus ciclos estão dentro do intervalo geralmente compatível com ovulação. Continue observando o seu padrão menstrual." },
+    { "key": "pillar_favoravel.somp", "body": "Não foram relatados sinais sugestivos de SOMP ou de alteração androgênica." },
+    { "key": "pillar_favoravel.endometriose_pelve", "body": "Não foram relatados sintomas ou alterações pélvicas relevantes." },
+    { "key": "pillar_favoravel.trompas", "body": "A avaliação relatada mostra pelo menos uma trompa pérvia, sem hidrossalpinge." },
+    { "key": "pillar_favoravel.reserva_ovariana", "body": "Os marcadores informados não sugerem redução da reserva ovariana. Lembre que eles não definem sozinhos a chance de gravidez natural." },
+    { "key": "pillar_favoravel.tireoide", "body": "Não há doença tireoidiana conhecida ou a condição está controlada com acompanhamento. Mantenha o acompanhamento antes e durante a gestação." },
+    { "key": "pillar_favoravel.disruptores", "body": "Não foi identificada exposição frequente a disruptores endócrinos. Continue evitando aquecer alimentos em plástico." },
+    { "key": "pillar_favoravel.figado", "body": "Não foram relatados sinais ou alterações hepáticas." },
+    { "key": "pillar_favoravel.intestino", "body": "Não foram relatados sintomas intestinais relevantes." },
+    { "key": "pillar_favoravel.metabolismo_nutricao", "body": "Não foi identificada alteração metabólica ou nutricional relevante nas respostas." },
+    { "key": "pillar_favoravel.metilacao_inflamacao", "body": "Nos exames que você informou, não apareceram homocisteína acima do alvo, marcadores inflamatórios alterados ou deficiências nutricionais." },
+    { "key": "pillar_favoravel.fator_masculino", "body": "O espermograma relatado não mostrou alteração relevante, e não foram citados fatores de risco." },
+    { "key": "pillar_atencao.idade_tentativa", "body": "Adiantar a consulta e os exames iniciais (ciclo, ovulação e avaliação do casal) evita perder tempo caso a investigação se torne necessária nos próximos meses." },
+    { "key": "pillar_atencao.ciclo_ovulacao", "body": "Seu ciclo traz um ponto de atenção leve. Anotar o padrão menstrual e os sinais de ovulação por alguns meses ajuda a identificar a janela fértil; leve essas anotações à próxima consulta." },
+    { "key": "pillar_atencao.somp", "body": "Foi relatado um sinal isolado que pode ter relação com alterações hormonais. Vale comentá-lo com o médico; um sinal isolado não confirma SOMP." },
+    { "key": "pillar_atencao.endometriose_pelve", "body": "O sintoma relatado é leve, mas deve ser comentado com o ginecologista para acompanhar a evolução e investigar a causa se persistir." },
+    { "key": "pillar_atencao.trompas", "body": "O histórico relatado é um fator de risco para as trompas, sem alteração confirmada. Converse com o médico sobre o momento de avaliar a permeabilidade tubária." },
+    { "key": "pillar_atencao.reserva_ovariana", "body": "Há um marcador limítrofe ou um histórico que merece acompanhamento. Isoladamente, ele não define a fertilidade: interprete-o com o médico junto aos demais exames." },
+    { "key": "pillar_atencao.tireoide", "body": "Há um fator de risco para a tireoide, sem alteração de função informada. Mantenha o acompanhamento da função tireoidiana no período pré-concepcional." },
+    { "key": "pillar_atencao.disruptores", "body": "Há exposições do dia a dia fáceis de reduzir. Trocar o plástico aquecido por vidro ou inox e diminuir produtos perfumados já é um bom começo." },
+    { "key": "pillar_atencao.figado", "body": "Foi relatado um fator de risco ou sintoma inespecífico. Ajustes de rotina e acompanhamento ajudam a proteger a saúde hepática e metabólica." },
+    { "key": "pillar_atencao.intestino", "body": "Os sintomas digestivos relatados são leves ou ocasionais. Ajustes alimentares orientados e a observação da frequência dos sintomas são o primeiro passo." },
+    { "key": "pillar_atencao.metabolismo_nutricao", "body": "Há pontos de ajuste na alimentação ou na composição corporal. O acompanhamento nutricional individualizado ajuda a corrigi-los sem restrições desnecessárias." },
+    { "key": "pillar_atencao.metilacao_inflamacao", "body": "Foi identificada uma alteração leve e isolada. Correlacione o resultado com sintomas, alimentação e acompanhamento profissional." },
+    { "key": "pillar_atencao.fator_masculino", "body": "Há um fator de estilo de vida ou de risco no parceiro, sem alteração seminal confirmada. Vale incluir a avaliação dele no planejamento do casal." },
+    { "key": "pillar_na.trompas", "body": "Pelo seu tempo de tentativa e histórico, a avaliação das trompas ainda não está indicada. Converse com o médico se o tempo de tentativa aumentar." },
+    { "key": "pillar_na.reserva_ovariana", "body": "Pela sua idade e histórico, os exames de reserva ovariana ainda não estão formalmente indicados. Converse com o médico sobre o momento certo de fazê-los." },
+    { "key": "pillar_na.fator_masculino", "body": "A avaliação do fator masculino ainda não está indicada pelo tempo de tentativa, ou não se aplica ao seu caso." },
+    { "key": "pillar_nd.ciclo_ovulacao", "body": "O padrão menstrual é um dado essencial para classificar o checklist. Anote o primeiro dia de cada menstruação por 2 a 3 meses para conhecer a duração dos seus ciclos." },
+    { "key": "pillar_nd.trompas", "body": "A avaliação das trompas já está indicada para você e ainda não foi feita, ou o resultado não está disponível. Converse com o médico sobre a histerossalpingografia ou a HyCoSy." },
+    { "key": "pillar_nd.reserva_ovariana", "body": "A avaliação da reserva ovariana (AMH e contagem de folículos antrais) já está indicada para você e ainda não foi feita, ou o resultado não está disponível. Converse com o médico para solicitar ou revisar esses exames." },
+    { "key": "pillar_nd.fator_masculino", "body": "A avaliação do fator masculino já está indicada. O espermograma é o exame inicial; se ele já foi feito, localize o laudo. Procure um urologista." },
+    { "key": "finding.idade_40", "title": "40 anos ou mais", "body": "Considerando a sua idade, recomenda-se avaliação médica imediata da fertilidade." },
+    { "key": "finding.tempo_tentativa_aumentado", "title": "Tempo de tentativa aumentado", "body": "Considerando sua idade e o tempo de tentativa, recomenda-se uma avaliação médica completa da fertilidade." },
+    { "key": "finding.tempo_tentativa_atencao", "title": "Tempo de tentativa se aproximando do limite", "body": "Pela combinação da sua idade com o tempo de tentativa, a investigação médica ainda não é obrigatória, mas está próxima. Vale planejar uma avaliação da fertilidade sem adiar." },
+    { "key": "finding.ciclo_fora_padrao", "title": "Ciclos menores que 21 ou maiores que 35 dias", "body": "O padrão menstrual relatado pode estar associado a alterações ovulatórias. Recomenda-se avaliação médica para investigar as possíveis causas." },
+    { "key": "finding.ciclo_desconhecido", "title": "Duração do ciclo desconhecida", "body": "Você não soube informar a duração dos seus ciclos. Registrar o primeiro dia de cada menstruação por alguns meses é o primeiro passo para avaliar a ovulação." },
+    { "key": "finding.amenorreia_90", "title": "Noventa dias ou mais sem menstruar", "body": "A ausência prolongada de menstruação pode indicar anovulação e necessita de investigação médica." },
+    { "key": "finding.escapes_sangramento", "title": "Escapes ou sangramento entre as menstruações", "body": "Sangramento entre as menstruações ou escapes antes da menstruação merecem avaliação ginecológica, pois podem estar ligados a alterações hormonais, da fase lútea ou da cavidade uterina." },
+    { "key": "finding.fluxo_alterado", "title": "Fluxo intenso, coágulos ou sangramento prolongado", "body": "Fluxo muito intenso, coágulos grandes ou sangramento prolongado devem ser relatados ao ginecologista, pois podem estar associados a miomas, pólipos, adenomiose ou alterações hormonais." },
+    { "key": "finding.ausencia_pico_lh", "title": "Ausência de pico de LH", "body": "A ausência de identificação do pico de LH pode indicar dificuldade no rastreamento da janela fértil ou possível alteração ovulatória. O resultado deve ser correlacionado com o ciclo menstrual e, quando necessário, com avaliação médica." },
+    { "key": "finding.ovulacao_nao_rastreada", "title": "Ovulação ainda não acompanhada", "body": "Você ainda não acompanha sinais de ovulação. Observar o muco cervical ou usar testes de LH ajuda a identificar a janela fértil e a perceber possíveis alterações ovulatórias." },
+    { "key": "finding.progesterona_ovulatoria", "title": "Progesterona acima de 3 ng/mL", "body": "O resultado apresenta evidência de ovulação recente. Entretanto, um valor isolado não permite avaliar a qualidade da fase lútea." },
+    { "key": "finding.progesterona_baixa", "title": "Progesterona de 3 ng/mL ou menos", "body": "A progesterona da fase lútea ficou em 3 ng/mL ou menos, o que pode indicar que não houve ovulação naquele ciclo. Recomenda-se avaliação médica, considerando o dia exato da coleta." },
+    { "key": "finding.sintomas_hipoestrogenismo", "title": "Ondas de calor, sudorese noturna ou secura vaginal", "body": "Os sintomas relatados indicam a importância de investigar possíveis alterações hormonais." },
+    { "key": "finding.suspeita_insuficiencia_ovariana", "title": "Sintomas hormonais com ciclos alterados", "body": "Ondas de calor, suor noturno ou secura vaginal junto com ciclos irregulares ou ausentes justificam avaliação médica prioritária da função ovariana." },
+    { "key": "finding.sinais_androgenicos", "title": "Pelos grossos, acne persistente ou queda de cabelo", "body": "Os sinais relatados podem estar associados a alterações nos andrógenos. Recomenda-se avaliação médica e hormonal para investigar SOMP e outras possíveis causas." },
+    { "key": "finding.acantose", "title": "Escurecimento no pescoço, axilas ou virilha", "body": "O escurecimento da pele pode estar associado a alterações no metabolismo da glicose. Recomenda-se avaliação metabólica individualizada." },
+    { "key": "finding.androgenos_elevados", "title": "Andrógenos elevados", "body": "Testosterona ou outros andrógenos elevados devem ser interpretados pelo médico junto com o ciclo menstrual, os sinais clínicos e a ultrassonografia." },
+    { "key": "finding.usg_policistico", "title": "Morfologia policística no ultrassom", "body": "A morfologia policística, isoladamente, não confirma SOMP. O achado deve ser avaliado em conjunto com o ciclo menstrual e os exames hormonais." },
+    { "key": "finding.glicemia_alterada", "title": "Glicose, insulina ou hemoglobina glicada alteradas", "body": "Foram identificados sinais de possível alteração metabólica. Recomenda-se acompanhamento médico e nutricional." },
+    { "key": "finding.amh_elevado_somp", "title": "AMH elevado", "body": "O AMH elevado não confirma SOMP isoladamente. O resultado deve ser interpretado juntamente com os ciclos menstruais, os sinais clínicos, os exames hormonais e a ultrassonografia." },
+    { "key": "finding.diagnostico_somp", "title": "Diagnóstico de SOMP", "body": "Você já tem diagnóstico de SOMP. O acompanhamento médico e nutricional contínuo é o que mais ajuda a regular a ovulação e o metabolismo." },
+    { "key": "finding.dor_pelvica_importante", "title": "Cólica incapacitante, dor profunda ou dor para evacuar e urinar", "body": "Os sintomas relatados indicam a importância de investigar endometriose, adenomiose ou outras causas de dor pélvica com o ginecologista." },
+    { "key": "finding.dor_pelvica_leve", "title": "Dor pélvica fora da menstruação", "body": "A dor pélvica fora da menstruação deve ser relatada ao ginecologista para investigar a causa." },
+    { "key": "finding.endometriose_diagnostico", "title": "Endometriose ou adenomiose", "body": "O diagnóstico de endometriose ou adenomiose deve fazer parte do planejamento reprodutivo, com acompanhamento ginecológico especializado." },
+    { "key": "finding.endometrioma", "title": "Endometrioma", "body": "A presença de endometrioma ou cirurgia ovariana anterior deve ser considerada na avaliação da fertilidade e da reserva ovariana." },
+    { "key": "finding.cirurgia_endometriose", "title": "Cirurgia anterior para endometriose", "body": "A presença de endometrioma ou cirurgia ovariana anterior deve ser considerada na avaliação da fertilidade e da reserva ovariana." },
+    { "key": "finding.miomas", "title": "Miomas", "body": "A presença de miomas deve ser avaliada de acordo com tamanho, localização e possível interferência sobre a cavidade uterina." },
+    { "key": "finding.polipos", "title": "Pólipos endometriais", "body": "As alterações relatadas indicam a importância de avaliar a cavidade uterina e sua possível relação com a fertilidade." },
+    { "key": "finding.cavidade_alterada", "title": "Aderências ou malformação uterina", "body": "As alterações relatadas indicam a importância de avaliar a cavidade uterina e sua possível relação com a fertilidade." },
+    { "key": "finding.cirurgia_uterina", "title": "Histeroscopia ou cirurgia uterina", "body": "A histeroscopia ou cirurgia uterina anterior deve ser considerada na avaliação da cavidade uterina." },
+    { "key": "finding.trompas_nao_avaliadas", "title": "Trompas ainda não avaliadas", "body": "A permeabilidade das trompas ainda não foi avaliada. Converse com o médico sobre a necessidade dessa investigação." },
+    { "key": "finding.trompas_resultado_desconhecido", "title": "Resultado do exame das trompas não disponível", "body": "O exame das trompas foi feito, mas o resultado não está disponível. O laudo é necessário para avaliar a permeabilidade tubária." },
+    { "key": "finding.obstrucao_unilateral", "title": "Obstrução de uma trompa", "body": "A presença de obstrução tubária necessita de avaliação com especialista para definição da conduta mais adequada." },
+    { "key": "finding.obstrucao_bilateral", "title": "Obstrução das duas trompas", "body": "A presença de obstrução tubária necessita de avaliação com especialista para definição da conduta mais adequada." },
+    { "key": "finding.hidrossalpinge", "title": "Hidrossalpinge", "body": "A presença de hidrossalpinge requer avaliação com especialista em reprodução humana." },
+    { "key": "finding.ectopica", "title": "Gravidez ectópica anterior", "body": "O histórico de gravidez ectópica indica a importância de uma avaliação detalhada das trompas." },
+    { "key": "finding.infeccao_pelvica", "title": "Clamídia, gonorreia ou doença inflamatória pélvica", "body": "O histórico de infecção pode estar associado a alterações tubárias. Recomenda-se avaliação médica da permeabilidade das trompas." },
+    { "key": "finding.amh_reduzido", "title": "AMH reduzido", "body": "O resultado pode sugerir redução quantitativa da reserva ovariana, mas não significa impossibilidade de gravidez. Recomenda-se interpretação médica considerando idade, exames e histórico." },
+    { "key": "finding.amh_limitrofe", "title": "AMH limítrofe", "body": "O AMH ficou em uma faixa limítrofe. Isoladamente, ele não define a fertilidade e deve ser interpretado com idade, contagem de folículos antrais e FSH." },
+    { "key": "finding.amh_elevado", "title": "AMH elevado", "body": "O AMH elevado não representa necessariamente maior fertilidade e não confirma SOMP isoladamente." },
+    { "key": "finding.cfa_reduzida", "title": "Contagem de folículos antrais reduzida", "body": "A contagem informada deve ser interpretada considerando idade, AMH, FSH e planejamento reprodutivo." },
+    { "key": "finding.cfa_limitrofe", "title": "Contagem de folículos antrais limítrofe", "body": "A contagem de folículos antrais ficou em uma faixa limítrofe. Ela deve ser interpretada considerando idade, AMH, FSH e planejamento reprodutivo." },
+    { "key": "finding.fsh_alterado", "title": "FSH alterado", "body": "O FSH deve ser interpretado juntamente com o estradiol, o dia do ciclo, a idade, o AMH e a contagem de folículos antrais." },
+    { "key": "finding.historico_ovariano", "title": "Retirada de endometrioma ou apenas um ovário", "body": "O histórico informado deve ser considerado na avaliação da reserva ovariana e no planejamento reprodutivo." },
+    { "key": "finding.reserva_muito_reduzida", "title": "Mais de um marcador de reserva reduzido", "body": "A combinação de marcadores de reserva reduzidos justifica avaliação prioritária com especialista em reprodução humana. Isso não significa impossibilidade de gravidez." },
+    { "key": "finding.reserva_nao_avaliada", "title": "Reserva ovariana ainda não avaliada", "body": "Pela sua idade ou histórico, a avaliação da reserva ovariana (AMH e contagem de folículos antrais) já está indicada e ainda não foi feita." },
+    { "key": "finding.reserva_resultado_desconhecido", "title": "Resultado da reserva ovariana não disponível", "body": "Os exames de reserva ovariana foram feitos, mas os resultados não estão disponíveis. Pela sua idade ou histórico, eles são necessários para concluir esta avaliação." },
+    { "key": "finding.tireoide_condicao", "title": "Hipotireoidismo, hipertireoidismo ou Hashimoto", "body": "A condição tireoidiana deve estar adequadamente acompanhada antes e durante a gestação. Recomenda-se avaliação médica da função da tireoide." },
+    { "key": "finding.tireoide_descompensada", "title": "Tireoide descompensada ou sem acompanhamento", "body": "A doença tireoidiana relatada está descompensada ou sem acompanhamento. Recomenda-se avaliação médica prioritária: o controle da tireoide é importante antes e durante a gestação." },
+    { "key": "finding.anticorpos_tireoide", "title": "Anticorpos tireoidianos positivos", "body": "A presença de anticorpos indica autoimunidade tireoidiana, mas não determina infertilidade isoladamente. Recomenda-se acompanhamento da função tireoidiana." },
+    { "key": "finding.historico_familiar_tireoide", "title": "Histórico familiar de doença tireoidiana", "body": "O histórico familiar aumenta a importância do acompanhamento da função tireoidiana, especialmente no período pré-concepcional." },
+    { "key": "finding.exposicao_domestica", "title": "Exposição frequente a disruptores", "body": "Foi identificada exposição frequente a possíveis disruptores endócrinos. Recomenda-se reduzir as exposições evitáveis, principalmente o aquecimento de alimentos em plástico, a fumaça, os pesticidas e os solventes." },
+    { "key": "finding.tabagismo", "title": "Tabagismo ou fumo passivo", "body": "A fumaça do cigarro, inclusive a passiva, é uma das exposições que mais afetam a fertilidade. Recomenda-se interromper o uso e evitar ambientes com fumaça, buscando apoio profissional se necessário." },
+    { "key": "finding.exposicao_ocupacional", "title": "Contato com pesticidas, solventes, tintas ou combustíveis", "body": "A exposição frequente a essas substâncias deve ser reduzida sempre que possível, com uso de proteção adequada. Comente essa exposição com o médico." },
+    { "key": "finding.figado_alterado", "title": "Gordura no fígado ou enzimas hepáticas alteradas", "body": "Foram identificados sinais que indicam a necessidade de avaliação da saúde hepática e metabólica." },
+    { "key": "finding.alcool", "title": "Consumo frequente de álcool", "body": "O consumo frequente de álcool sobrecarrega o fígado e não é recomendado para quem está tentando engravidar. Vale reduzir ou suspender o consumo." },
+    { "key": "finding.enxaqueca", "title": "Enxaqueca frequente", "body": "A enxaqueca não confirma alteração hepática ou hormonal. Entretanto, a frequência das crises e seus possíveis gatilhos merecem avaliação individualizada." },
+    { "key": "finding.lingua", "title": "Alterações persistentes na língua", "body": "A aparência da língua, isoladamente, não diagnostica alterações no fígado, no intestino ou na fertilidade. Alterações persistentes devem ser avaliadas por profissional de saúde." },
+    { "key": "finding.autoimune", "title": "Doença autoimune", "body": "A presença de doença autoimune indica a importância de acompanhamento médico durante o planejamento da gestação." },
+    { "key": "finding.sintomas_intestinais", "title": "Constipação, diarreia, estufamento, gases ou dor abdominal", "body": "Os sintomas relatados indicam a necessidade de avaliação intestinal e nutricional individualizada." },
+    { "key": "finding.sinais_alarme_intestinais", "title": "Sinais de alarme intestinais", "body": "Sangue nas fezes ou emagrecimento sem explicação são sinais de alarme e pedem avaliação médica o quanto antes." },
+    { "key": "finding.intolerancia_alimentar", "title": "Intolerância ou sensibilidade alimentar", "body": "A presença de sintomas relacionados a alimentos deve ser investigada individualmente, evitando restrições alimentares desnecessárias." },
+    { "key": "finding.gluten_celiaca", "title": "Sensibilidade ao glúten ou doença celíaca", "body": "O histórico relatado indica a importância de avaliação médica e nutricional específica." },
+    { "key": "finding.candidiase_recorrente", "title": "Infecção fúngica ou candidíase recorrente", "body": "A recorrência de infecções fúngicas merece avaliação médica e investigação de possíveis fatores associados. Esse achado não confirma, isoladamente, candidíase intestinal." },
+    { "key": "finding.variacao_peso", "title": "Perda ou ganho de peso", "body": "A variação de peso pode interferir no equilíbrio metabólico e hormonal. Recomenda-se avaliação nutricional individualizada." },
+    { "key": "finding.magreza_obesidade", "title": "Magreza ou obesidade", "body": "O estado nutricional pode influenciar a ovulação, o metabolismo e a saúde gestacional. Recomenda-se acompanhamento individualizado, sem utilizar apenas o peso como marcador de fertilidade." },
+    { "key": "finding.sobrepeso", "title": "Sobrepeso", "body": "A composição corporal pode ser melhorada com acompanhamento nutricional individualizado, favorecendo o equilíbrio metabólico e hormonal." },
+    { "key": "finding.gordura_elevada", "title": "Percentual elevado de gordura corporal", "body": "O percentual de gordura deve ser interpretado juntamente com massa muscular, exames metabólicos, ciclo menstrual e histórico clínico." },
+    { "key": "finding.comportamento_alimentar", "title": "Compulsão ou restrição alimentar", "body": "O histórico alimentar merece cuidado especializado, pois a baixa disponibilidade energética e os episódios de compulsão podem afetar a saúde metabólica e hormonal." },
+    { "key": "finding.transtorno_alimentar_ativo", "title": "Transtorno alimentar ativo", "body": "Um transtorno alimentar ativo pede acompanhamento especializado prioritário, pois afeta diretamente a saúde metabólica, hormonal e gestacional." },
+    { "key": "finding.cafeina_elevada", "title": "Consumo elevado de cafeína", "body": "O consumo de cafeína deve ser avaliado considerando café, chás, energéticos, chocolates e suplementos." },
+    { "key": "finding.homocisteina_elevada", "title": "Homocisteína acima de 8 µmol/L", "body": "A homocisteína encontra-se acima do alvo adotado neste checklist. Sugere-se avaliar vitamina B12, folato, vitamina B6 e outros fatores associados, com acompanhamento médico e nutricional." },
+    { "key": "finding.vitaminas_b_reduzidas", "title": "Vitamina B12, folato ou vitamina B6 reduzidos", "body": "Foram identificadas possíveis deficiências em nutrientes envolvidos no metabolismo da homocisteína. Recomenda-se avaliação nutricional individualizada." },
+    { "key": "finding.deficiencia_nutricional", "title": "Deficiência nutricional identificada", "body": "Foi identificada uma possível deficiência nutricional. Recomenda-se correlacionar o resultado com sintomas, alimentação, exames complementares e avaliação nutricional individualizada." },
+    { "key": "finding.inflamacao_alterada", "title": "PCR ultrassensível ou VHS alterados", "body": "Foram identificadas alterações em marcadores inflamatórios. Esses exames são inespecíficos e devem ser interpretados juntamente com sintomas, histórico clínico e avaliação médica." },
+    { "key": "finding.exames_nao_realizados", "title": "Exames ainda não realizados", "body": "Alguns exames importantes para a saúde pré-concepcional (homocisteína, nutrientes ou marcadores inflamatórios) ainda não foram feitos ou não têm resultado disponível. A necessidade deve ser definida individualmente, conforme histórico e acompanhamento profissional." },
+    { "key": "finding.idade_paterna", "title": "Parceiro com 40 anos ou mais", "body": "A idade paterna acima de 40 anos pode influenciar a qualidade seminal. Vale incluir a avaliação do parceiro no planejamento." },
+    { "key": "finding.espermograma_nao_realizado", "title": "Espermograma ainda não realizado", "body": "A avaliação da fertilidade deve incluir o fator masculino. Sugere-se procurar um urologista para avaliação e orientação sobre o espermograma." },
+    { "key": "finding.espermograma_resultado_desconhecido", "title": "Resultado do espermograma não disponível", "body": "O espermograma foi feito, mas o resultado não está disponível. Localize o laudo e leve-o ao urologista: ele é necessário para avaliar o fator masculino." },
+    { "key": "finding.espermograma_alterado", "title": "Espermograma alterado", "body": "O resultado alterado merece avaliação com urologista. Um espermograma isolado não determina infertilidade." },
+    { "key": "finding.alteracao_seminal_grave", "title": "Azoospermia ou alteração seminal grave", "body": "O resultado relatado justifica avaliação prioritária com urologista especializado em reprodução humana." },
+    { "key": "finding.fragmentacao_alterada", "title": "Fragmentação espermática alterada", "body": "O resultado da fragmentação espermática deve ser interpretado pelo urologista juntamente com o espermograma, o histórico e os demais fatores do casal." },
+    { "key": "finding.varicocele_trauma", "title": "Varicocele, trauma ou cirurgia testicular", "body": "O histórico relatado pode interferir na função testicular. Sugere-se procurar um urologista." },
+    { "key": "finding.testosterona_anabolizantes", "title": "Uso de testosterona, anabolizantes ou moduladores hormonais", "body": "O uso dessas substâncias pode interferir na produção de espermatozoides. Sugere-se procurar um urologista, sem suspender tratamentos por conta própria." },
+    { "key": "finding.quimio_radio", "title": "Quimioterapia ou radioterapia", "body": "O histórico de tratamento pode interferir na função reprodutiva masculina. Sugere-se avaliação com urologista." },
+    { "key": "finding.tabagismo_parceiro", "title": "Tabagismo do parceiro", "body": "O tabagismo pode prejudicar parâmetros seminais. Sugere-se avaliação com urologista e apoio para interrupção do uso." },
+    { "key": "lock.dois_pilares_criticos", "title": "Dois pilares críticos em investigação", "body": "Dois ou mais pilares críticos (idade e tentativa, ciclo, endometriose e pelve, trompas, reserva ovariana ou fator masculino) pediram investigação. A combinação justifica avaliação prioritária." },
+    { "key": "next.diagnostico_somp", "body": "Como você já tem diagnóstico de SOMP, o foco é o acompanhamento contínuo: ciclo, ovulação, metabolismo da glicose e alimentação, com o médico e a nutricionista." },
+    { "key": "next.tireoide_descompensada", "body": "Procure o endocrinologista para ajustar o tratamento: a tireoide controlada é importante para a ovulação e para a gestação." },
+    { "key": "next.sinais_alarme_intestinais", "body": "Procure avaliação médica o quanto antes para investigar os sinais de alarme relatados. Os demais ajustes intestinais vêm depois dessa avaliação." },
+    { "key": "next.transtorno_alimentar_ativo", "body": "O primeiro passo é o acompanhamento especializado do transtorno alimentar, com médico, psicólogo e nutricionista. Ajustes de peso e de dieta devem acontecer dentro desse cuidado." },
+    { "key": "next.exames_nao_realizados", "body": "Para completar este pilar, converse com quem acompanha você sobre dosar homocisteína, vitamina B12, folato, vitamina D, ferritina e marcadores inflamatórios." },
+    { "key": "next.trompas_resultado_desconhecido", "body": "Localize o laudo do exame das trompas ou converse com o médico sobre repeti-lo: o resultado é necessário para concluir esta avaliação." },
+    { "key": "next.tireoide_condicao", "body": "Mantenha o acompanhamento da tireoide antes e durante a gestação: a dose da medicação costuma precisar de ajuste no início da gravidez." }
+  ]
+}

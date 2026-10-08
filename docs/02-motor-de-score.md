@@ -1,5 +1,10 @@
 # 02 — Motor de score do assessment
 
+> **Quiz legado (Mapa v1).** Desde out/2026 o quiz padrão é o Checklist da
+> Fertilidade — ver `docs/08-checklist-da-fertilidade.md`. Este motor continua
+> ativo para o Typebot, para assessments antigos (`quizVersion = MAPA_V1`) e
+> quando `QUIZ_VERSION=MAPA_V1`.
+
 Especificação extraída do Typebot (`typebot-export-mapa-da-fertilidade.json`).
 Deve virar uma **função pura em TypeScript** em `/lib/scoring`, com testes.
 

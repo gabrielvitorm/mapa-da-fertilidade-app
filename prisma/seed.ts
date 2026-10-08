@@ -2,6 +2,8 @@ import { db } from '../src/lib/db';
 import { createAssessment } from '../src/lib/assessment-service';
 import { parseCsv } from '../src/lib/csv';
 import quizSource from './seed-data/quiz-source.json';
+import checklistSource from './seed-data/checklist-v2.json';
+import { INTERMEDIATE_ANSWERS } from '../src/lib/checklist-sample-answers';
 import { readFileSync } from 'fs';
 import path from 'path';
 import desafioBaixa from '../seeds/desafio-track-baixa.json';
@@ -55,10 +57,11 @@ async function seedScoreRules() {
   console.log(`ScoreRule: ${source.pillars.length} pilares`);
 }
 
+/** Mapa v1 (quiz original do Typebot) — oculto em /quiz, mas preservado para o Typebot e assessments antigos. */
 async function seedQuestions() {
   // Idempotente por reset completo — conteúdo de quiz, não dado transacional.
-  await db.questionOption.deleteMany({});
-  await db.question.deleteMany({});
+  await db.questionOption.deleteMany({ where: { question: { version: 'MAPA_V1' } } });
+  await db.question.deleteMany({ where: { version: 'MAPA_V1' } });
 
   let totalQuestions = 0;
   let totalOptions = 0;
@@ -67,6 +70,7 @@ async function seedQuestions() {
     for (const q of p.questions) {
       await db.question.create({
         data: {
+          version: 'MAPA_V1',
           pillar: p.pillar,
           pillarOrdem: pillarIndex + 1,
           ordem: q.ordem,
@@ -85,7 +89,99 @@ async function seedQuestions() {
       totalOptions += q.options.length;
     }
   }
-  console.log(`Question: ${totalQuestions}, QuestionOption: ${totalOptions}`);
+  console.log(`Question (MAPA_V1): ${totalQuestions}, QuestionOption: ${totalOptions}`);
+}
+
+interface ChecklistSourceOption {
+  value: string;
+  label: string;
+  exclusive?: boolean;
+}
+interface ChecklistSourceQuestion {
+  pillar: string;
+  code: string;
+  texto: string;
+  helpText?: string;
+  multiSelect?: boolean;
+  options: ChecklistSourceOption[];
+}
+interface ChecklistSource {
+  questions: ChecklistSourceQuestion[];
+  texts: { key: string; title?: string; body: string }[];
+}
+
+const checklist = checklistSource as ChecklistSource;
+
+function checklistQuestionId(code: string) {
+  return `v2_${code}`;
+}
+
+function checklistOptionId(code: string, value: string) {
+  return `v2_${code}__${value}`;
+}
+
+/**
+ * Checklist da Fertilidade (v2, docs/08). IDs determinísticos a partir do
+ * código da pergunta/opção: re-seed não invalida o progresso salvo no
+ * localStorage nem as respostas já gravadas.
+ */
+async function seedChecklistQuestions() {
+  const pillarOrder = [...new Set(checklist.questions.map((q) => q.pillar))];
+  const questionIds = checklist.questions.map((q) => checklistQuestionId(q.code));
+
+  const staleQuestions = await db.question.findMany({
+    where: { version: 'CHECKLIST_V2', id: { notIn: questionIds } },
+    select: { id: true },
+  });
+  await db.questionOption.deleteMany({ where: { questionId: { in: staleQuestions.map((q) => q.id) } } });
+  await db.question.deleteMany({ where: { id: { in: staleQuestions.map((q) => q.id) } } });
+
+  let totalOptions = 0;
+  for (const [index, q] of checklist.questions.entries()) {
+    const id = checklistQuestionId(q.code);
+    const data = {
+      version: 'CHECKLIST_V2' as const,
+      code: q.code,
+      pillar: q.pillar,
+      pillarOrdem: pillarOrder.indexOf(q.pillar) + 1,
+      ordem: index + 1,
+      texto: q.texto,
+      helpText: q.helpText ?? null,
+      multiSelect: q.multiSelect ?? false,
+    };
+    await db.question.upsert({ where: { id }, update: data, create: { id, ...data } });
+
+    const optionIds = q.options.map((o) => checklistOptionId(q.code, o.value));
+    await db.questionOption.deleteMany({ where: { questionId: id, id: { notIn: optionIds } } });
+    for (const [optionIndex, o] of q.options.entries()) {
+      const optionId = checklistOptionId(q.code, o.value);
+      const optionData = {
+        label: o.label,
+        ordem: optionIndex + 1,
+        rawScore: 0,
+        value: o.value,
+        exclusive: o.exclusive ?? false,
+      };
+      await db.questionOption.upsert({
+        where: { id: optionId },
+        update: optionData,
+        create: { id: optionId, questionId: id, ...optionData },
+      });
+    }
+    totalOptions += q.options.length;
+  }
+  console.log(`Question (CHECKLIST_V2): ${checklist.questions.length}, QuestionOption: ${totalOptions}`);
+}
+
+async function seedChecklistTexts() {
+  for (const t of checklist.texts) {
+    await db.checklistText.upsert({
+      where: { key: t.key },
+      update: { title: t.title ?? null, body: t.body },
+      create: { key: t.key, title: t.title ?? null, body: t.body },
+    });
+  }
+  console.log(`ChecklistText: ${checklist.texts.length}`);
 }
 
 async function seedPillarMessages() {
@@ -251,15 +347,14 @@ async function seedDemoUserAndCatalog() {
   await db.entitlement.deleteMany({ where: { userId: user.id } });
   await db.assessment.deleteMany({ where: { userId: user.id } });
 
-  const questions = await db.question.findMany({ include: { options: true } });
-  // Ordena por rawScore crescente e pega a "mediana por baixo" (index
-  // floor(length * 0.5)) — verificado contra o banco real: produz
-  // resultadoFinal ~68 (MODERADA), com folga confortável da fronteira em 60.
-  const answers = questions.map((q) => {
-    const sorted = [...q.options].sort((a, b) => a.rawScore - b.rawScore);
-    const median = sorted[Math.floor(sorted.length * 0.5)];
-    return { questionId: q.id, optionId: median.id };
-  });
+  // Perfil intermediário do Checklist v2 (sem travas nem pendências) — cai na
+  // trilha Moderada, a mesma que o demo usava no Mapa v1.
+  const answers = Object.entries(INTERMEDIATE_ANSWERS).flatMap(([code, values]) =>
+    values.map((value) => ({
+      questionId: checklistQuestionId(code),
+      optionId: checklistOptionId(code, value),
+    }))
+  );
 
   const result = await createAssessment({
     source: 'APP_NATIVE',
@@ -316,7 +411,7 @@ async function seedDemoUserAndCatalog() {
   });
 
   console.log(
-    `Demo user: ${user.email} (assessment ${result.assessmentId}, nivel ${result.nivelGlobal}, resultadoFinal ${result.resultadoFinal}, desafio dia 4/7 liberado)`
+    `Demo user: ${user.email} (assessment ${result.assessmentId}, ${result.classification}, trilha ${result.nivelGlobal}, desafio dia 4/7 liberado)`
   );
 }
 
@@ -324,6 +419,8 @@ async function main() {
   await seedScoreRules();
   await seedQuestions();
   await seedPillarMessages();
+  await seedChecklistQuestions();
+  await seedChecklistTexts();
   await seedProducts();
   await seedChallengeTracks();
   await seedDemoUserAndCatalog();

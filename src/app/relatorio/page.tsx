@@ -2,6 +2,7 @@ import { redirect } from 'next/navigation';
 import { requireSessionUser } from '@/lib/auth';
 import { hasActiveEntitlement } from '@/lib/entitlements';
 import { ReportClient } from '@/components/screens/ReportClient';
+import { ChecklistReportView } from '@/components/screens/ChecklistReportView';
 import { loadReportData } from '@/lib/report-data';
 
 export const dynamic = 'force-dynamic';
@@ -14,10 +15,21 @@ export default async function RelatorioPage() {
     redirect('/dashboard');
   }
 
-  const result = await loadReportData(user.id);
-  if (!result) {
+  const data = await loadReportData(user.id);
+  if (!data) {
     redirect('/dashboard');
   }
 
-  return <ReportClient result={result} />;
+  if (data.version === 'CHECKLIST_V2') {
+    return (
+      <ChecklistReportView
+        report={data.report}
+        backHref="/dashboard"
+        pdfHref="/relatorio/pdf"
+        upsellHref="/desafio/oferta"
+      />
+    );
+  }
+
+  return <ReportClient result={data.result} />;
 }

@@ -1,11 +1,26 @@
-import { PILLAR_LABEL, type PillarKey } from '@/types/assessment';
+import { PILLAR_LABEL, PILLAR_SHORT_LABEL, type PillarKey } from '@/types/assessment';
+import {
+  CHECKLIST_PILLARS,
+  CHECKLIST_PILLAR_INTRO,
+  CHECKLIST_PILLAR_LABEL,
+  CHECKLIST_PILLAR_SHORT_LABEL,
+  type QuizVersion,
+} from '@/types/checklist';
 import type { QuizFlowQuestion } from '@/components/screens/QuizFlow';
 
 export interface QuizSection {
-  pillar: PillarKey;
+  pillar: string;
   label: string;
+  shortLabel: string;
+  intro: string;
   startIndex: number;
   questionCount: number;
+}
+
+export interface QuizPillarMeta {
+  label: string;
+  shortLabel: string;
+  intro: string;
 }
 
 export const PILLAR_INTRO: Record<PillarKey, string> = {
@@ -24,7 +39,25 @@ export const PILLAR_INTRO: Record<PillarKey, string> = {
   historico: 'Por fim, vamos reunir informações importantes do seu histórico.',
 };
 
-export function buildSections(questions: QuizFlowQuestion[]): QuizSection[] {
+/** Rótulos e textos de checkpoint dos pilares da versão de quiz servida. */
+export function quizPillarMeta(version: QuizVersion): Record<string, QuizPillarMeta> {
+  if (version === 'CHECKLIST_V2') {
+    return Object.fromEntries(
+      CHECKLIST_PILLARS.map((key) => [
+        key,
+        { label: CHECKLIST_PILLAR_LABEL[key], shortLabel: CHECKLIST_PILLAR_SHORT_LABEL[key], intro: CHECKLIST_PILLAR_INTRO[key] },
+      ])
+    );
+  }
+  return Object.fromEntries(
+    (Object.keys(PILLAR_LABEL) as PillarKey[]).map((key) => [
+      key,
+      { label: PILLAR_LABEL[key], shortLabel: PILLAR_SHORT_LABEL[key], intro: PILLAR_INTRO[key] },
+    ])
+  );
+}
+
+export function buildSections(questions: QuizFlowQuestion[], meta: Record<string, QuizPillarMeta>): QuizSection[] {
   const sections: QuizSection[] = [];
 
   for (const [index, question] of questions.entries()) {
@@ -35,9 +68,12 @@ export function buildSections(questions: QuizFlowQuestion[]): QuizSection[] {
       continue;
     }
 
+    const pillarMeta = meta[question.pillar];
     sections.push({
       pillar: question.pillar,
-      label: PILLAR_LABEL[question.pillar],
+      label: pillarMeta?.label ?? question.pillar,
+      shortLabel: pillarMeta?.shortLabel ?? pillarMeta?.label ?? question.pillar,
+      intro: pillarMeta?.intro ?? '',
       startIndex: index,
       questionCount: 1,
     });
@@ -76,4 +112,16 @@ export function crossesSectionBoundary(sections: QuizSection[], fromIndex: numbe
 
   const { sectionIndex: fromSectionIndex } = sectionForIndex(sections, fromIndex);
   return toSectionIndex !== fromSectionIndex;
+}
+
+/** Alterna uma opção de múltipla escolha respeitando as exclusivas ("Nenhum desses" não convive com as outras). */
+export function toggleOption(
+  checked: string[],
+  option: { id: string; exclusive?: boolean },
+  options: { id: string; exclusive?: boolean }[]
+): string[] {
+  if (checked.includes(option.id)) return checked.filter((id) => id !== option.id);
+  if (option.exclusive) return [option.id];
+  const exclusiveIds = new Set(options.filter((o) => o.exclusive).map((o) => o.id));
+  return [...checked.filter((id) => !exclusiveIds.has(id)), option.id];
 }
