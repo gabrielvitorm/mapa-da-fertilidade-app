@@ -27,6 +27,26 @@ jobs:
       - run: npx tsc --noEmit
       - run: npm run lint
       - run: npm run build
+      - name: Production configuration contract
+        env:
+          NODE_ENV: production
+          DEMO_MODE: 'false'
+          DATABASE_URL: postgresql://ci:ci@localhost:5432/mapa_fertilidade
+          SESSION_SECRET: ci-session-secret-long-enough
+          APP_BASE_URL: https://app.example.com
+          SUPPORT_EMAIL: suporte@example.com
+          KIWIFY_WEBHOOK_SECRET: ci-kiwify-secret
+          KIWIFY_REPORT_PRODUCT_ID: ci-report-product
+          KIWIFY_REPORT_CHECKOUT_URL: https://pay.kiwify.com.br/ci-report
+          KIWIFY_CHALLENGE_PRODUCT_ID: ci-challenge-product
+          KIWIFY_CHALLENGE_CHECKOUT_URL: https://pay.kiwify.com.br/ci-challenge
+          N8N_MAGIC_LINK_WEBHOOK_URL: https://n8n.example.com/webhook/ci
+          R2_ACCOUNT_ID: ci-account
+          R2_ACCESS_KEY_ID: ci-access
+          R2_SECRET_ACCESS_KEY: ci-secret
+          R2_BUCKET: ci-bucket
+          NEXT_PUBLIC_R2_PUBLIC_BASE_URL: https://cdn.example.com
+        run: node node_modules/tsx/dist/cli.mjs scripts/preflight-production.ts
       - name: Domain tests
         shell: bash
         run: for f in src/lib/*.test.ts; do npx tsx "$f" || exit 1; done
