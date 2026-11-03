@@ -80,5 +80,6 @@ Checklist externo antes do lançamento:
 - `docs/06-relatorio-v2.md` — relatório e PDF.
 - `docs/07-quiz-v2.md` — capítulos, progresso e retomada.
 - `docs/08-checklist-da-fertilidade.md` — regras do Checklist v2.
+- `docs/10-checklist-de-lancamento.md` — sequência operacional de deploy e smoke test.
 - `docs/superpowers/specs/2026-11-03-operacao-real-design.md` — critérios de operação real.
 - `docs/superpowers/plans/2026-11-03-magic-link-checkout.md` — plano do bloco comercial.

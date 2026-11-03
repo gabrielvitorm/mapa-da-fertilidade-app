@@ -103,6 +103,8 @@ Kiwify e confirme `DEMO_MODE=false`. O seed não cria mais a usuária showcase
 fora de modo demo. Antes de publicar, rode `npm run preflight:production`; o
 comando valida a configuração sem imprimir secrets.
 
+O checklist operacional completo está em `docs/10-checklist-de-lancamento.md`.
+
 ## Domínios
 
 - App: `app.seudominio.com` (ou raiz).
