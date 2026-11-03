@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db';
 import { createSession } from '@/lib/auth';
-import { magicLinkTokenHash } from '@/lib/magic-link-verification';
+import { isMagicLinkUsable, magicLinkTokenHash } from '@/lib/magic-link-verification';
 
 function invalidTokenResponse(request: NextRequest) {
   return NextResponse.redirect(new URL('/login?error=invalid_token', request.url));
@@ -19,7 +19,7 @@ export async function GET(request: NextRequest) {
     select: { id: true, userId: true, expiresAt: true, usedAt: true },
   });
 
-  if (!token || token.usedAt !== null || token.expiresAt <= now) {
+  if (!token || !isMagicLinkUsable(token, now)) {
     return invalidTokenResponse(request);
   }
 

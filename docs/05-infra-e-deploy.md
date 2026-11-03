@@ -92,9 +92,10 @@ Cuidados:
   health check + zero-downtime, ou fila/retry do lado da plataforma cobre.
 - Segredos no GitHub Actions (Environments), nunca no repo.
 
-Estado atual da Fase 7: o repositorio entrega Dockerfile e healthcheck para
-deploy manual no EasyPanel. GitHub Actions, registry de imagem e webhook de
-deploy continuam fora de escopo ate a definicao do fluxo de publicacao.
+Estado atual da Fase 7: o repositorio entrega Dockerfile, healthcheck e uma
+pipeline de validação em `.github/workflows/ci.yml`. O publish da imagem e o
+restart no EasyPanel ainda dependem da escolha do registry e das credenciais
+do ambiente de produção.
 
 Antes do primeiro deploy comercial, aplique as migrations com
 `npx prisma migrate deploy`, rode o seed com as quatro variáveis reais da
