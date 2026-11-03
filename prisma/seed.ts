@@ -6,6 +6,7 @@ import checklistSource from './seed-data/checklist-v2.json';
 import { INTERMEDIATE_ANSWERS } from '../src/lib/checklist-sample-answers';
 import { readFileSync } from 'fs';
 import path from 'path';
+import { getProductConfig } from '../src/lib/product-config';
 import desafioBaixa from '../seeds/desafio-track-baixa.json';
 import desafioModerada from '../seeds/desafio-track-moderada.json';
 import desafioAlta from '../seeds/desafio-track-alta.json';
@@ -201,17 +202,21 @@ async function seedPillarMessages() {
 }
 
 async function seedProducts() {
+  const products = getProductConfig();
   await db.product.upsert({
     where: { slug: 'acesso-relatorio' },
-    update: {},
+    update: {
+      platformProductId: products.report.platformProductId,
+      checkoutUrl: products.report.checkoutUrl,
+    },
     create: {
       slug: 'acesso-relatorio',
       nome: 'Acesso + Relatório de Fertilidade',
       priceCents: 4990,
       kind: 'APP_ACCESS',
       platform: 'KIWIFY',
-      platformProductId: 'PLACEHOLDER-acesso-relatorio',
-      checkoutUrl: 'https://pay.kiwify.com.br/PLACEHOLDER-acesso-relatorio',
+      platformProductId: products.report.platformProductId,
+      checkoutUrl: products.report.checkoutUrl,
       grants: { entitlement: 'REPORT' },
     },
   });
@@ -317,22 +322,30 @@ async function seedChallengeTracks() {
   }
 }
 
-async function seedDemoUserAndCatalog() {
+async function seedChallengeProduct() {
+  const products = getProductConfig();
   await db.product.upsert({
     where: { slug: 'desafio-7-dias' },
-    update: {},
+    update: {
+      platformProductId: products.challenge.platformProductId,
+      checkoutUrl: products.challenge.checkoutUrl,
+    },
     create: {
       slug: 'desafio-7-dias',
       nome: 'Desafio de 7 Dias',
       priceCents: 19790,
       kind: 'CHALLENGE',
       platform: 'KIWIFY',
-      platformProductId: 'PLACEHOLDER-desafio-7-dias',
-      checkoutUrl: 'https://pay.kiwify.com.br/PLACEHOLDER-desafio-7-dias',
+      platformProductId: products.challenge.platformProductId,
+      checkoutUrl: products.challenge.checkoutUrl,
       grants: { entitlement: 'CHALLENGE', trackByLevel: true },
     },
   });
   console.log('Product: desafio-7-dias');
+}
+
+async function seedDemoUser() {
+  if (process.env.DEMO_MODE !== 'true') return;
 
   const DEMO_EMAIL = 'carolinapalitot20@gmail.com';
   const DEMO_NOME = 'Carolina Palitot';
@@ -422,8 +435,9 @@ async function main() {
   await seedChecklistQuestions();
   await seedChecklistTexts();
   await seedProducts();
+  await seedChallengeProduct();
   await seedChallengeTracks();
-  await seedDemoUserAndCatalog();
+  await seedDemoUser();
 }
 
 main()

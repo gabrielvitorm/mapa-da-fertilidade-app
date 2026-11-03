@@ -1,5 +1,6 @@
 import { db } from '@/lib/db';
 import type { Platform, OrderStatus } from '@prisma/client';
+import { sendMagicLink } from '@/lib/magic-link';
 
 export interface PaymentEvent {
   platform: Platform;
@@ -14,6 +15,17 @@ export interface PaymentEvent {
     celular?: string;
   };
   raw: unknown;
+}
+
+export async function sendMagicLinkSafely(
+  userId: string,
+  sender: (userId: string) => Promise<void> = sendMagicLink
+): Promise<void> {
+  try {
+    await sender(userId);
+  } catch (error) {
+    console.error('[magic-link] falha ao emitir link após pagamento:', error);
+  }
 }
 
 export async function handlePayment(event: PaymentEvent): Promise<void> {
@@ -103,7 +115,7 @@ export async function handlePayment(event: PaymentEvent): Promise<void> {
       },
     });
 
-    console.log(`[magic-link] enviaria link de acesso para ${user.email} (no-op em modo demo)`);
+    await sendMagicLinkSafely(user.id);
   } else {
     await db.entitlement.updateMany({
       where: { userId: user.id, productId: product.id, status: 'ACTIVE' },

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db';
-import { createSession } from '@/lib/auth';
+import { sendMagicLink } from '@/lib/magic-link';
 
 function isDatabaseUnavailableError(error: unknown): boolean {
   if (!(error instanceof Error)) {
@@ -27,7 +27,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Não encontramos essa conta' }, { status: 404 });
     }
 
-    await createSession(user.id);
+    await sendMagicLink(user.id);
     return NextResponse.json({ ok: true });
   } catch (error) {
     if (isDatabaseUnavailableError(error)) {

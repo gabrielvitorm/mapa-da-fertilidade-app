@@ -21,6 +21,7 @@ model User {
   entitlements      Entitlement[]
   challengeProgress ChallengeProgress[]
   devolutivas       Devolutiva[]
+  magicLinkTokens   MagicLinkToken[]
 }
 
 model Session {
@@ -29,6 +30,16 @@ model Session {
   user      User     @relation(fields: [userId], references: [id])
   tokenHash String   @unique
   expiresAt DateTime
+  createdAt DateTime @default(now())
+}
+
+model MagicLinkToken {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  tokenHash String   @unique
+  expiresAt DateTime
+  usedAt    DateTime?
   createdAt DateTime @default(now())
 }
 
