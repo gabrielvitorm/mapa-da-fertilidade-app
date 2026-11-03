@@ -100,7 +100,8 @@ do ambiente de produção.
 Antes do primeiro deploy comercial, aplique as migrations com
 `npx prisma migrate deploy`, rode o seed com as quatro variáveis reais da
 Kiwify e confirme `DEMO_MODE=false`. O seed não cria mais a usuária showcase
-fora de modo demo.
+fora de modo demo. Antes de publicar, rode `npm run preflight:production`; o
+comando valida a configuração sem imprimir secrets.
 
 ## Domínios
 

@@ -40,6 +40,7 @@ npx tsc --noEmit
 npm run build
 for f in src/lib/*.test.ts; do npx tsx "$f" || exit 1; done
 npx prisma validate
+npm run preflight:production   # requer .env de produção preenchido
 ```
 
 Os testes de domínio são scripts TypeScript independentes; não há Jest/Vitest configurado.
@@ -56,6 +57,8 @@ Consulte `.env.example`. Para operação real, são obrigatórias:
 - `NEXT_PUBLIC_R2_PUBLIC_BASE_URL` e credenciais R2 quando houver mídia real.
 
 `DEMO_MODE=true` deve ser usado somente em ambiente local/demonstração. Em produção, o seed falha se os produtos não tiverem configuração real e não cria a usuária demo.
+
+`npm run preflight:production` valida o ambiente sem imprimir secrets e deve passar antes do deploy comercial.
 
 ## Produção
 
