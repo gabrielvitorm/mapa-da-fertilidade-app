@@ -16,6 +16,8 @@ export function ReportClient({ result }: ReportClientProps) {
       result={result}
       onBack={() => router.push('/dashboard')}
       onPrintClick={() => {
+        // Esta rota devolve um PDF binário; navegação de documento é intencional.
+        // eslint-disable-next-line @next/next/no-location-assign-relative-destination
         window.location.assign('/relatorio/pdf');
       }}
       onUpsellClick={() => router.push('/desafio/oferta')}

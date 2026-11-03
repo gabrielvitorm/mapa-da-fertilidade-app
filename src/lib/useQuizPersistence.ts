@@ -5,6 +5,11 @@ export interface QuizProgressSnapshot {
   updatedAt: number;
 }
 
+export interface QuizProgressQuestion {
+  id: string;
+  optionIds: readonly string[];
+}
+
 // v2: respostas viraram listas (múltipla escolha); snapshots v1 são ignorados.
 const QUIZ_PROGRESS_KEY = 'mapa:quizProgress:v2';
 const MAX_PROGRESS_AGE_MS = 7 * 24 * 60 * 60 * 1000;
@@ -14,7 +19,10 @@ function getStorage() {
   return localStorage;
 }
 
-function isQuizProgressSnapshot(value: unknown, questionIds: string[]): value is QuizProgressSnapshot {
+function isQuizProgressSnapshot(
+  value: unknown,
+  questions: readonly QuizProgressQuestion[]
+): value is QuizProgressSnapshot {
   if (!value || typeof value !== 'object') return false;
 
   const snapshot = value as Partial<QuizProgressSnapshot>;
@@ -24,7 +32,7 @@ function isQuizProgressSnapshot(value: unknown, questionIds: string[]): value is
     typeof snapshot.index !== 'number' ||
     !Number.isInteger(snapshot.index) ||
     snapshot.index < 0 ||
-    snapshot.index >= questionIds.length ||
+    snapshot.index >= questions.length ||
     typeof snapshot.updatedAt !== 'number' ||
     !Number.isFinite(snapshot.updatedAt) ||
     Date.now() - snapshot.updatedAt > MAX_PROGRESS_AGE_MS
@@ -32,24 +40,24 @@ function isQuizProgressSnapshot(value: unknown, questionIds: string[]): value is
     return false;
   }
 
-  const questionIdSet = new Set(questionIds);
+  const questionOptions = new Map(questions.map((question) => [question.id, new Set(question.optionIds)]));
   return Object.entries(snapshot.answers).every(
     ([questionId, optionIds]) =>
-      questionIdSet.has(questionId) &&
+      questionOptions.has(questionId) &&
       Array.isArray(optionIds) &&
       optionIds.length > 0 &&
-      optionIds.every((id) => typeof id === 'string')
+      optionIds.every((id) => typeof id === 'string' && questionOptions.get(questionId)?.has(id))
   );
 }
 
-export function loadQuizProgress(questionIds: string[]): QuizProgressSnapshot | null {
+export function loadQuizProgress(questions: readonly QuizProgressQuestion[]): QuizProgressSnapshot | null {
   try {
     const storage = getStorage();
     const raw = storage?.getItem(QUIZ_PROGRESS_KEY);
     if (!raw) return null;
 
     const snapshot: unknown = JSON.parse(raw);
-    if (isQuizProgressSnapshot(snapshot, questionIds)) return snapshot;
+    if (isQuizProgressSnapshot(snapshot, questions)) return snapshot;
 
     storage?.removeItem(QUIZ_PROGRESS_KEY);
   } catch {

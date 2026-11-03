@@ -9,6 +9,20 @@ de cálculo (o momento de maior expectativa do funil) é um `<p>` estático.
 com animações, retomada de progresso e uma revelação cênica do resultado — sem
 mudar schema, seeds, motor de score ou o contrato do `POST /api/assessments`.
 
+## Status atual da implementação
+
+O fluxo descrito está implementado: capítulos derivados dos dados, progresso
+segmentado, intros de pilar, animações com reduced motion, retomada via
+`localStorage`, validação de perguntas e opções contra o quiz servido, tela de
+cálculo com duração mínima/retry e preview dedicado. A validação automatizada
+passa com `npm run lint`, `npx tsc --noEmit`, `npm run build` e os testes de
+`src/lib`.
+
+As caixas de aceite abaixo continuam sendo checklist de QA manual para
+dispositivos compactos, acessibilidade/foco e comportamento visual. O conteúdo
+das frases de introdução também deve receber aprovação editorial antes do
+lançamento comercial.
+
 ## Não-objetivos
 
 - Alterar perguntas, opções, ordem ou pontuação (tudo continua vindo do banco).

@@ -3,6 +3,16 @@
 Este documento é executado depois que os acessos ao PostgreSQL, EasyPanel,
 Kiwify, n8n e R2 estiverem disponíveis. Não coloque secrets no repositório.
 
+## Estado técnico atual
+
+O código, migrations, seed idempotente, imagem Docker, CI, preflight e smoke
+test local já foram validados. Este documento ainda não está concluído porque
+os valores reais de produção, integrações externas, aprovação jurídica da
+retenção LGPD e o smoke test comercial dependem do ambiente de lançamento.
+O Next.js está na versão corrigida 16.4.5; o audit ainda reporta apenas a
+dependência transitiva `deepmerge-ts` do Prisma 6, cuja correção automática
+exigiria uma migração major para Prisma 7.
+
 ## 1. Configurar o ambiente
 
 No EasyPanel, configurar:

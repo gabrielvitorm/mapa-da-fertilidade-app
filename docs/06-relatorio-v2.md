@@ -9,6 +9,18 @@ abrir 13 accordions para entender o que fazer primeiro.
 com o "mapa" literal (radar), priorização clara e export em PDF — sem alterar
 motor de score, banco ou fluxo de entitlements.
 
+## Status atual da implementação
+
+O escopo principal desta spec está implementado no código: contrato com score
+normalizado e peso, radar, prioridades, plano de ação, grupos derivados do
+banco, preview, rota de impressão e testes de montagem/priorização. A validação
+automatizada passa com `npm run lint`, `npx tsc --noEmit`, `npm run build` e os
+testes de `src/lib`.
+
+As caixas de aceite abaixo permanecem como checklist de QA visual/manual. Ainda
+é necessário validar impressão em navegadores e dispositivos reais antes de
+anunciar o PDF como compatível com todos os ambientes.
+
 ## Não-objetivos
 
 - Mudar `computeAssessment`, `buildAssessmentResult` ou o schema Prisma.

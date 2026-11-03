@@ -49,8 +49,11 @@ export function QuizFlow({ questions, pillarMeta }: QuizFlowProps) {
   const sections = useMemo(() => buildSections(questions, pillarMeta), [questions, pillarMeta]);
 
   useEffect(() => {
-    const ids = questions.map((q) => q.id);
-    const snapshot = loadQuizProgress(ids);
+    const progressQuestions = questions.map((question) => ({
+      id: question.id,
+      optionIds: question.options.map((option) => option.id),
+    }));
+    const snapshot = loadQuizProgress(progressQuestions);
     if (!snapshot || snapshot.index <= 0) return;
 
     const hasLead = typeof sessionStorage !== 'undefined' && sessionStorage.getItem('leadData');

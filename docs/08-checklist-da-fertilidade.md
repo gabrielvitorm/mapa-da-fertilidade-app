@@ -157,5 +157,6 @@ e `nivelGlobal` são o snapshot do momento da compra (dashboard e trilha).
 
 As respostas são dados de saúde (LGPD). O manual pede para informar a
 finalidade da coleta, restringir o acesso, definir prazo de retenção e oferecer
-canal de correção. **Pendente:** definir a política de retenção e o texto de
-consentimento na captura.
+canal de correção. O consentimento versionado já é coletado na captura e salvo
+junto do assessment. **Pendente:** definir e aprovar juridicamente a política
+de retenção e o texto jurídico final antes do lançamento comercial.
