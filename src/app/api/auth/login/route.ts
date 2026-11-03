@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db';
-import { sendMagicLink } from '@/lib/magic-link';
+import { MagicLinkDeliveryError, sendMagicLink } from '@/lib/magic-link';
 
 function isDatabaseUnavailableError(error: unknown): boolean {
   if (!(error instanceof Error)) {
@@ -33,6 +33,13 @@ export async function POST(request: NextRequest) {
     if (isDatabaseUnavailableError(error)) {
       return NextResponse.json(
         { error: 'Serviço temporariamente indisponível. Tente novamente em instantes.' },
+        { status: 503 }
+      );
+    }
+
+    if (error instanceof MagicLinkDeliveryError) {
+      return NextResponse.json(
+        { error: 'Não foi possível enviar o link agora. Tente novamente em instantes.' },
         { status: 503 }
       );
     }

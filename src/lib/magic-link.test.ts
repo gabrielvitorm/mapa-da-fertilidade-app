@@ -23,16 +23,27 @@ const successfulFetch = async (_input: string | URL, init?: RequestInit) => {
 };
 
 async function main() {
-  await deliverMagicLink(payload, 'https://n8n.example.com/webhook/magic-link', successfulFetch);
+  assert.equal(
+    await deliverMagicLink(payload, 'https://n8n.example.com/webhook/magic-link', successfulFetch),
+    true
+  );
   assert.deepEqual(received, payload);
 
-  await deliverMagicLink(
-    payload,
-    'https://n8n.example.com/webhook/magic-link',
-    async () => {
+  assert.equal(
+    await deliverMagicLink(payload, 'https://n8n.example.com/webhook/magic-link', async () => {
       throw new Error('network unavailable');
-    }
+    }),
+    false
   );
+  assert.equal(
+    await deliverMagicLink(
+      payload,
+      'https://n8n.example.com/webhook/magic-link',
+      async () => new Response(null, { status: 502 })
+    ),
+    false
+  );
+  assert.equal(await deliverMagicLink(payload, undefined), false);
 
   console.log('magic-link.test.ts: all assertions passed');
 }

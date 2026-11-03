@@ -7,6 +7,13 @@ export interface MagicLinkPayload {
   magicLinkUrl: string;
 }
 
+export class MagicLinkDeliveryError extends Error {
+  constructor() {
+    super('Magic link delivery failed');
+    this.name = 'MagicLinkDeliveryError';
+  }
+}
+
 type FetchLike = (input: string | URL, init?: RequestInit) => Promise<Response>;
 
 export function buildMagicLinkPayload(
@@ -20,10 +27,10 @@ export async function deliverMagicLink(
   payload: MagicLinkPayload,
   webhookUrl: string | undefined,
   fetchImpl: FetchLike = fetch
-): Promise<void> {
+): Promise<boolean> {
   if (!webhookUrl) {
     console.warn('[magic-link] N8N_MAGIC_LINK_WEBHOOK_URL não configurado');
-    return;
+    return false;
   }
 
   const controller = new AbortController();
@@ -39,9 +46,12 @@ export async function deliverMagicLink(
 
     if (!response.ok) {
       console.error(`[magic-link] n8n respondeu HTTP ${response.status}`);
+      return false;
     }
+    return true;
   } catch (error) {
     console.error('[magic-link] falha ao chamar o webhook do n8n:', error);
+    return false;
   } finally {
     clearTimeout(timeout);
   }
@@ -66,12 +76,15 @@ export async function sendMagicLink(userId: string): Promise<void> {
   const magicLinkUrl = new URL('/api/auth/verify', baseUrl);
   magicLinkUrl.searchParams.set('token', rawToken);
 
-  if (!process.env.N8N_MAGIC_LINK_WEBHOOK_URL && process.env.NODE_ENV !== 'production') {
+  const webhookUrl = process.env.N8N_MAGIC_LINK_WEBHOOK_URL;
+  if (!webhookUrl && process.env.NODE_ENV !== 'production') {
     console.info(`[magic-link] link local para ${user.email}: ${magicLinkUrl.toString()}`);
+    return;
   }
 
-  await deliverMagicLink(
+  const delivered = await deliverMagicLink(
     buildMagicLinkPayload(user, magicLinkUrl.toString()),
-    process.env.N8N_MAGIC_LINK_WEBHOOK_URL
+    webhookUrl
   );
+  if (!delivered) throw new MagicLinkDeliveryError();
 }
