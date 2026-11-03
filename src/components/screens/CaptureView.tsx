@@ -2,11 +2,14 @@
 
 import { useState } from 'react';
 import { ArrowLeft, Sparkles } from 'lucide-react';
+import Link from 'next/link';
+import { CONSENT_TEXT, CONSENT_VERSION } from '@/lib/consent';
 
 export interface CaptureData {
   nome: string;
   email: string;
   celular?: string;
+  consentVersion: string;
 }
 
 interface CaptureViewProps {
@@ -37,17 +40,23 @@ export function CaptureView({ currentStep, totalSteps, onSubmit, onBack }: Captu
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
   const [celular, setCelular] = useState('');
+  const [consentido, setConsentido] = useState(false);
   const [touched, setTouched] = useState({ nome: false, email: false });
 
   const emailValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  const podeEnviar = nome.trim().length >= 2 && emailValido;
+  const podeEnviar = nome.trim().length >= 2 && emailValido && consentido;
   const temProgresso = typeof totalSteps === 'number' && totalSteps > 0;
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setTouched({ nome: true, email: true });
     if (!podeEnviar) return;
-    onSubmit({ nome: nome.trim(), email: email.trim(), celular: celular.trim() || undefined });
+    onSubmit({
+      nome: nome.trim(),
+      email: email.trim(),
+      celular: celular.trim() || undefined,
+      consentVersion: CONSENT_VERSION,
+    });
   }
 
   const progress = temProgresso ? currentStep / totalSteps : 0;
@@ -149,6 +158,21 @@ export function CaptureView({ currentStep, totalSteps, onSubmit, onBack }: Captu
           </Field>
         </div>
 
+        <label className="flex items-start gap-3 rounded-xl border border-[var(--color-border-soft)] bg-white px-3 py-3 text-[11px] leading-relaxed text-[var(--color-brand-brown)]/65">
+          <input
+            type="checkbox"
+            checked={consentido}
+            onChange={(e) => setConsentido(e.target.checked)}
+            className="mt-0.5 accent-[var(--color-brand-terracota)]"
+          />
+          <span>
+            {CONSENT_TEXT}{' '}
+            <Link href="/privacidade" className="underline underline-offset-2">
+              Ler política de privacidade.
+            </Link>
+          </span>
+        </label>
+
         <div className="mt-auto flex flex-col gap-3">
           <button
             type="submit"
@@ -158,7 +182,7 @@ export function CaptureView({ currentStep, totalSteps, onSubmit, onBack }: Captu
             Fazer Meu Teste
           </button>
           <p className="text-center text-[10px] text-[var(--color-brand-brown)]/40 leading-relaxed">
-            Seus dados ficam seguros e não são compartilhados com terceiros.
+            Você pode solicitar correção dos seus dados pelo canal de suporte informado na política de privacidade.
           </p>
         </div>
       </form>

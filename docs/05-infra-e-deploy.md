@@ -41,8 +41,13 @@ Variaveis de ambiente de runtime:
 | --- | --- | --- | --- |
 | Banco | `DATABASE_URL` | Sim | URL do Postgres do EasyPanel. |
 | Auth | `SESSION_SECRET` | Sim | Segredo de assinatura de sessao. |
+| Auth | `APP_BASE_URL` | Sim | URL absoluta usada nos magic links. |
+| Auth | `N8N_MAGIC_LINK_WEBHOOK_URL` | Sim, se e-mail real estiver ativo | Endpoint n8n que envia o link de acesso. |
+| Suporte | `SUPPORT_EMAIL` | Sim | Canal de correção e atendimento exibido na política. |
 | Typebot | `INGEST_TOKEN` | Sim, se Typebot estiver ativo | Token do endpoint `/api/ingest/typebot`. |
 | Pagamento | `KIWIFY_WEBHOOK_SECRET` | Sim, se Kiwify estiver ativo | Segredo do webhook Kiwify. |
+| Catálogo | `KIWIFY_REPORT_PRODUCT_ID` / `KIWIFY_REPORT_CHECKOUT_URL` | Sim | Produto real do relatório. |
+| Catálogo | `KIWIFY_CHALLENGE_PRODUCT_ID` / `KIWIFY_CHALLENGE_CHECKOUT_URL` | Sim | Produto real do desafio. |
 | Midia publica | `NEXT_PUBLIC_R2_PUBLIC_BASE_URL` | Sim | Base publica usada para audio/imagem do desafio. |
 | Demo | `DEMO_MODE` | Nao | Use `true` somente em ambiente de demonstracao. |
 
@@ -90,6 +95,11 @@ Cuidados:
 Estado atual da Fase 7: o repositorio entrega Dockerfile e healthcheck para
 deploy manual no EasyPanel. GitHub Actions, registry de imagem e webhook de
 deploy continuam fora de escopo ate a definicao do fluxo de publicacao.
+
+Antes do primeiro deploy comercial, aplique as migrations com
+`npx prisma migrate deploy`, rode o seed com as quatro variáveis reais da
+Kiwify e confirme `DEMO_MODE=false`. O seed não cria mais a usuária showcase
+fora de modo demo.
 
 ## Domínios
 

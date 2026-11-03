@@ -1,69 +1,81 @@
 # Mapa da Fertilidade
 
-App do funil de fertilidade: quiz → relatório (após pagamento) → desafio de
-7 dias e order bumps, dentro do app. Pagamento via Kiwify/Hotmart; acesso
-liberado por webhook (entitlements).
+Aplicação do funil de fertilidade: captura → Checklist da Fertilidade → teaser → checkout → relatório personalizado → desafio de 7 dias. O acesso é liberado por entitlements recebidos via webhook da Kiwify.
 
 ## Stack
 
-Next.js 16 (App Router) + Tailwind v4 + TypeScript. Design system migrado de
-um protótipo validado no Google AI Studio (ver `CLAUDE.md`).
+Next.js 16 (App Router), React 19, TypeScript, Tailwind v4, Prisma 6 e PostgreSQL. Mídia pública do desafio é servida pelo Cloudflare R2; o envio de magic links pode usar n8n.
 
-## Rodando localmente
+## Desenvolvimento local
 
 ```bash
 npm install
 npm run dev
 ```
 
-Abra `http://localhost:3000` — a home tem links para as páginas de preview:
+Para usar o banco local, configure `DATABASE_URL` e rode:
 
-- `/preview/relatorio` — `ReportView` com os 13 pilares (dados de exemplo).
-- `/preview/desafio` — `ChallengePlayerView` com o Dia 1 real da trilha
-  Moderada, carregado direto de `seeds/desafio-track-moderada.json`.
-
-## Estrutura
-
-```
-CLAUDE.md                      Contexto raiz para Claude Code (leia primeiro)
-docs/                          Especificação completa do domínio
-  01-dominio-e-modelo.md       Entidades, ERD, ciclo do entitlement
-  02-motor-de-score.md         Cálculo do assessment (13 pilares)
-  03-funil-e-webhooks.md       Duas portas de captação, checkout, webhooks
-  04-motor-do-desafio.md       Trilhas, roteiro WhatsApp, gating, devolutiva
-  05-infra-e-deploy.md         VPS/EasyPanel/Postgres, R2, Cloudflare, CI/CD
-seeds/                         Conteúdo real das 3 trilhas + manifestos de mídia
-.claude/                       Skills, agentes e comandos do Claude Code
-src/
-  app/                         Rotas (App Router)
-    globals.css                Design tokens (cores, fontes)
-    preview/                   Páginas de demonstração das telas portadas
-  components/
-    screens/                   Telas completas (ReportView, ChallengePlayerView)
-    ui/                        Peças menores (ScoreRing, PillarLevelBadge, ...)
-  lib/                         Lógica de domínio (gating, sequenciamento)
-  types/                       Tipos do domínio (assessment, challenge)
+```bash
+npx prisma migrate dev
+npm run db:seed
 ```
 
-## O que já está implementado
+O seed cria os produtos e as trilhas. A usuária showcase só é criada quando `DEMO_MODE=true`.
 
-- Design system (cores, fontes) fiel ao protótipo aprovado.
-- Tipos de domínio (`AssessmentResult`, `ChallengeDay`, etc.) alinhados aos docs.
-- Gating híbrido do desafio (`src/lib/challenge-gating.ts`).
-- Duas telas completas, orientadas a dados: `ReportView` e `ChallengePlayerView`.
+## Rotas principais
 
-## O que falta (próximos passos)
+- `/welcome`, `/captura`, `/quiz`, `/resultado`: funil público.
+- `/checkout`: oferta do relatório.
+- `/login`: login por magic link.
+- `/dashboard`, `/relatorio`, `/relatorio/imprimir`: área autenticada.
+- `/desafio`, `/desafio/oferta`, `/desafio/[dia]`: desafio gated.
+- `/privacidade`: informações operacionais de privacidade e tratamento de dados.
+- `/preview/*`: telas isoladas sem dependência de sessão/banco.
 
-- Portar as 8 telas restantes do funil (welcome, quiz, capture, dashboard,
-  checkout do relatório, oferta do desafio, trilha/timeline, dia concluído),
-  seguindo o padrão das duas já feitas.
-- Schema do banco (Prisma/Drizzle) a partir de `docs/01`.
-- Handlers de webhook (`docs/03`) e motor de score real (`docs/02`).
-- Upload real de devolutiva em áudio/foto (hoje só o texto está plugado).
-- Migração de mídia do Drive para o R2 (`/migrar-midia`).
+## Comandos de verificação
 
-## Pendências de produto (TODO)
+```bash
+npm run lint
+npx tsc --noEmit
+npm run build
+for f in src/lib/*.test.ts; do npx tsx "$f" || exit 1; done
+npx prisma validate
+```
 
-- Confirmar com a expert o denominador do score (285 vs soma dos máximos 291).
-- Confirmar `cooldownHours` do gating (default sugerido: 20h).
-- Cadastrar produtos na Kiwify/Hotmart e preencher `platformProductId`/`checkoutUrl`.
+Os testes de domínio são scripts TypeScript independentes; não há Jest/Vitest configurado.
+
+## Variáveis importantes
+
+Consulte `.env.example`. Para operação real, são obrigatórias:
+
+- `DATABASE_URL`, `SESSION_SECRET`, `APP_BASE_URL` e `SUPPORT_EMAIL`;
+- `KIWIFY_WEBHOOK_SECRET`;
+- `KIWIFY_REPORT_PRODUCT_ID`, `KIWIFY_REPORT_CHECKOUT_URL`;
+- `KIWIFY_CHALLENGE_PRODUCT_ID`, `KIWIFY_CHALLENGE_CHECKOUT_URL`;
+- `N8N_MAGIC_LINK_WEBHOOK_URL`;
+- `NEXT_PUBLIC_R2_PUBLIC_BASE_URL` e credenciais R2 quando houver mídia real.
+
+`DEMO_MODE=true` deve ser usado somente em ambiente local/demonstração. Em produção, o seed falha se os produtos não tiverem configuração real e não cria a usuária demo.
+
+## Produção
+
+O [Dockerfile](Dockerfile) gera uma imagem standalone e executa `prisma migrate deploy` antes do servidor. O endpoint `/api/health` é o healthcheck do serviço.
+
+Checklist externo antes do lançamento:
+
+1. Configurar produtos e webhook no painel da Kiwify.
+2. Configurar o workflow n8n para receber `email`, `nome` e `magicLinkUrl`.
+3. Configurar Postgres, R2, domínio, secrets e `DEMO_MODE=false` no EasyPanel.
+4. Validar login, compra, webhook, relatório, PDF, mídia e desafio em navegador.
+5. Aprovar juridicamente a política de privacidade e o prazo de retenção.
+
+## Documentação
+
+- `docs/01-dominio-e-modelo.md` — domínio e modelo de dados.
+- `docs/03-funil-e-webhooks.md` — captura, checkout e webhooks.
+- `docs/05-infra-e-deploy.md` — infraestrutura e deploy.
+- `docs/06-relatorio-v2.md` — relatório e PDF.
+- `docs/07-quiz-v2.md` — capítulos, progresso e retomada.
+- `docs/08-checklist-da-fertilidade.md` — regras do Checklist v2.
+- `docs/superpowers/specs/2026-11-03-operacao-real-design.md` — critérios de operação real.
+- `docs/superpowers/plans/2026-11-03-magic-link-checkout.md` — plano do bloco comercial.

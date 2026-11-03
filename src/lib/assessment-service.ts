@@ -10,6 +10,7 @@ import {
 } from '@/lib/checklist-answers';
 import type { PillarKey } from '@/types/assessment';
 import { CLASSIFICATION_TO_TRACK, type ChecklistClassification, type QuizVersion } from '@/types/checklist';
+import { CONSENT_VERSION, hasValidConsent } from '@/lib/consent';
 
 export interface RawAnswer {
   questionId: string;
@@ -21,6 +22,7 @@ export interface AssessmentLead {
   email: string;
   celular?: string;
   cpf?: string;
+  consentVersion?: string;
 }
 
 export interface CreateAssessmentInput {
@@ -46,6 +48,10 @@ export interface CreateAssessmentResult {
  * nativo (Checklist v2) compartilham a mesma porta de ingestão.
  */
 export async function createAssessment(input: CreateAssessmentInput): Promise<CreateAssessmentResult> {
+  if (input.source === 'APP_NATIVE' && !hasValidConsent({ consentVersion: input.lead?.consentVersion })) {
+    throw new Error(`Consentimento obrigatório (${CONSENT_VERSION})`);
+  }
+
   const optionIds = [...new Set(input.answers.map((a) => a.optionId))];
 
   const options = await db.questionOption.findMany({
@@ -122,6 +128,8 @@ async function createChecklistAssessment(
       nivelGlobal,
       classification: computation.classification,
       checklistResult: computation as unknown as object,
+      consentVersion: input.lead?.consentVersion,
+      consentedAt: input.lead?.consentVersion ? new Date() : undefined,
     },
   });
 
@@ -176,6 +184,8 @@ async function createMapaAssessment(
       scoreTotal: computation.scoreTotal,
       resultadoFinal: computation.resultadoFinal,
       nivelGlobal: computation.nivelGlobal,
+      consentVersion: input.lead?.consentVersion,
+      consentedAt: input.lead?.consentVersion ? new Date() : undefined,
     },
   });
 

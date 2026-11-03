@@ -87,6 +87,8 @@ model Assessment {
   classification  ChecklistClassification?
   /// Snapshot do cálculo do Checklist v2 (auditoria); o relatório recalcula a partir de `answers`.
   checklistResult Json?
+  consentVersion  String?
+  consentedAt     DateTime?
   createdAt       DateTime                 @default(now())
 }
 
