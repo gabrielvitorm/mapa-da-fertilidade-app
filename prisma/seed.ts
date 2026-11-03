@@ -7,6 +7,7 @@ import { INTERMEDIATE_ANSWERS } from '../src/lib/checklist-sample-answers';
 import { readFileSync } from 'fs';
 import path from 'path';
 import { getProductConfig } from '../src/lib/product-config';
+import { CONSENT_VERSION } from '../src/lib/consent';
 import desafioBaixa from '../seeds/desafio-track-baixa.json';
 import desafioModerada from '../seeds/desafio-track-moderada.json';
 import desafioAlta from '../seeds/desafio-track-alta.json';
@@ -371,7 +372,7 @@ async function seedDemoUser() {
 
   const result = await createAssessment({
     source: 'APP_NATIVE',
-    lead: { nome: DEMO_NOME, email: DEMO_EMAIL },
+    lead: { nome: DEMO_NOME, email: DEMO_EMAIL, consentVersion: CONSENT_VERSION },
     answers,
   });
 
