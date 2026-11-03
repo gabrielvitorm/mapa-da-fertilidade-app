@@ -49,7 +49,8 @@ Resultado esperado: `Production preflight passed`.
 
 1. Publicar a imagem com o `Dockerfile`.
 2. Confirmar que o container executa `prisma migrate deploy` antes de iniciar.
-3. Verificar `GET /api/health` retornando JSON com `status: ok`.
+3. Verificar `GET /api/health` retornando JSON com `status: ok` e
+   `dependencies.database: ok`.
 4. Executar o seed uma vez, em janela controlada: `npm run db:seed`.
 5. Confirmar que o seed não criou a usuária showcase e que os dois produtos
    têm IDs/URLs reais.

@@ -33,7 +33,8 @@ Kiwify / Hotmart ── checkout + webhooks → /api/webhooks/*
   2. `node server.js`
 - Seeds nao rodam automaticamente em producao. Rode seed manualmente apenas em
   ambiente controlado.
-- Healthcheck HTTP: `GET /api/health`.
+- Healthcheck HTTP: `GET /api/health` — responde `200` somente quando o app e o
+  PostgreSQL estão disponíveis; retorna `503` se a dependência de banco cair.
 
 Variaveis de ambiente de runtime:
 
