@@ -94,8 +94,8 @@ Cuidados:
 - Segredos no GitHub Actions (Environments), nunca no repo.
 
 Estado atual da Fase 7: o repositorio entrega Dockerfile, healthcheck e uma
-pipeline de validação em `.github/workflows/ci.yml`, incluindo a construção da
-imagem de produção. O publish da imagem e o
+pipeline de validação em `.github/workflows/ci.yml`, incluindo o contrato de
+configuração e a construção da imagem de produção. O publish da imagem e o
 restart no EasyPanel ainda dependem da escolha do registry e das credenciais
 do ambiente de produção.
 
