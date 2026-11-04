@@ -30,6 +30,10 @@ function isHttpsUrl(value: string | undefined): boolean {
   }
 }
 
+function isEmail(value: string | undefined): boolean {
+  return typeof value === 'string' && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+}
+
 export function validateProductionEnv(env: Env = process.env): string[] {
   const errors: string[] = [];
 
@@ -44,6 +48,16 @@ export function validateProductionEnv(env: Env = process.env): string[] {
   if (!isHttpsUrl(env.N8N_MAGIC_LINK_WEBHOOK_URL)) errors.push('N8N_MAGIC_LINK_WEBHOOK_URL must be an https URL');
   if (!isHttpsUrl(env.NEXT_PUBLIC_R2_PUBLIC_BASE_URL)) {
     errors.push('NEXT_PUBLIC_R2_PUBLIC_BASE_URL must be an https URL');
+  }
+  if (!isEmail(env.SUPPORT_EMAIL)) errors.push('SUPPORT_EMAIL must be a valid email');
+  if ((env.SESSION_SECRET?.length ?? 0) < 32) {
+    errors.push('SESSION_SECRET must contain at least 32 characters');
+  }
+  if (!isHttpsUrl(env.KIWIFY_REPORT_CHECKOUT_URL)) {
+    errors.push('KIWIFY_REPORT_CHECKOUT_URL must be an https URL');
+  }
+  if (!isHttpsUrl(env.KIWIFY_CHALLENGE_CHECKOUT_URL)) {
+    errors.push('KIWIFY_CHALLENGE_CHECKOUT_URL must be an https URL');
   }
 
   return errors;

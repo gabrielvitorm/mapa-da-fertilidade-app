@@ -45,6 +45,9 @@ npm run preflight:production
 
 Resultado esperado: `Production preflight passed`.
 
+O preflight também rejeita segredo de sessão com menos de 32 caracteres,
+e-mail de suporte inválido e URLs de checkout Kiwify que não sejam HTTPS.
+
 ## 2. Deploy e banco
 
 1. Publicar a imagem com o `Dockerfile`.

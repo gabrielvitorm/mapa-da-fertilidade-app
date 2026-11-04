@@ -25,5 +25,8 @@ assert.deepEqual(validateProductionEnv(valid), []);
 assert.match(validateProductionEnv({ ...valid, DEMO_MODE: 'true' }).join('\n'), /DEMO_MODE/);
 assert.match(validateProductionEnv({ ...valid, APP_BASE_URL: 'http://localhost:3000' }).join('\n'), /APP_BASE_URL/);
 assert.match(validateProductionEnv({ ...valid, KIWIFY_REPORT_CHECKOUT_URL: 'PLACEHOLDER' }).join('\n'), /KIWIFY_REPORT_CHECKOUT_URL/);
+assert.match(validateProductionEnv({ ...valid, SUPPORT_EMAIL: 'not-an-email' }).join('\n'), /SUPPORT_EMAIL/);
+assert.match(validateProductionEnv({ ...valid, SESSION_SECRET: 'too-short' }).join('\n'), /SESSION_SECRET/);
+assert.match(validateProductionEnv({ ...valid, KIWIFY_CHALLENGE_CHECKOUT_URL: 'http://pay.example.com/challenge' }).join('\n'), /KIWIFY_CHALLENGE_CHECKOUT_URL/);
 
 console.log('production-config.test.ts: all assertions passed');
