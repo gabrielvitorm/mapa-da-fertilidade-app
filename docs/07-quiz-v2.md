@@ -175,7 +175,8 @@ Novo componente `src/components/screens/CalculatingView.tsx`, substitui o
    `TOTAL_STEPS` hardcoded no mesmo passo.
 2. `SegmentedProgressBar` + header novo do `QuizQuestionView`.
 3. Máquina de fases no `QuizFlow` (`question | intro | resume | calculating`)
-   + `PillarIntroView` (frases placeholder, marcar TODO de validação).
+   + `PillarIntroView` (frases em constante editorial; aprovar o texto antes
+   do lançamento).
 4. Animações do §5 (inclui `selectedOptionId` no voltar).
 5. `useQuizPersistence` + cartão de retomada + integração com `/captura`.
 6. `CalculatingView` com duração mínima e retry.
